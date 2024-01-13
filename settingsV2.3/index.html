@@ -10,7 +10,7 @@
             <input id="AreaShadow" class="mr-[66.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('AreaShadow', this)">
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
-            <label for="ballsVisibleHuck" class="text-nowrap text-xl select-none mr-4">Balls Visible Huck:</label>
+            <label for="ballsVisibleHuck" class="text-nowrap text-xl select-none mr-4">Balls Visible Huck (BETA!!!):</label>
             <input id="ballsVisibleHuck" class="mr-[66.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ballsVisibleHuck', this)">
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
@@ -55,11 +55,15 @@
         <p class="my-3 text-4xl text-red-400 select-none">Hero</p>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
             <label for="showReaperShadow" class="text-xl mr-3 select-none">Reaper Shadow:</label>
-            <input id="showReaperShadow" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ChronoShadow', this)">
+            <input id="showReaperShadow" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('showReaperShadow', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
             <label for="ChronoShadow" class="text-xl mr-3 select-none">Chrono Shadow:</label>
             <input id="ChronoShadow" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ChronoShadow', this)">
+        </div>
+        <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
+            <label for="ChronoShadow" class="text-xl mr-3 select-none">Chrono Auto Use Res (BETA!!!):</label>
+            <input id="ChronoShadow" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('aur', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
             <label for="necroAIM" class="text-xl mr-3 select-none">Necro AIM:</label>
@@ -67,13 +71,14 @@
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
             <label for="snowballAIM" class="text-xl mr-3 select-none">Snowball AIM:</label>
-            <input id="snowballAIM" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('necroAIM', this)">
+            <input id="snowballAIM" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('snowballAIM', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1">
             <label for="echelonAIM" class="text-xl mr-3 select-none">Echelon AIM:</label>
-            <input id="echelonAIM" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('necroAIM', this)">
+            <input id="echelonAIM" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('echelonAIM', this)">
         </div>
         <!-- Other -->
+        <p class="my-3 text-4xl text-yellow-400 select-none">Other</p>
         <div class="flex items-center justify-between px-1 w-full mb-2">
             <label for="deathsC" class="text-xl text-yellow-400 select-none mr-4">Death counter:</label>
             <input id="deathsC" class="mr-[66.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('deathsC', this)">
