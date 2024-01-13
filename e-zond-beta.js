@@ -179,10 +179,7 @@ class Settings {
     }
 
     createStyles() {
-        const styles = document.createElement('link');
-        styles.rel = 'stylesheet';
-        styles.type = 'text/css';
-        styles.href = 'https://cdn.jsdelivr.net/gh/Zirolio/E-Zond/settings/main.css';
+        
         return styles;
     }
 
