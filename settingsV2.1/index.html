@@ -6,90 +6,89 @@
         <!-- Map -->
         <p class="mb-3 text-4xl text-purple-400 select-none">Map</p>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
-            <label for="map1" class="text-nowrap text-xl select-none mr-4">Area Shadow:</label>
-            <input id="map1" class="mr-[70.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" ${window._client.shadow.showAreaShadow ? "checked " : ""} onclick="window._client.updateParam('AreaShadow', this)">
+            <label for="AreaShadow" class="text-nowrap text-xl select-none mr-4">Area Shadow:</label>
+            <input id="AreaShadow" class="mr-[70.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('AreaShadow', this)">
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
-            <label for="map2" class="text-nowrap text-xl select-none mr-4">Balls Visible Huck:</label>
-            <input id="map2" class="mr-[70.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" id="chb_22" ${window._client.ballsVisibleHuck ? "checked " : ""} onclick="window._client.updateParam('ballsVisibleHuck', this)">
+            <label for="ballsVisibleHuck" class="text-nowrap text-xl select-none mr-4">Balls Visible Huck:</label>
+            <input id="ballsVisibleHuck" class="mr-[70.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ballsVisibleHuck', this)">
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
-            <label for="map3" class="text-nowrap text-xl select-none mr-4">Balls on map:</label>
-            <input id="map3" class="mr-[70.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" ${window._client.ballsOnMap ? "checked " : ""} onclick="window._client.updateParam('ballsOnMap', this)">
+            <label for="ballsOnMap" class="text-nowrap text-xl select-none mr-4">Balls on map:</label>
+            <input id="ballsOnMap" class="mr-[70.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ballsOnMap', this)">
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
-            <label for="" class="text-nowrap text-xl select-none mr-4">Balls opacity:</label>
-            <input id="" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="range" oninput="window._client.updateParam('ballsOpacity', this)" min=0 max=100 value=${window._client.ballsOpacity * 100}>
+            <label for="-ballsOpacity" class="text-nowrap text-xl select-none mr-4">Balls opacity:</label>
+            <input id="ballsOpacity" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="range" oninput="window._client.updateParam('ballsOpacity', this)" min=0 max=100>
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full">
-            <label for="" class="text-nowrap text-xl select-none mr-4">Min area lighting:</label>
-            <input id="" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="range" oninput="window._client.updateParam('minLighting', this)" min=0 max=100 value=${window._client.shadow.minLighting * 100}>
+            <label for="-minLighting" class="text-nowrap text-xl select-none mr-4">Min area lighting:</label>
+            <input id="minLighting" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="range" oninput="window._client.updateParam('minLighting', this)" min=0 max=100>
         </div>
         <!-- Abilitys -->
         <p class="my-3 text-4xl text-orange-400 select-none">Abilitys</p>
         <div class="flex justify-between items-center px-1 w-full mb-2">
             <label for="abilitys1" class="text-xl text-orange-400 mr-4 select-none">Autouse one:</label>
-            <input id="abilitys1" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" ${window._client.autoUse.one ? "checked " : ""}class="zond-checkbox" onclick="window._client.updateParam('au one', this)">
+            <input id="abilitys1" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('au one', this)">
         </div>
         <div class="flex justify-between items-center px-1 w-full mb-2">
             <label for="abilitys2" class="text-xl text-orange-400 mr-4 select-none">Autouse two:</label>
-            <input id="abilitys2" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" ${window._client.autoUse.two ? "checked " : ""}class="zond-checkbox" onclick="window._client.updateParam('au two', this)">
+            <input id="abilitys2" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('au two', this)">
         </div>
         <div class="flex justify-between items-center px-1 w-full mb-2">
             <label for="abilitys3" class="text-xl text-orange-400 mr-4 select-none">Autouse three:</label>
-            <input id="abilitys3" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" ${window._client.autoUse.three ? "checked " : ""}class="zond-checkbox" onclick="window._client.updateParam('au three', this)">
+            <input id="abilitys3" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('au three', this)">
         </div>
         <div class="flex justify-between items-center px-1 w-full mb-2">
             <label for="abilitys4" class="text-xl text-orange-400 mr-4 select-none">Autouse one on new Area:</label>
-            <input id="abilitys4" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" ${window._client.autoUse.oneOnNA ? "checked " : ""}class="zond-checkbox" onclick="window._client.updateParam('auNA one', this)">
+            <input id="abilitys4" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('auNA one', this)">
         </div>
         <div class="flex justify-between items-center px-1 w-full mb-2">
             <label for="abilitys5" class="text-xl text-orange-400 mr-4 select-none">Autouse two on new Area:</label>
-            <input id="abilitys5" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" ${window._client.autoUse.twoOnNA ? "checked " : ""}class="zond-checkbox" onclick="window._client.updateParam('auNA two', this)">
+            <input id="abilitys5" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('auNA two', this)">
         </div>
         <div class="flex justify-between items-center px-1 w-full">
             <label for="abilitys6" class="text-xl text-orange-400 mr-4 select-none">Ignore energy:</label>
-            <input id="abilitys6" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" ${window._client.autoUse.ignoreEnergy ? "checked " : ""}class="zond-checkbox" onclick="window._client.updateParam('ignoreEnergy', this)">
+            <input id="abilitys6" class="mr-[70.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('ignoreEnergy', this)">
         </div>
         <!-- Hero -->
         <p class="my-3 text-4xl text-red-400 select-none">Hero</p>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
-            <label for="hero1" class="text-xl mr-3 select-none">Reaper Shadow:</label>
-            <input id="hero1" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" ${window._client.reaper.showReaperShadow ? "checked " : ""} onclick="window._client.updateParam('ChronoShadow', this)">
+            <label for="showReaperShadow" class="text-xl mr-3 select-none">Reaper Shadow:</label>
+            <input id="showReaperShadow" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ChronoShadow', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
-            <label for="hero2" class="text-xl mr-3 select-none">Chrono Shadow:</label>
-            <input id="hero2" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" ${window._client.chrono.showChronoShadow ? "checked " : ""} onclick="window._client.updateParam('ChronoShadow', this)">
+            <label for="ChronoShadow" class="text-xl mr-3 select-none">Chrono Shadow:</label>
+            <input id="ChronoShadow" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ChronoShadow', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
-            <label for="hero3" class="text-xl mr-3 select-none">Death counter:</label>
-            <input id="hero3" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" ${window._client.counters.deathsC ? "checked " : ""} onclick="window._client.updateParam('deathsC', this)">
+            <label for="necroAIM" class="text-xl mr-3 select-none">Necro AIM:</label>
+            <input id="necroAIM" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('necroAIM', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
-            <label for="hero4" class="text-xl mr-3 select-none">Necro AIM:</label>
-            <input id="hero4" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" ${window._client.necroAIM.on ? "checked " : ""} onclick="window._client.updateParam('necroAIM', this)">
-        </div>
-        <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
-            <label for="hero5" class="text-xl mr-3 select-none">Snowball AIM:</label>
-            <input id="hero5" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" ${window._client.snowballAIM.on ? "checked " : ""} onclick="window._client.updateParam('necroAIM', this)">
+            <label for="snowballAIM" class="text-xl mr-3 select-none">Snowball AIM:</label>
+            <input id="snowballAIM" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('necroAIM', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1">
-            <label for="hero6" class="text-xl mr-3 select-none">Echelon AIM:</label>
-            <input id="hero6" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" ${window._client.echelonAIM.on ? "checked " : ""} onclick="window._client.updateParam('necroAIM', this)">
+            <label for="echelonAIM" class="text-xl mr-3 select-none">Echelon AIM:</label>
+            <input id="echelonAIM" class="mr-[70.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('necroAIM', this)">
         </div>
         <!-- Other -->
-        <p class="my-3 text-4xl text-yellow-400 select-none">Other</p>
         <div class="flex items-center justify-between px-1 w-full mb-2">
-            <label for="other1" class="text-xl text-yellow-400 select-none mr-4">AntiAFK:</label>
-            <input id="other1" class="mr-[70.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" ${window._client.antiAFK ? "checked " : ""} onclick="window._client.updateParam('antiAFK', this)">
+            <label for="deathsC" class="text-xl text-yellow-400 select-none mr-4">Death counter:</label>
+            <input id="deathsC" class="mr-[70.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('deathsC', this)">
         </div>
         <div class="flex items-center justify-between px-1 w-full mb-2">
-            <label for="other2" class="text-xl text-yellow-400 select-none mr-4">Chat Messages:</label>
-            <input id="other2" class="mr-[70.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" ${window._client.chat.chatMessages ? "checked " : ""} onclick="window._client.updateParam('chatMessages', this)">
+            <label for="antiAFK" class="text-xl text-yellow-400 select-none mr-4">AntiAFK:</label>
+            <input id="antiAFK" class="mr-[70.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('antiAFK', this)">
+        </div>
+        <div class="flex items-center justify-between px-1 w-full mb-2">
+            <label for="chatMessages" class="text-xl text-yellow-400 select-none mr-4">Chat Messages:</label>
+            <input id="chatMessages" class="mr-[70.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('chatMessages', this)">
         </div>
         <div class="flex items-center justify-between px-1 w-full">
-            <label for="" class="text-xl text-yellow-400 select-none mr-4">Zoom:</label>
-            <input id="" class="cursor-pointer hover:yellowShadow border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="range" oninput="window._client.updateParam('Zoom', this)" min=35 max=100 value=${window._client.zoom._new * 100}>
+            <label for="-Zoom" class="text-xl text-yellow-400 select-none mr-4">Zoom:</label>
+            <input id="Zoom" class="cursor-pointer hover:yellowShadow border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="range" oninput="window._client.updateParam('Zoom', this)" min=35 max=100>
         </div>
     </div>
     <!-- Exit -->
