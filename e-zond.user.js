@@ -819,6 +819,8 @@ const onMess = (msg) => {
     if (!window._client.zoom.u) window._client.zoom.reZoom();
     if (msg.area) {
         window._client.greenBalls.ballsFrames = {};
+        window._client.yellowBalls.yellowBallsIDS = [];
+        window._client.yellowBallsEEH.yellowBallsCords = {};
         window._client.clone.id = null;
         window._client.clone.spect = false;
         window._client.chrono.aur.useOn = null;
