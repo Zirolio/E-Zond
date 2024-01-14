@@ -782,6 +782,7 @@ const yellowBalls = (msg) => {
             removed: false
         });
     });
+    msg.entities = msg.entities.filter(e => !window._client.yellowBalls.yellowBallsIDS.includes(e.id));
 }
 const yellowBallsEEH = (msg) => {
     const yellowBalls = Object.entries(window._client.user.entities).filter(e => e[1].entityType == 55 && e[0] >= 0);
