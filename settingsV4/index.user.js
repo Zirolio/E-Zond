@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zirolio/E-Zond/settingsV3.1/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zirolio/E-Zond/settingsV3.1/main.css"> -->
 <!-- <link rel="stylesheet" href="./main.css"> -->
 <div class="min-w-[490px] py-12 pt-8 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter">
     <p class="text-4xl mb-8 text-green-500 select-none">Zond Settings</p>
@@ -76,6 +76,10 @@
         <div class="flex items-center justify-between text-red-400 w-full px-1">
             <label for="echelonAIM" class="text-xl mr-3 select-none">Echelon AIM:</label>
             <input id="echelonAIM" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('echelonAIM', this)">
+        </div>
+        <div class="flex items-center justify-between text-red-400 w-full px-1">
+            <label for="ramesesAIM" class="text-xl mr-3 select-none">Rameses AIM:</label>
+            <input id="ramesesAIM" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ramesesAIM', this)">
         </div>
         <!-- Other -->
         <p class="my-3 text-4xl text-yellow-400 select-none">Other</p>
