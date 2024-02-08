@@ -2,7 +2,7 @@
 // @name           E-Zond-Beta-L
 // @name:ru        E-Zond-Beta
 // @namespace      http://tampermonkey.net/
-// @version        5
+// @version        5.0.1
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
