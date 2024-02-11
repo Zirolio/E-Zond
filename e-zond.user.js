@@ -2,7 +2,7 @@
 // @name           E-Zond-Beta
 // @name:ru        E-Zond-Beta
 // @namespace      http://tampermonkey.net/
-// @version        5.0.1
+// @version        5.4
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
@@ -22,7 +22,7 @@
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
 
 'use strict';
-const VERSION = '5-Beta';
+const VERSION = '5.4-Beta';
 const KEYS = {
     toClone: "KeyT",
     swapPlayer: "Tab",
