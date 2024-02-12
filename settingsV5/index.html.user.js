@@ -104,7 +104,7 @@
     <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hideSettings()">Exit</button>
 </div>
 <!-- Zond help -->
-<div class="max-w-[635px] py-8 pb-12 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="zond-help">
+<div class="max-w-[635px] py-8 pb-12 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="zond-help-ru">
     <p class="text-4xl text-blue-400 select-none">Zond Help</p>
     <p class="text-red-400 self-center">!!! Внимание здесь будет рассматриваться скрипт по <a class="text-blue-400 hover:text-blue-500 hover:underline" href="https://github.com/Zirolio/E-Zond/blob/main/e-zond.user.js?raw=true!!!" target="_blank">этой ссылке</a> !!!</p>
     <div class="flex flex-col items-start justify-start w-full max-h-[400px] overflow-y-scroll pathTrans mt-3 py-3 text-gray-200">
@@ -120,6 +120,20 @@
         <!-- <p class="text-yellow-400 self-center text-[18px] my-3">Само меню настроек (Вещи, которые могут быть интуитивно не понятны):</p> -->
         <!-- <p class="text-yellow-400 self-center text-[18px] my-3">Другое:</p> -->
     </div>
-    <!-- Exit -->
+    <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hideHelp()">Close</button>
+</div>
+<div class="max-w-[635px] py-8 pb-12 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="zond-help-en">
+    <p class="text-4xl text-blue-400 select-none">Zond Help</p>
+    <p class="text-red-400 self-center">!!! Attention, the script at <a class="text-blue-400 hover:text-blue-500 hover:underline" href="https://github.com/Zirolio/E-Zond/blob/main/e-zond.user.js?raw=true!!!" target="_blank">this link</a> will be considered here !!!</p>
+    <div class="flex flex-col items-start justify-start w-full max-h-[400px] overflow-y-scroll pathTrans mt-3 py-3 text-gray-200">
+        <p class="mb-1"><b>"Alt + Z"</b> — Open settings menu</p>
+        <p class="mb-1"><b>"P"</b> — Automatic collection of pellets</p>
+        <p class="mb-1"><b>"Tab"</b> — Switch camera to another player</p>
+        <p class="mb-1"><b>"`" или "ё"</b> — Switch the camera to the center of the map</p>
+        <p class="mb-1"><b>"T"</b> — Switch camera to Viola clone (Only works on Viola)</p>
+        <p class="mb-1"><b>"Area shadow"</b> — This option will depend on whether it will be dark in the arenas (for example BB), if it is turned on, then the script will not do anything with the darkness, but if it is turned off, then how dark it will be in the arena will depend on "Min area shadow "</p>
+        <p class="mb-1"><b>"Mouse wheel"</b> — Zoom camera out/zoom in</p>
+        <i class="text-yellow-300 mt-1">Everything else is on the menu and should be intuitive</i>
+    </div>
     <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hideHelp()">Close</button>
 </div>
