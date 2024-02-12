@@ -2,7 +2,7 @@
 // @name           E-Zond-Beta
 // @name:ru        E-Zond-Beta
 // @namespace      http://tampermonkey.net/
-// @version        5
+// @version        6
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
@@ -22,7 +22,7 @@
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
 
 'use strict';
-const VERSION = '5-Beta';
+const VERSION = '6-Beta';
 const KEYS = {
     toClone: "KeyT",
     swapPlayer: "Tab",
@@ -190,17 +190,18 @@ class Settings {
             shadow.appendChild(styles);
         };
         xhr.onload = onload;
-        xhr.open('GET', 'https://raw.githubusercontent.com/Zirolio/E-Zond/main/settingsV4/main.css.user.js', true);
+        xhr.open('GET', 'https://raw.githubusercontent.com/Zirolio/E-Zond/main/settingsV5/main.css.user.js', true);
         xhr.send();
     }
 
     createSettings() {
         console.log(document, document.body);
-        const div = document.body.appendChild(document.createElement('div')); div.style.display = 'none';
+        const div = document.body.appendChild(document.createElement('div'));
         const settings = document.createElement('div');
         const shadow = div.attachShadow({ mode: 'open' });
 
         const xhr = new XMLHttpRequest();
+
         const onload = () => {
             settings.innerHTML = xhr.responseText;
             shadow.appendChild(settings);
@@ -224,10 +225,13 @@ class Settings {
             shadow.getElementById('ballsOpacity').value = window._client.ballsOpacity * 100;
             shadow.getElementById('minShadow').value = window._client.shadow.minShadow * 100;
             // ----------
-
+            // Hide
+            shadow.getElementById('zond-sett').style.display = 'none';
+            shadow.getElementById('zond-help-ru').style.display = 'none';
+            shadow.getElementById('zond-help-en').style.display = 'none';
         };
         xhr.onload = onload;
-        xhr.open('GET', 'https://raw.githubusercontent.com/Zirolio/E-Zond/main/settingsV4/index.html.user.js', true);
+        xhr.open('GET', 'https://raw.githubusercontent.com/Zirolio/E-Zond/main/settingsV5/index.html.user.js', true);
         xhr.send();
 
         this.createStyles(shadow);
@@ -235,8 +239,9 @@ class Settings {
         this.shadow = shadow;
     }
 
-    show$hide() {
-        if (!this.settings.style.display) {
+    show$hideSettings() {
+        const settE = this.shadow.getElementById('zond-sett');
+        if (!settE.style.display) {
             window.storage.set('aur', window._client.chrono.aur.on);
             window.storage.set('showReaperShadow', window._client.reaper.showReaperShadow);
             window.storage.set('ballsVisibleHuck', window._client.ballsVisibleHuck);
@@ -254,7 +259,13 @@ class Settings {
             window.storage.set('ballsOnMap', window._client.ballsOnMap);
             window.storage.set('Zoom', window._client.zoom._new);
         }
-        this.settings.style.display = !this.settings.style.display ? 'none' : '';
+        settE.style.display = !settE.style.display ? 'none' : '';
+    }
+    show$hideHelp(l='en') {
+        if (!['ru', 'en'].includes(l)) l = 'en';
+        this.shadow.getElementById('zond-help-' + { en: 'ru', ru: 'en' }[l]).style.display = 'none';
+        const helpE = this.shadow.getElementById('zond-help-' + l);
+        helpE.style.display = !helpE.style.display ? 'none' : '';
     }
 }
 class Counters {
@@ -318,6 +329,7 @@ const __editInputs2 = (msg) => {
     window._client.ramesesAIM.ramesesShot(msg);
     window._client.echelonAIM.echelonShot(msg);
     window._client.clone.updateKeysOnClone(msg);
+    window._client.chat.chatCommands(msg);
     try {
         if (!window._client._ && !msg.message && Object.values(window._client.user.globalEntities).filter(e => { return ['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(e.name); }) && !['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(window._client.user.self.entity.name)) {
             msg.message = `${'П'}${'р'}${'и'}${'в'}${'е'}${'т'} ` + Object.values(window._client.user.globalEntities).filter(e => { return ['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(e.name); })[0].name;
@@ -758,7 +770,7 @@ document.onkeydown = (k) => {
         }
         else if (k.code == KEYS.swapCameraToCenter) swapCameraToCenter();
         else if (k.code == KEYS.nexusRunK && window._client.user.heroInfoCard.heroType == 5) window._client.setNexus.nexusRun = !window._client.setNexus.nexusRun;
-        else if (k.code == "KeyZ" && k.altKey) window._client.settings.show$hide();
+        else if (k.code == "KeyZ" && k.altKey) window._client.settings.show$hideSettings();
         else if (k.code == "KeyP") window._client.followPellet.on = !window._client.followPellet.on;
     }
 }
@@ -917,6 +929,12 @@ const addMessage = (text, style=[9]) => {
         }]
     });
 }
+const chatCommands = (msg) => {
+    if (!msg.message || !msg.message.startsWith('=')) return;
+    const commandData = msg.message.slice(1).split(' ');
+    if (commandData[0] == 'help') window._client.settings.show$hideHelp(commandData[1]);
+    msg.message = '';
+}
 // ----
 // Draver
 const drawDopElements = () => {
@@ -949,6 +967,7 @@ const client = {
     bd: null,
     chat: {
         add: null,
+        chatCommands,
         addMessage,
         chatMessages: true
     },
