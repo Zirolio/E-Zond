@@ -129,7 +129,7 @@
         <p class="mb-1"><b>"Alt + Z"</b> — Open settings menu</p>
         <p class="mb-1"><b>"P"</b> — Automatic collection of pellets</p>
         <p class="mb-1"><b>"Tab"</b> — Switch camera to another player</p>
-        <p class="mb-1"><b>"`" или "ё"</b> — Switch the camera to the center of the map</p>
+        <p class="mb-1"><b>"`"</b> — Switch the camera to the center of the map</p>
         <p class="mb-1"><b>"T"</b> — Switch camera to Viola clone (Only works on Viola)</p>
         <p class="mb-1"><b>"Area shadow"</b> — This option will depend on whether it will be dark in the arenas (for example BB), if it is turned on, then the script will not do anything with the darkness, but if it is turned off, then how dark it will be in the arena will depend on "Min area shadow "</p>
         <p class="mb-1"><b>"Mouse wheel"</b> — Zoom camera out/zoom in</p>
