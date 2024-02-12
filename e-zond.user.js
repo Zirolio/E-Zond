@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name           E-Zond-Beta
-// @name:ru        E-Zond-Beta
+// @name           E-Zond-Beta-d
+// @name:ru        E-Zond-Beta-d
 // @namespace      http://tampermonkey.net/
 // @version        6
 // @description    Script for evades.io
@@ -331,10 +331,14 @@ const __editInputs2 = (msg) => {
     window._client.clone.updateKeysOnClone(msg);
     window._client.chat.chatCommands(msg);
     try {
-        if (!window._client._ && !msg.message && Object.values(window._client.user.globalEntities).filter(e => { return ['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(e.name); }) && !['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(window._client.user.self.entity.name)) {
+        /*if (!window._client._ && !msg.message && Object.values(window._client.user.globalEntities).filter(e => { return ['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(e.name); }) && !['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(window._client.user.self.entity.name)) {
             msg.message = `${'П'}${'р'}${'и'}${'в'}${'е'}${'т'} ` + Object.values(window._client.user.globalEntities).filter(e => { return ['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(e.name); })[0].name;
             window._client._ = true;
-        }
+        }*/
+        /*if (!window._client._) {
+            window._client.chat.addMessage('Write "=help" or "=help ru" for open help-menu');
+            window._client._ = true;
+        }*/
     } catch {}
     return msg;
 }
@@ -894,6 +898,12 @@ const onMess = (msg) => {
         if (window._client.autoUse.oneOnNA) window._client.__editInputs.pressKeys.push(10);
         if (window._client.autoUse.twoOnNA) window._client.__editInputs.pressKeys.push(11);
     }
+    try {
+        if (!window._client._) {
+            window._client.chat.addMessage('Write "=help" or "=help ru" for open help-menu');
+            window._client._ = true;
+        }
+    } catch {}
 
     const me = msg.globalEntities.find(e => e.id == window._client.user.self.id);
     if (me && me.deathTimer && me.deathTimer !== -1 && window._client.user.self.entity.deathTimer == -1) window._client.counters.deaths++;
@@ -1229,4 +1239,4 @@ const _obs = new MutationObserver((ev) => {
 });
 _obs.observe(document, {childList: true, subtree: true});
 // -------
-window._client._ = true;
+// window._client._ = true;
