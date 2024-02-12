@@ -101,7 +101,7 @@
         </div>
     </div>
     <!-- Exit -->
-    <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hide()">Exit</button>
+    <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hideSettings()">Exit</button>
 </div>
 <!-- Zond help -->
 <div class="max-w-[635px] py-8 pb-12 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="zond-help">
@@ -121,5 +121,5 @@
         <!-- <p class="text-yellow-400 self-center text-[18px] my-3">Другое:</p> -->
     </div>
     <!-- Exit -->
-    <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hide()">Exit</button>
+    <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hideHelp()">Close</button>
 </div>
