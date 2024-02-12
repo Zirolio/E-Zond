@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name           E-Zond-Beta
-// @name:ru        E-Zond-Beta
+// @name           E-Zond-Beta-d
+// @name:ru        E-Zond-Beta-d
 // @namespace      http://tampermonkey.net/
-// @version        5.4
+// @version        5
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
@@ -22,7 +22,7 @@
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
 
 'use strict';
-const VERSION = '5.4-Beta';
+const VERSION = '5-Beta';
 const KEYS = {
     toClone: "KeyT",
     swapPlayer: "Tab",
@@ -139,7 +139,7 @@ class Settings {
             },
             default: () => {
                 if (localStorage.getItem('ballsOpacity') === null) window.storage.set('ballsOpacity', 1);
-                if (localStorage.getItem('minLighting') === null) window.storage.set('minLighting', 0);
+                if (localStorage.getItem('minShadow') === null) window.storage.set('minShadow', 0);
                 if (localStorage.getItem('Zoom') === null) window.storage.set('Zoom', 1);
                 if (localStorage.getItem('aur') === null) window.storage.set('aur', false);
                 if (localStorage.getItem('showReaperShadow') === null) window.storage.set('showReaperShadow', false);
@@ -175,7 +175,7 @@ class Settings {
         window._client.ballsOnMap = window.storage.get('ballsOnMap');
         window._client.zoom._new = window.storage.get('Zoom', 'num');
         window._client.ballsOpacity = window.storage.get('ballsOpacity', 'num');
-        window._client.shadow.minLighting = window.storage.get('minLighting', 'num');
+        window._client.shadow.minShadow = window.storage.get('minShadow', 'num');
         // ----------
         // Settings
         this.createSettings();
@@ -222,7 +222,7 @@ class Settings {
 
             shadow.getElementById('Zoom').value = window._client.zoom._new * 100;
             shadow.getElementById('ballsOpacity').value = window._client.ballsOpacity * 100;
-            shadow.getElementById('minLighting').value = window._client.shadow.minLighting * 100;
+            shadow.getElementById('minShadow').value = window._client.shadow.minShadow * 100;
             // ----------
 
         };
@@ -241,7 +241,7 @@ class Settings {
             window.storage.set('showReaperShadow', window._client.reaper.showReaperShadow);
             window.storage.set('ballsVisibleHuck', window._client.ballsVisibleHuck);
             window.storage.set('ballsOpacity', window._client.ballsOpacity);
-            window.storage.set('minLighting', window._client.shadow.minLighting);
+            window.storage.set('minShadow', window._client.shadow.minShadow);
             window.storage.set('deathsC', window._client.counters.deathsC);
             window.storage.set('chatMessages', window._client.chat.chatMessages);
             window.storage.set('antiAFK', window._client.antiAFK);
@@ -878,7 +878,7 @@ const onMess = (msg) => {
         window._client.chrono.aur.useOn = null;
         if (window._client.id !== window._client.spect) window._client.chat.addMessage(`Watching stopped`);
         if (window._client.oldCanvasSet) swapCameraToCenter();
-        if (!window._client.shadow.showAreaShadow) msg.area.lighting = Math.max(msg.area.lighting, 1 - window._client.shadow.minLighting);
+        if (!window._client.shadow.showAreaShadow) msg.area.lighting = Math.max(msg.area.lighting, 1 - window._client.shadow.minShadow);
         if (window._client.autoUse.oneOnNA) window._client.__editInputs.pressKeys.push(10);
         if (window._client.autoUse.twoOnNA) window._client.__editInputs.pressKeys.push(11);
     }
@@ -997,7 +997,7 @@ const client = {
     },
     shadow: {
         showAreaShadow: false,
-        minLighting: 0.9
+        minShadow: 0.9
     },
 
     // Heros
@@ -1090,7 +1090,7 @@ const client = {
     updateParam: (param, e) => {
         if (e.valueAsNumber) {
             if (param == 'ballsOpacity') window._client.ballsOpacity = e.valueAsNumber / 100;
-            if (param == 'minLighting') window._client.shadow.minLighting = e.valueAsNumber / 100;
+            if (param == 'minShadow') window._client.shadow.minShadow = e.valueAsNumber / 100;
             if (param == 'Zoom') { window._client.zoom._new = e.valueAsNumber / 100; reZoom(); }
         } else {
             const p = param.split(' ');

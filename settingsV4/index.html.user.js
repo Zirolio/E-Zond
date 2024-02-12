@@ -6,11 +6,11 @@
         <!-- Map -->
         <p class="mb-3 text-4xl text-purple-400 select-none">Map</p>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
-            <label for="AreaShadow" class="text-nowrap text-xl select-none mr-4">Area Shadow:</label>
+            <label for="AreaShadow" class="text-nowrap text-xl select-none mr-4">Area shadow:</label>
             <input id="AreaShadow" class="mr-[66.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('AreaShadow', this)">
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
-            <label for="ballsVisibleHuck" class="text-nowrap text-xl select-none mr-4">Balls Visible Huck (BETA!!!):</label>
+            <label for="ballsVisibleHuck" class="text-nowrap text-xl select-none mr-4">Balls visible huck (BETA!!!):</label>
             <input id="ballsVisibleHuck" class="mr-[66.5px] cursor-pointer hover:purpleShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-purple-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ballsVisibleHuck', this)">
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full mb-2">
@@ -22,8 +22,8 @@
             <input id="ballsOpacity" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400" type="range" oninput="window._client.updateParam('ballsOpacity', this)" min=0 max=100>
         </div>
         <div class="flex justify-between items-center text-purple-400 px-1 w-full">
-            <label for="-minLighting" class="text-nowrap text-xl select-none mr-4">Min area lighting:</label>
-            <input id="minLighting" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400" type="range" oninput="window._client.updateParam('minLighting', this)" min=0 max=100>
+            <label for="-minShadow" class="text-nowrap text-xl select-none mr-4">Min area shadow:</label>
+            <input id="minShadow" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400" type="range" oninput="window._client.updateParam('minShadow', this)" min=0 max=100>
         </div>
         <!-- Abilitys -->
         <p class="my-3 text-4xl text-orange-400 select-none">Abilitys</p>
@@ -40,11 +40,11 @@
             <input id="abilitys3" class="mr-[66.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('au three', this)">
         </div>
         <div class="flex justify-between items-center px-1 w-full mb-2">
-            <label for="abilitys4" class="text-xl text-orange-400 mr-4 select-none">Autouse one on new Area:</label>
+            <label for="abilitys4" class="text-xl text-orange-400 mr-4 select-none">Autouse one on new area:</label>
             <input id="abilitys4" class="mr-[66.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('auNA one', this)">
         </div>
         <div class="flex justify-between items-center px-1 w-full mb-2">
-            <label for="abilitys5" class="text-xl text-orange-400 mr-4 select-none">Autouse two on new Area:</label>
+            <label for="abilitys5" class="text-xl text-orange-400 mr-4 select-none">Autouse two on new area:</label>
             <input id="abilitys5" class="mr-[66.5px] cursor-pointer w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-orange-400 hover:orangeShadow px-2 py-1" type="checkbox" lass="zond-checkbox" onclick="window._client.updateParam('auNA two', this)">
         </div>
         <div class="flex justify-between items-center px-1 w-full">
@@ -54,15 +54,15 @@
         <!-- Hero -->
         <p class="my-3 text-4xl text-red-400 select-none">Hero</p>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
-            <label for="showReaperShadow" class="text-xl mr-3 select-none">Reaper Shadow:</label>
+            <label for="showReaperShadow" class="text-xl mr-3 select-none">Reaper shadow:</label>
             <input id="showReaperShadow" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('showReaperShadow', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
-            <label for="ChronoShadow" class="text-xl mr-3 select-none">Chrono Shadow:</label>
+            <label for="ChronoShadow" class="text-xl mr-3 select-none">Chrono shadow:</label>
             <input id="ChronoShadow" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('ChronoShadow', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
-            <label for="aur" class="text-xl mr-3 select-none">Chrono Auto Use Res (BETA!!!):</label>
+            <label for="aur" class="text-xl mr-3 select-none">Chrono auto use res (BETA!!!):</label>
             <input id="aur" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('aur', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
