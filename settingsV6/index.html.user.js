@@ -1,5 +1,5 @@
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zirolio/E-Zond/settingsV3.1/main.css"> -->
-<link rel="stylesheet" href="./main.css">
+<!-- <link rel="stylesheet" href="./main.css"> -->
 <div class="min-w-[490px] py-12 pt-8 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="zond-sett">
     <p class="text-4xl mb-8 text-green-500 select-none">Zond Settings</p>
     <div class="flex flex-col items-center justify-start w-full max-h-[400px] overflow-y-scroll pathTrans py-3">
@@ -83,6 +83,10 @@
         </div>
         <!-- Other -->
         <p class="my-3 text-4xl text-yellow-400 select-none">Other</p>
+        <div class="flex items-center justify-between px-1 w-full mb-2">
+            <label for="crossCursor" class="text-xl text-yellow-400 select-none mr-4">Cross cursor:</label>
+            <input id="crossCursor" class="mr-[66.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('crossCursor', this)">
+        </div>
         <div class="flex items-center justify-between px-1 w-full mb-2">
             <label for="deathsC" class="text-xl text-yellow-400 select-none mr-4">Death counter:</label>
             <input id="deathsC" class="mr-[66.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('deathsC', this)">
