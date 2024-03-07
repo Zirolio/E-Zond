@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name           E
-// @name:ru        E
+// @name           E-Zond-Beta-d
+// @name:ru        E-Zond-Beta-d
 // @namespace      http://tampermonkey.net/
-// @version        6
+// @version        6.2
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
@@ -23,7 +23,7 @@
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
 
 'use strict';
-const VERSION = '6-Beta';
+const VERSION = '6.2-Beta';
 const Settings_VERSION = 'V6';
 const KEYS = {
     toClone: "KeyT",
