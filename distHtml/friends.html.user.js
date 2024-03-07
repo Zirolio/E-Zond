@@ -5,7 +5,7 @@
             <div class="border-b w-full text-center py-1 text-[20px] mb-2 text-green-500 border-green-500 rounded">Online</div>
             <!-- <div class="px-3 pb-[0.5px] mb-1 flex justify-between border-b border-solid border-[#333] rounded-md last:border-none" id="Zirolio"><span>Zirolio</span><span class="-translate-x-1/2">---</span><span class="text-[#27d1ba]">NA2</span></div> -->
         </div>
-        <div class="text-[#91866e]" id="ofline">
+        <div class="text-[#91866e]" id="offline">
             <div class="border-b w-full text-center py-1 text-[20px] mb-2 text-red-500 border-red-500 rounded">Offline</div>
             <!-- <div class="px-3 pb-[0.5px] mb-1 flex justify-between border-b border-solid border-[#333] rounded-md last:border-none" id="Zirolio"><span>Zirolio</span></div> -->
         </div>
