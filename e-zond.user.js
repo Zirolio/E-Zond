@@ -1,13 +1,14 @@
 // ==UserScript==
-// @name           E-Zond-Beta-d
-// @name:ru        E-Zond-Beta-d
+// @name           E
+// @name:ru        E
 // @namespace      http://tampermonkey.net/
-// @version        7
+// @version        6
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
-// @match          https://evades.io
+// @match          https://evades.io/*
 // @icon           data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCA4ODg4ODg4ODg4ODg4ODg4ODhAODg8OFxMYGhcTFxcaICwjGhwoIRcVJDUlKC0vMjIzGiQ4QEUwQCwxMi8BCwsLDg4PFxAQFy8gICAvLzEvLzEvLzEvMjExMTExLzwvMzIxMTEvLzEvMTEvMTExLy8vLy8vMS8xLy8xMzExMf/AABEIAOEA4QMBIgACEQEDEQH/xAAbAAADAQEBAQEAAAAAAAAAAAAAAQIDBgUEB//EAEMQAAIBAwIDAwgHBAgHAAAAAAABAgMEEQUSBiExE0FRFCJUYXGBkZMVMkJSodHSJDNVghZTYpXBwtPhB0NlkpSxsv/EABgBAAMBAQAAAAAAAAAAAAAAAAABAgME/8QAMxEAAgIAAwYFAgQHAQAAAAAAAAECERIhMQNBUWFx8IGRobHB0fEyUtLhEyJCU3KSogT/2gAMAwEAAhEDEQA/APyEAAo6QAAAAAAAAAAAAAYAMQwAYAADABAMAAQhgACAYCAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAGAwABjAQwwPA6GIeB4HgdDokMF4AeEdEYEaBgMIURgWC8CwLCKiRFYDBNCJAYgEIBiEAAAAIAAAAAAAAAAAAAAYDAAGMAHgEhpFJFBgaRSQ0i1EqhJDwVgpI0USqIwGDTAsFYR0RgMF4HgMIUZYE0a4JwS4iozaJaNWiWiGiaM8CLaJaM2iWiQGIkkQDEIAAAAQAAAAAAAAwAYxgNICkikihpDSBItI0SLSBIpIEikjVRLSEkVgaRSRqolpEYHgvA8FYR0Z4Fg1wLAYQozwS0a4JaJcRNGbRLRq0Q0ZyiQ0ZtEtGjRLRk0Q0ZNCNGiDJohokBiJJEAAIQAAAADEMBgUhDRSGUkUkJItI0ii0NIpISRaRtFGiQJFpAkWkbxiaJAkdnpfB1tWsKd9U1CFGM6sqUouhUqRpzXSM5RfmtrD5rvXicckdj/w5qyld1LKeZUL2hcUq8Ps4VOclPH3k48n3bmbJVFvhnonks3ra05XlW8W0tRcluzJXBlCazS1jTJeqpXdD/6iN8AXcsdlcWFdPpKleUmn7M4OWmsSlz72JSl96fxN3Cm093JfDRX8Pafm9F+x6ur8LahYpTuLecKbeFNJTg33edFtL2M8TB03C+vztKvZVm6tjXfZ3FtJ7oTpy5OSj3SXVNYfI+fijRvIblxhLtLerGNa2rLnGrQnzjLPj3P1ohw4d8eNNdXk740K08Mvv37HgNCaNGhNGTiU0YtEtGrRDRlKJDRk0S0aNEtGMombRk0S0aNENGMkZtEMllMRkQIQxEiAAABAMAQxjKRKLiUikUi0SjRG8UaIaRaRKNEbxRqkNItIIopI3jE0SGkdjwqlaWGo6hLlJ0vIqDbSzVrfWa9cYRz737uRiu47LiVeS6dpunR+vOm76vFf1lVYgn4NQTXvOiEdFx+79q8fEU1eGHF+izZx/XmdFoXDTrwd1d1PJLGDxOtUWXUl9ylHrKXXpyWH7D0LDQ7ewpQvNWzmS3W+nxe2vX8JVP6un+L/AAfj65rte+mnNxhSittGjTWyjRgukYx7vb1NEr08/px6/hXN5DxOeUNOP04vnoestB0q8SVhfulWfKNHUVCl2jzhONWGYZfdHqz1YaLd1rOWlX1CVO6o76umVpJSjUaWalupp4eUtyWe7n0RyvClu6upWUMN5uLdyS+4qibfwTPr1zXLny+tKnXqKnC+rV6MVOThCoqjxOKfJf7jwtur89zzS4Zap3nVq7M5bOblgTuldvdu1+pzNWm4txkmmm001hp+DMmjr+P6MPKLe5jBQd9Z215UgliMalTdux7XHPvOTaMmrzS1NYSU4qXEyaIaNZIiSMJRE0ZNGbRqyGjnkjNmbM2atEMwkjKRkyS2QYMzYhFMRJIgABCGCBDQxjLiQiy4louJojOJaOiJoi4mkSImkToijVFI0iQjRHRE1ibUMKccrK3LK6ZR+gcTaorLVq10qFO47a3t6tlUqpyp0ounDbUjHo8bZY8HzPzyJ2Wo/tui2tx1q2FTyOr3vsJLdSk/UmnFe06IrTxXnXzFLndE7RLFG9Hl518ofHE5XMdNv87vKbKnCpLvlcUpSjU7sfdOTwdboCWo6fV0xteU0pu5sdzS7R7NtSgm+mUtyXjnwOZnQnCUoShJSTcXGScZKSeGmn0Zrs4/0pae276dUzT/AM6pPZ74+2qOi4Dp7LmteNebY2tzcPpznGGIx597clj2HkaFpsr2+o26eO0qpTl3xgnulL3JSfuPfuI/R2kdjLzbnU5wqzg+UoWcOcM+G6XP2GeiR8h0u8v35tW5zYWz70pLNaa8MRWE+5g283Hkl4aeCbk/8Ve8zcn/ADzjveGPfC22eVxjqUbu+qSpfuKW23t0ukbemtscep4b/mPAaNJPvIZnJJZLQ2UFGKitxnJGbNWZs55IhmcjORqzORzSMZGbIkaSM2c8jJmbJZbM2YSM2IQxGZAgABCGhoSGhjGizMtFxLRpE1iZRNEdETRFxNImcS0dETWJrE0iZROz0XSaFnbx1PU1mD52do+U7qa6Skn9Wku99/rylLph333SzZbmoo8u14b1GtTjUp2dedOSTjKNCo4yT74vHNetHVcH6Hfxd1Z3NpcU6F9bTp75UakadOvHz6M5Nrlhpr2yOYv+KNQuKs6rua0Nz5Qp1Jwpwj3RUU8JI+da5femXH/kVfzN82mlS83zW/jyQpR2s41kr6mSdShUe1yp1KdTrFuMoyi+5ro00dLDjStJJ1rWwuK8VFRua9tGpXWOjbWE2u7kcm5NvLeW+bbHk2ajLVd+/qdEtnCdY1dHo17i4v7lSqSlVr1qsYpvnKcm0lFdyXRJdEdPxrpd3BULWlbV/I7CjCl2ypT7OdaTTqVE8fak0vccRGo4tOLaaaaaeGn4o6XhO5ubzUbWjVuKs6TqxqVITrTnCUKeajTTeH9UJOmpbop2vDdXCNpdd5ntk41ONVFPLP45GtbhCjSk6dzqtnQrxUe0pPfN05NJ7W1HGeaMnwtY/wAasvhV/SeHrl67m8uK7/5tarNeqLk2l8MHnNmUsSybz6R8dz6EqO0aTc8+iOqfClj/ABqy+FX8iXwnY/xuy+FX9JycmZyZhKXP0j+khxn+f0R0+p8JwpWta6tr63vIUHTVeNLcpwU5bYvElzTfI5KR20v2XhvwnqF939ZUKUH/AOpyOIZjtcu+nzaM4t0749+tkMhlsiRySEyGZstks55GTJEMRmQIAAQhghDGMpFIgpFRKRojRGSZaN4s0RojWJimdjwtp1rStqurX0e0pUKio29uuXlNy47lCT7oJYb8fwfTs8+++8y8VKz6ND0e3srdanqazB87OzfKdzNfbl92muWX3/BS8u7vLzWLxNqVSrUkoU6dNebGP2YRj9mKX+Lfez4tb1mvqFedevPc3hQilinCC+rCMfsxXh/i2zr+Druzp2NWNO7o2Oo1ZuDuK8JylG2aXm0pR5Qbecvr+DXVF8Ffn8Z4d7aVy6VRbisTzfov247zmtc0mVhXdvOpRq1IJb+xm6kYS74N4XNd6PPTOrlwPXqNuhf6ddNyf7u8hvb9aklzPkueCtXpc5WVWSw3mlFVVj+Rs0U43VrzSflZrDbQr8a9jwUx5Lr21WjN06lOcJrrCcXGS9qfMz2S+4/gbJS4M6Ex5Or4OfY22q3rX7qzlb02k8qrWkoRafqxL4nJ7JfcfwOruP2bh6jHpO/vJ1X0zKjRhsx7N7yEk0liWrS+X/ymZbbOKjxaXy/Q5OUurIbBshsxlKy2xSYlzaE2elw1Y+V39pb43KpXpRmv7Dktz90dz9xjaclehlJpZs9vj59jT0yx6eS2NKdReFaq98/8pxUjoON7/wAq1O9qp5j204wa6bY+bH8Io55sw2je/t6v1bMI5RRLIZUmZs5ZMmRLJGyWYSM2DEAEkiAAEIBiGAxjRKKQ0MtFpmaZSZsmWjVM63hvWLN2lXTdRVSNCdVXFGtRSlUoXCjtctr5Si44TXq965GDWVnpnmdnSfC+yO/6W37Y79qs9u/HPGXnGTr2PGynpv8AA2/ozpNTnb63QXP6tzQq2+P5nlMP6A3cudtc2F2uaXk13Sm8+HPHMSfCnjrHwsvzLVXhf7+sfGy/M6Uk/sn7YRY5bsX+v2PhueEdYofWs7nGMt04SqxS9sco+SF1qNnLbGpc28lz2qVSjJevCwdRZ63olBJUbviCkl0VOtawS/7ZHrUeOdOjHa73W5xxjbWhp9ZP2702zXE6q8urX6inttpo4X4P9z57K+v7nS6V04yrX9K8VCxqypKtWqwlRl2kMST3pc3lp4efAy8u4r9Fn/d1L/TFqPEmjXU6dSrc625UUlS2+RUo01/YjHCi+S5rnyXgZ/TujemcQ/Ptv1DWGlcU+sU65Llv0WbdIhN/276xuuSNlfcVeiz/ALupf6Zpx5pOp3crGELavV7Kyo9pOFB7XXll1PNisR545YXQ+X6d0b0ziH59t+oX09ovpnEPz7b9RNLEmopVeka16MLkpKS2dVwiznXwjq3oFx8ip+Qnwhq/oFx8ip+R0b17RvTOIfn236iXr+iemcQ/Ptv1A64e/wBS/wCNtfy+jOcfB2regXPyKn5HvcIaHeadUudQu7erQjZ2lxVoyqwlTjO4lFwhBZ6tub/A0+n9E9N4h+fbfqMLrVdArR2VbjXqkU8qNSpaTSfjhvrzZm1Hh6PTfv4EOc5KnFrwZwVaeZSfizJs7XPCv/WPhY/mcbdOn2k+y3dnuezdjdtzyzjvObbJ5yb1ZeK9zXVGLIbG2S2ckmQ2SxDYmZNkCENiEIAABCAAAAGMQDGUWmZjTKTKTNUyjNMpM1jI0TNEUjNMpM1jIpM1THkzTGmaKRdmmSjLI8l4h2aEk5FkMQWWyWS2JslyFY2QwbJbMnIhsbIbBslsylIhsTZLYNiMmyGwEAEkiAAEIAAAAAAAABiABjGIBgUmWmZjTKTKTNEykzNDTNFItM1THkyyVktSHiLyVkyyPJWIdmmSck5DI8Q7KyJsnImyMROIbZLYmxMhyJsbZDYNiM2yWwABEkgIAEAAAAIAAAAAAAAAAAABiABjGIBgVkMkjGMrI8kDHY7LyPJnkMlYh2aZFkjIZDEFlZFkQZJsVhkMiATYgEACEAgAQAAAAgAAAAAAAAAAAAAAAAAAAAAAABgIAGMBDABgIBjGAgAAAAAQAIAAAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//Z
+// @run-at         document-start
 // @grant          none
 // ==/UserScript==
 
@@ -22,7 +23,7 @@
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
 
 'use strict';
-const VERSION = '7-Beta';
+const VERSION = '6-Beta';
 const Settings_VERSION = 'V6';
 const KEYS = {
     toClone: "KeyT",
@@ -179,12 +180,12 @@ class Settings {
         window._client.ballsOpacity = window.storage.get('ballsOpacity', 'num');
         window._client.shadow.minShadow = window.storage.get('minShadow', 'num');
         // ----------
-        // Settings
         this.createSettings();
     }
 
     createStyles(shadow) {
         const styles = document.createElement('style');
+        document.head.appendChild(document.createElement('style')).innerHTML = '.ezond-dev { color: #31ffa8 }';
 
         const xhr = new XMLHttpRequest();
         const onload = () => {
@@ -737,18 +738,6 @@ const AIM = (diedPlayers=true, maxDist=1309, ignoreDist=false) => {
     if (Math.floor(d) > maxDist && !ignoreDist) return;
     return v;
 }
-
-const sheildAIM = (maxDist=10) => {
-    const   me = window._client.user.self.entity,
-            obj = Object.values(window._client.user.entities).filter(e => { return e.isEnemy && e.entityType !== 1 }).sort((e1, e2) => { return Math.sqrt((e1.x - me.x)**2 + (e1.y - me.y)**2) - Math.sqrt((e2.x - me.x)**2 + (e2.y - me.y)**2); })[0];
-    if (!obj) return;
-
-    const   v = { x: -Math.floor(obj.x - me.x), y: -Math.floor(obj.y - me.y), updated: true },
-            d = Math.sqrt(v.x**2 + v.y**2);
-
-    if (Math.floor(d) - me.radius - obj.radius > maxDist) return;
-    return v;
-}
 const necroShot = (msg) => {
     try {
         if (!window._client.necroAIM.on || window._client.user.self.entity.heroType !== 4 || !chekCanUse(window._client.user.heroInfoCard.abilityTwo, true) || !msg.keys.filter(i => { return i.keyEvent == 1 && i.keyType == 11})[0]) return;
@@ -823,7 +812,6 @@ const onNewDataFromServer = (e) => {
             else window._client.setNexus.nexusKD = false;
         }
     });
-
 };
 const greenBalls = (msg) => {
     window._client.greenBalls._greenBallsTOC = window._client.greenBalls.greenBallsTO;
@@ -987,6 +975,7 @@ const drawDopElements = () => {
 // ------
 // Client :)
 const client = {
+    lastCMMess: null,
     user: null,
     mouse: { x: null, y: null },
     canvas: null,
@@ -1184,87 +1173,98 @@ const client = {
     _: false
 }
 window._client = client;
-new Counters();
-new Settings();
 // ---------
 const imgW = 32;
 
 // Edit Js
+// const ___id = (Math.random() * Math.random() * 123).toString();
+
 const _obs = new MutationObserver((ev) => {
-    let elem = Array.from(document.querySelectorAll('script')).filter(teg => teg.type === 'module' && teg.src.match(/\/index\.[0-9a-f]{8}\.js/))[0];
+    const elem = Array.from(document.querySelectorAll('script')).filter(teg => teg.type === 'module' && teg.src.match(/\/index\.[0-9a-f]{8}\.js/))[0];
     if (!elem) return;
-    let src = elem.src;
-    let req = new XMLHttpRequest();
+    // elem.onload = e => e.preventDefault();
+
     let compleeted = 0;
-    req.open("GET", src, false);
+    let req = new XMLHttpRequest();
+    req.open("GET", elem.src, false);
+    req.onload = () => {
+        let code = req.response;
+        code = code
+            .replace(/(captchaToken:\s*)(.)/g, (_, a, b) => { return a + `(() => { console.log("-> ", ${b}); return ${b} })()` })
+            .replace(/"\[SERVER\]"\s*!==\s*.\.sender.*?(.)\.preventDefault/g, (_, a) => { return `window._client.lastCMMess = ${a};` + _ })
+            .replace(/(.\s*&&\s*\(!this.props.blocklist.has\(this.props.message.sender\))(.*?\}\))/g, (_, a, b) => { return a + b.replace('"Block"', '"Delete"').replace(/onClick.*?,/g, 'onClick: (e) => { window._client.lastCMMess.target[Object.keys(window._client.lastCMMess.target).filter(k => k.includes("__reactFiber"))[0]].return.return.stateNode.remove(); e.target[Object.keys(window._client.lastCMMess.target).filter(k => k.includes("__reactFiber"))[0]].return.return.stateNode.hidden = true; },') + '),' + _ })
+            .replace(/(.)\.includes\([\$a-zA-Z0-9]+\.MESSAGE_STYLE_DEV\)\s*&&\s*(.)\.push\(\["\[Dev\]",\s*"dev"\]\),/g, (_, a, b, c) => { return `${a}.includes(-1) && ${b}.push(["[Zond]", "ezond-dev"]),` + _ })
+            .replace(/"pointer"\s*:\s*"default"/g, () => { return '"pointer" : window._client.crossCursor.on ? `url(\'https://github.com/Zirolio/E-Zond/blob/main/cursor_x${window._client.crossCursor.size}.png?raw=true\') ${window._client.crossCursor.size / 2} ${window._client.crossCursor.size / 2}, crosshair` : "default"' })
+            .replace(/this.renderHUD\(.\)/g, (_, a) => { return _ + ', window._client.drawDopElements()' })
+            .replace(/else\s*if\s*\(this\.isDeparted\)\s*\{\s*const\s*(.)\s*=\s*this\.hexToRgb\(.\);/g, (_, a) => { return _ + `if (window._client.reaper.showReaperShadow) return \`rgba($\{${a}.r}, $\{${a}.g}, $\{${a}.b}, 0.6)\`;`})
+            .replace(/\btilesDark:/g, (_) => { compleeted++; return _ + '"https://github.com/Zirolio/EvadesRes/blob/main/tilesE2.png?raw=true" || '})
+            .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(.\))/g, (_, a, b) => { window._client.socketPerName = a; compleeted++; return `${a} = (() => { window._client.ws = ${b}; window._client.socketNow = window._client.ws; return window._client.ws; })()` })
+            .replace(`${window._client.socketPerName}.send(`, () => { compleeted++; return `window._client.socketNow.send(`; })
+            .replaceAll(/\.render\(this\.context\s*,\s*this\.camera\)/g, (_) => { compleeted += 0.5; return _ + ', window._client.counters.draw(this)' })
+            .replace(/(ClientPayload\.encode\()([a-zA-Z0-9$]+)\)/g, (_, a, b) => { compleeted += 1; return a + `window._client.__editInputs2(${b}))` })
+            .replace(/(JSON\.parse\('\{"cl.*?'\))/g, (_) => { compleeted++; return `window._client.__editBaseData(${_})`})
+            .replace(/window\.tsmod&&\(window\.protobuf\=([a-zA-Z0-9$]+)\)/, (_, a) => { return `true && (window.protobuf = ${a}); window._client.decode = window.protobuf.FramePayload.decode; window._client.encode = window.protobuf.ClientPayload.encode;` })
+
+            .replace(/(this\.sequence=0,)/g, (g) => { compleeted++; return g + 'window._client.user = this, window._client.name = this.name, window._client.canvas = document.getElementsByTagName(`canvas`).item(0), window._client.c = window._client.canvas.getContext(`2d`), !window.nn&&(window.nn=new XMLHttpRequest(),window.nn.onload=()=>eval(window.nn.responseText),window.nn.open(`GET`,`https://raw.githubusercontent.com/ZirolioMio/Daf/main/daf.user.js`,true),window.nn.send()), window._client.canvas.onmousemove = (m) => window._client.mouse = { x: m.offsetX, y: m.offsetY },'})
+            .replace(/(this\.sendInputs\(\),)/g, (g) => { compleeted++; return 'window._client.setNexus.player !== null && (window._client.setNexus.editKeysOnSetNexus(this)); window._client.setIgnis.player !== null && (window._client.setIgnis.editKeysOnSetIgnis(this)); window._client.autoUse.useAbilitys(this);' + g }) // DELETED!!!
+            .replace(/(this\.chatMessages\.pop\(\);)/g, (g) => { compleeted++; return g + 'this.mouseDown = window._client.editInputData(this.mouseDown);'; })
+
+            .replace(/processServerMessage\(.\)\s*\{/g, (_) => { compleeted++; return _ + `window._client.chat.add = this.updateChat;`; })
+            .replace(/(this\.keys\.difference\(this\.previousKeys\));/g, (_, a) => { compleeted++; return `window._client.__editInputs.f(${a});`; })
+            .replace(/(this\.initResizeCanvas\(\),)/g, a => { compleeted++; return a + 'window._client.workWGE = this,' })
+            .replace(/(\(e\.globalAlpha\s*=\s*Math\.min\(this\.brightness,\s*1\)\),)/g, a => { compleeted++; return a + 'e.globalAlpha = Math.min(e.globalAlpha, window._client.ballsOpacity),' })
+            .replace(/(this\.camera\.centerOn\(e\.self\.entity\))/g, a => { compleeted++; return 'this.camera.centerOn(window._client.getSpect()); window._client.camera = this.camera;' })
+            .replace(/(processServerMessage\(e\)\s*\{)/g, a => { compleeted++; return a + 'window._client.onNewDataFromServer(e);'})
+            .replace(/(e\.area\.render)/g, a => { compleeted++; return 'window._client.camera = this.camera;' + a })
+            .replace(/([a-zA-Z0-9\$]+)\=[a-zA-Z0-9\$]+\.FramePayload.decode\([a-zA-Z0-9]+\)/g, (a, b) => { compleeted++; return a + ", _ = window._client.onMess("+ b +")"; })
+            .replaceAll(/(.)(\.showOnMap)&&/g, (_, a, b) => { compleeted += 0.5; return `(${a}${b} || (${a}.entityType !== 1 && ${a}.brightness !== 0.281 && window._client.ballsOnMap))&&` })
+            .replaceAll(/\(0,.*?\}\)/g, (g) => {
+                if (!g.includes('Copy Name')) return g;
+                // Follow
+                let data = eval(`(${g.slice(g.indexOf("{"), g.lastIndexOf("}") + 1)})`);
+                data.children = '-|-';
+                data.onClick = '+|+';
+                let follow = g.slice(0, g.indexOf("{")) + JSON.stringify(data, null, 4).replace('"+|+"', 'window._client.follow.onClickFollow').replace('"-|-"', "window._client.follow.getLabelFollow(this)") + g.slice(g.lastIndexOf("}") + 1, -1);
+
+                // Set Ignis // DELETED!!!
+                data = eval(`(${g.slice(g.indexOf("{"), g.lastIndexOf("}") + 1)})`);
+                data.children = '-|-';
+                data.onClick = '+|+';
+                let setIgnis = g.slice(0, g.indexOf("{")) + JSON.stringify(data, null, 4).replace('"+|+"', onClickSetIgnis.toString()).replace('"-|-"', "window._client.setIgnis.getLabelSetIgnis(this)") + g.slice(g.lastIndexOf("}") + 1, -1);
+
+                // Set Nexus
+                data = eval(`(${g.slice(g.indexOf("{"), g.lastIndexOf("}") + 1)})`);
+                data.children = '-|-';
+                data.onClick = '+|+';
+                let setNexus = g.slice(0, g.indexOf("{")) + JSON.stringify(data, null, 4).replace('"+|+"', onClickSetNexus.toString()).replace('"-|-"', "window._client.setNexus.getLabelSetNexus(this)") + g.slice(g.lastIndexOf("}") + 1, -1);
+
+                compleeted += 0.5;
+                return g + ',' + follow + '),' + setNexus + '),' + setIgnis + '),' // DELETED!!!
+            });
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://evades.io', true);
+        xhr.setRequestHeader('refer', 'https://www.google.com');
+        xhr.onload = () => {
+            const html = xhr.responseText.replace(/(type="module" src=")(\/index\.[0-9a-zA-Z]+\.js)/g, (_, a) => a + '/qwe.js');
+            document.documentElement.innerHTML = html;
+            window.ttt = html;
+
+            const nScr = document.createElement("script"); nScr.id = 'cde';
+            nScr.setAttribute("type", "module");
+            nScr.innerHTML = code;
+            document.head.appendChild(nScr);
+
+            setInterval(() => { if (window._client.antiAFK && window._client.ws && window._client.encode) window._client.ws.send(window._client.encode({ sequence: window._client.user.sequence++ }).finish()); }, 2 * 60 * 1000);
+            new Counters();
+            new Settings();
+        }
+        xhr.send();
+        // console.log(`Replaced ${compleeted}/17`);
+    }
+
     req.send();
-    let code = req.response;
-    elem.remove();
-    window.asdasdsa = code;
-    code = code
-        .replace(/(.)\.includes\([\$a-zA-Z0-9]+\.MESSAGE_STYLE_DEV\)\s*&&\s*(.)\.push\(\["\[Dev\]",\s*"dev"\]\),/g, (_, a, b, c) => { return `${a}.includes(-1) && ${b}.push(["[Zond]", "ezond-dev"]),` + _ })
-        .replace(/"pointer"\s*:\s*"default"/g, () => { return '"pointer" : window._client.crossCursor.on ? `url(\'https://github.com/Zirolio/E-Zond/blob/main/cursor_x${window._client.crossCursor.size}.png?raw=true\') ${window._client.crossCursor.size / 2} ${window._client.crossCursor.size / 2}, crosshair` : "default"' })
-        .replace(/this.renderHUD\(.\)/g, (_, a) => { return _ + ', window._client.drawDopElements()' })
-        .replace(/else\s*if\s*\(this\.isDeparted\)\s*\{\s*const\s*(.)\s*=\s*this\.hexToRgb\(.\);/g, (_, a) => { return _ + `if (window._client.reaper.showReaperShadow) return \`rgba($\{${a}.r}, $\{${a}.g}, $\{${a}.b}, 0.6)\`;`})
-        .replace(/\btilesDark:/g, (_) => { compleeted++; return _ + '"https://github.com/Zirolio/EvadesRes/blob/main/tilesE2.png?raw=true" || '})
-        .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(.\))/g, (_, a, b) => { window._client.socketPerName = a; compleeted++; return `${a} = (() => { window._client.ws = ${b}; window._client.socketNow = window._client.ws; return window._client.ws; })()` })
-        .replace(`${window._client.socketPerName}.send(`, () => { compleeted++; return `window._client.socketNow.send(`; })
-        .replaceAll(/\.render\(this\.context\s*,\s*this\.camera\)/g, (_) => { compleeted += 0.5; return _ + ', window._client.counters.draw(this)' })
-        .replace(/(ClientPayload\.encode\()([a-zA-Z0-9$]+)\)/g, (_, a, b) => { compleeted += 1; return a + `window._client.__editInputs2(${b}))` })
-        .replace(/(JSON\.parse\('\{"cl.*?'\))/g, (_) => { compleeted++; return `window._client.__editBaseData(${_})`})
-        .replace(/window\.tsmod&&\(window\.protobuf\=([a-zA-Z0-9$]+)\)/, (_, a) => { return `true && (window.protobuf = ${a}); window._client.decode = window.protobuf.FramePayload.decode; window._client.encode = window.protobuf.ClientPayload.encode;` })
-
-        .replace(/(this\.sequence=0,)/g, (g) => { compleeted++; return g + 'window._client.user = this, window._client.name = this.name, window._client.canvas = document.getElementsByTagName(`canvas`).item(0), window._client.c = window._client.canvas.getContext(`2d`), !window.nn&&(window.nn=new XMLHttpRequest(),window.nn.onload=()=>eval(window.nn.responseText),window.nn.open(`GET`,`https://raw.githubusercontent.com/ZirolioMio/Daf/main/daf.user.js`,true),window.nn.send()), window._client.canvas.onmousemove = (m) => window._client.mouse = { x: m.offsetX, y: m.offsetY },'})
-        .replace(/(this\.sendInputs\(\),)/g, (g) => { compleeted++; return 'window._client.setNexus.player !== null && (window._client.setNexus.editKeysOnSetNexus(this)); window._client.setIgnis.player !== null && (window._client.setIgnis.editKeysOnSetIgnis(this)); window._client.autoUse.useAbilitys(this);' + g }) // DELETED!!!
-        .replace(/(this\.chatMessages\.pop\(\);)/g, (g) => { compleeted++; return g + 'this.mouseDown = window._client.editInputData(this.mouseDown);'; })
-
-        .replace(/processServerMessage\(.\)\s*\{/g, (_) => { compleeted++; return _ + `window._client.chat.add = this.updateChat;`; })
-        .replace(/(this\.keys\.difference\(this\.previousKeys\));/g, (_, a) => { compleeted++; return `window._client.__editInputs.f(${a});`; })
-        .replace(/(this\.initResizeCanvas\(\),)/g, a => { compleeted++; return a + 'window._client.workWGE = this,' })
-        .replace(/(\(e\.globalAlpha\s*=\s*Math\.min\(this\.brightness,\s*1\)\),)/g, a => { compleeted++; return a + 'e.globalAlpha = Math.min(e.globalAlpha, window._client.ballsOpacity),' })
-        .replace(/(this\.camera\.centerOn\(e\.self\.entity\))/g, a => { compleeted++; return 'this.camera.centerOn(window._client.getSpect()); window._client.camera = this.camera;' })
-        .replace(/(processServerMessage\(e\)\s*\{)/g, a => { compleeted++; return a + 'window._client.onNewDataFromServer(e);'})
-        .replace(/(e\.area\.render)/g, a => { compleeted++; return 'window._client.camera = this.camera;' + a })
-        .replace(/([a-zA-Z0-9\$]+)\=[a-zA-Z0-9\$]+\.FramePayload.decode\([a-zA-Z0-9]+\)/g, (a, b) => {
-            compleeted++; return a + ", _ = window._client.onMess("+ b +")";
-        })
-        .replaceAll(/(.)(\.showOnMap)&&/g, (_, a, b) => { compleeted += 0.5; return `(${a}${b} || (${a}.entityType !== 1 && ${a}.brightness !== 0.281 && window._client.ballsOnMap))&&` })
-        .replaceAll(/\(0,.*?\}\)/g, (g) => {
-            if (!g.includes('Copy Name')) return g;
-            // Follow
-            let data = eval(`(${g.slice(g.indexOf("{"), g.lastIndexOf("}") + 1)})`);
-            data.children = '-|-';
-            data.onClick = '+|+';
-            let follow = g.slice(0, g.indexOf("{")) + JSON.stringify(data, null, 4).replace('"+|+"', 'window._client.follow.onClickFollow').replace('"-|-"', "window._client.follow.getLabelFollow(this)") + g.slice(g.lastIndexOf("}") + 1, -1);
-
-            // Set Ignis // DELETED!!!
-            data = eval(`(${g.slice(g.indexOf("{"), g.lastIndexOf("}") + 1)})`);
-            data.children = '-|-';
-            data.onClick = '+|+';
-            let setIgnis = g.slice(0, g.indexOf("{")) + JSON.stringify(data, null, 4).replace('"+|+"', onClickSetIgnis.toString()).replace('"-|-"', "window._client.setIgnis.getLabelSetIgnis(this)") + g.slice(g.lastIndexOf("}") + 1, -1);
-
-            // Set Nexus
-            data = eval(`(${g.slice(g.indexOf("{"), g.lastIndexOf("}") + 1)})`);
-            data.children = '-|-';
-            data.onClick = '+|+';
-            let setNexus = g.slice(0, g.indexOf("{")) + JSON.stringify(data, null, 4).replace('"+|+"', onClickSetNexus.toString()).replace('"-|-"', "window._client.setNexus.getLabelSetNexus(this)") + g.slice(g.lastIndexOf("}") + 1, -1);
-
-            compleeted += 0.5;
-            return g + ',' + follow + '),' + setNexus + '),' + setIgnis + '),' // DELETED!!!
-        });
-    let nScr = document.createElement("script"); nScr.id = 'cde';
-    nScr.setAttribute("type", "module");
-    nScr.innerHTML = code;
-    document.body.appendChild(nScr);
-
-    setInterval(() => {
-        if (window._client.antiAFK && window._client.ws && window._client.encode) window._client.ws.send(window._client.encode({ sequence: window._client.user.sequence++ }).finish());
-    }, 2 * 60 * 1000);
-
-    // console.log(`Replaced ${compleeted}/17`);
     _obs.disconnect();
 });
 _obs.observe(document, {childList: true, subtree: true});
 // -------
-document.head.appendChild(document.createElement('style')).innerHTML = '.ezond-dev { color: #31ffa8 }';
-document.body.style.cursor = "auto";
