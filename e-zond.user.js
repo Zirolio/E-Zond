@@ -1,17 +1,15 @@
 // ==UserScript==
-// @name           E-Zond-Beta-d
-// @name:ru        E-Zond-Beta-d
+// @name           E-Zond-Beta
+// @name:ru        E-Zond-Beta
 // @namespace      http://tampermonkey.net/
-// @version        6.2
+// @version        8
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
-// @match          https://evades.io/*
+// @match          https://evades.io
 // @icon           data:image/jpeg;base64,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
 // @run-at         document-start
 // @grant          none
-// @downloadURL    https://raw.githubusercontent.com/Zirolio/E-Zond/main/e-zond.user.js
-// @updateURL      https://raw.githubusercontent.com/Zirolio/E-Zond/main/e-zond.user.js
 // ==/UserScript==
 
 //                                                             .--------------------------------------------------------------------------------------------------------------------.
@@ -25,8 +23,9 @@
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
 
 'use strict';
-const VERSION = '6.2-Beta';
-const Settings_VERSION = 'V6';
+const VERSION = '8-Beta';
+const HTML_CSS_VERSION = '';
+const PARAMSPLETTER = '!!';
 const KEYS = {
     toClone: "KeyT",
     swapPlayer: "Tab",
@@ -129,40 +128,6 @@ class KeysArr {
 class Settings {
     constructor() {
         window._client.settings = this;
-        // Data
-        window.storage = {
-            get: (key, t='bool') => {
-                let res = localStorage.getItem(key);
-                if (t === 'bool') return res === "true" ? true : false;
-                if (t === 'num') return Number(res);
-                return res;
-            },
-            set: (key, value) => {
-                localStorage.setItem(key, String(value));
-                return value;
-            },
-            default: () => {
-                if (localStorage.getItem('ballsOpacity') === null) window.storage.set('ballsOpacity', 1);
-                if (localStorage.getItem('minShadow') === null) window.storage.set('minShadow', 0);
-                if (localStorage.getItem('Zoom') === null) window.storage.set('Zoom', 1);
-                if (localStorage.getItem('aur') === null) window.storage.set('aur', false);
-                if (localStorage.getItem('showReaperShadow') === null) window.storage.set('showReaperShadow', false);
-                if (localStorage.getItem('crossCursor') === null) window.storage.set('crossCursor', false);
-                if (localStorage.getItem('ballsVisibleHuck') === null) window.storage.set('ballsVisibleHuck', false);
-                if (localStorage.getItem('chatMessages') === null) window.storage.set('chatMessages', true);
-                if (localStorage.getItem('deathsC') === null) window.storage.set('deathsC', false);
-                if (localStorage.getItem('antiAFK') === null) window.storage.set('antiAFK', false);
-                if (localStorage.getItem('ChronoShadow') === null) window.storage.set('ChronoShadow', false);
-                if (localStorage.getItem('AreaShadow') === null) window.storage.set('AreaShadow', true);
-                if (localStorage.getItem('ballsOnMap') === null) window.storage.set('ballsOnMap', false);
-                if (localStorage.getItem('snowballAIM') === null) window.storage.set('snowballAIM', false);
-                if (localStorage.getItem('echelonAIM') === null) window.storage.set('echelonAIM', false);
-                if (localStorage.getItem('necroAIM') === null) window.storage.set('necroAIM', false);
-                if (localStorage.getItem('ramesesAIM') === null) window.storage.set('ramesesAIM', false);
-            }
-        }
-        window.storage.default();
-        // ----
         // Get params
         window._client.crossCursor.on = window.storage.get('crossCursor');
         window._client.chrono.aur.on = window.storage.get('aur');
@@ -187,7 +152,6 @@ class Settings {
 
     createStyles(shadow) {
         const styles = document.createElement('style');
-        document.head.appendChild(document.createElement('style')).innerHTML = '.ezond-dev { color: #31ffa8 }';
 
         const xhr = new XMLHttpRequest();
         const onload = () => {
@@ -195,7 +159,7 @@ class Settings {
             shadow.appendChild(styles);
         };
         xhr.onload = onload;
-        xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/settings${Settings_VERSION}/main.css.user.js`, true);
+        xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/distHtml${HTML_CSS_VERSION}/main.css.user.js`, true);
         xhr.send();
     }
 
@@ -237,7 +201,7 @@ class Settings {
             shadow.getElementById('zond-help-en').style.display = 'none';
         };
         xhr.onload = onload;
-        xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/settings${Settings_VERSION}/index.html.user.js`, true);
+        xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/distHtml${HTML_CSS_VERSION}/settingsAndHelp.html.user.js`, true);
         xhr.send();
 
         this.createStyles(shadow);
@@ -279,16 +243,21 @@ class Counters {
     constructor() {
         window._client.counters = this;
         this.deathsC = true;
+        this.fpsC = true;
         this.deaths = 0;
+        this.fps = 30;
+        this.lastSend = 0;
+        this.fpsUpdateF = 0;
     }
 
     draw(render) {
         const   text = [],
                 x = 20,
                 y = 240,
-                h = 16;
+                h = 20;
 
-        if (this.deathsC) text.push(`Deaths: ${this.deaths}`);
+        if (this.deathsC) text.push([`Deaths: ${this.deaths}`, () => '#ffffff']);
+        if (this.fpsC) text.push([`FPS: ${this.fps}`, () => this.fps < 10 ? '#f00000' : this.fpls < 24 ? '#db7b2f' : '#00f000']);
 
         render.context.lineWidth = 3;
         render.context.font = "bold 15px Tahoma, Verdana, Segoe, sans-serif"
@@ -297,13 +266,158 @@ class Counters {
         render.context.fillStyle = '#ffffff';
 
         for (let i = 0; i < text.length; i++) {
-            render.context.strokeText(text[i], x, y + i * h);
-            render.context.fillText(text[i], x, y + i * h);
+            const data = text[i];
+            render.context.fillStyle = data[1]();
+            render.context.strokeText(data[0], x, y + i * h);
+            render.context.fillText(data[0], x, y + i * h);
         }
         render.context.lineWidth = 1;
     }
 }
+class Friends {
+    constructor() {
+        window._client.friends = this;
+        this.createFriendsList();
+    }
+
+    onlineController(name, server, add=true) {
+        const plb = this.shadow.getElementById(`${name}-online`);
+
+        if (!add) plb && plb.remove();
+        else if (!plb) {
+            const ct = document.createElement('div');
+            ct.className = 'px-3 pb-[0.5px] mb-1 flex justify-between border-b border-solid border-[#333] rounded-md last:border-none';
+            ct.id = `${name}-online`;
+            ct.innerHTML = `<span>${name}</span><span class="text-[hsl(172,69%,55%)] hover:text-[hsl(172,69%,36%)] hover:underline underline-offset-2 cursor-pointer" onclick="window._client.playProcessFn('${server.toLocaleLowerCase().slice(0, 2) == 'na' ? null : 'https://eu.evades.io'}', ${parseInt(server.toLocaleLowerCase().slice(2)) - 1}, 0)">${server}</span>`;
+            this.shadow.getElementById('online').appendChild(ct);
+        }
+    }
+
+    offlineController(name, add=true) {
+        const plb = this.shadow.getElementById(`${name}-offline`);
+
+        if (!add) plb && plb.remove();
+        else if (!plb) {
+            const ct = document.createElement('div');
+            ct.className = 'px-3 pb-[0.5px] mb-1 flex justify-between border-b border-solid border-[#333] rounded-md last:border-none';
+            ct.id = `${name}-offline`;
+            ct.innerHTML = `<span>${name}</span>`;
+            this.shadow.getElementById('offline').appendChild(ct);
+        }
+    }
+
+    async update() {
+        if (!window._client.user) {
+            const onlinePl = await this.getConnectedPlayers(), friends = window.storage.get('friends', 'JSON');
+            for (const friend of friends) {
+                if (!Object.keys(onlinePl).includes(friend)) {
+                    this.onlineController(friend, '', false);
+                    this.offlineController(friend);
+                } else {
+                    this.onlineController(friend, onlinePl[friend]);
+                    this.offlineController(friend, false);
+                }
+            }
+            setTimeout(this.update.bind(this), 30 * 1000);
+        }
+
+    }
+
+    async createStyles() {
+        const styles = document.createElement('style');
+
+        const xhr = new XMLHttpRequest();
+        const onload = () => {
+            styles.innerHTML = xhr.responseText;
+            this.shadow.appendChild(styles);
+        };
+        xhr.onload = onload;
+        xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/distHtml${HTML_CSS_VERSION}/main.css.user.js`, true);
+        xhr.send();
+    }
+
+    async createFriendsList() {
+        const frList = document.createElement('div'), div = document.createElement('div'); this.frListE = frList;
+        this.shadow = frList.attachShadow({ mode: 'open' });
+        await this.createStyles();
+
+        const xhr = new XMLHttpRequest();
+        const onload = () => {
+            div.innerHTML = xhr.responseText;
+            this.shadow.appendChild(div);
+            for (const friend of window.storage.get('friends', 'JSON')) this.offlineController(friend);
+            this.update();
+        };
+        xhr.onload = onload;
+        xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/distHtml${HTML_CSS_VERSION}/friends.html.user.js`, true);
+        xhr.send();
+
+
+        const e = document.getElementsByClassName('hall-of-fame')[0].parentElement;
+        e.parentElement.insertBefore(frList, e);
+    }
+
+    async getConnectedPlayers() {
+        return await new Promise(reslove => {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = () => {
+                const res = JSON.parse(xhr.responseText), onlineList = {};
+
+                const na = res.local, eu = Object.values(res.remotes)[0];
+                for (let i = 0; i < na.length; i++) for (const plName of na[i][0].online) onlineList[plName] = `NA${i + 1}`;
+                for (let i = 0; i < eu.length; i++) for (const plName of eu[i][0].online) onlineList[plName] = `EU${i + 1}`;
+
+                reslove(onlineList);
+            }
+            xhr.open('GET', 'https://evades.io/api/game/list', true);
+            xhr.send();
+        });
+    }
+
+    hide() {
+        const friendsCt = this.shadow.getElementById('friendsList');
+        friendsCt.style.display = 'none';
+    }
+
+    hide$showFriends() {
+        const friendsCt = this.shadow.getElementById('friendsList');
+        friendsCt.style.display = !friendsCt.style.display ? 'none' : '';
+        // /\(0,.+?\}\)/g
+    }
+
+    getLabelAddFriends(_this) {
+        if (window._client.user.name === _this.props.name) return '';
+        const friends = window.storage.get('friends', 'JSON');
+        return friends.includes(_this.props.name) ? 'Remove friend' : 'Add friend';
+    }
+
+    add(name) {
+        const friends = window.storage.get('friends', 'JSON');
+        if (!friends.includes(name)) {
+            friends.push(name);
+            window.storage.set('friends', JSON.stringify(friends));
+            window._client.chat.addMessage(`Friend ${name} added`);
+        }
+    }
+    rm(name) {
+        const friends = window.storage.get('friends', 'JSON');
+        if (friends.includes(name)) {
+            window.storage.set('friends', JSON.stringify(friends.filter(_name => _name !== name)));
+            window._client.chat.addMessage(`Friend ${name} removed`);
+        }
+    }
+}
 // --------
+// Add friend
+const onClickAddFriends = () => {
+    const player = window._client.plDataCM();
+    let friends = window.storage.get('friends', 'JSON');
+    if (friends.includes(player.name)) { friends = friends.filter(name => name !== player.name); window._client.chat.addMessage(`Friend ${name} removed`); }
+    else { window._client.chat.addMessage(`Friend ${name} added`); friends.push(player.name); }
+    window.storage.set('friends', JSON.stringify(friends));
+    this.props.hide();
+}
+// ----------
 // Player id and name from Context menu
 const plDataCM = (name) => {
     const teg = document.getElementsByClassName('player-contextmenu-header')[0]
@@ -329,7 +443,6 @@ const cirkle = (md) => { // Beta
     return newMD;
 
 }
-const PARAMSPLETTER = '!!'
 const __editInputs2 = (msg) => {
     window._client.necroAIM.necroShot(msg);
     window._client.snowballAIM.snowballShot(msg);
@@ -337,6 +450,7 @@ const __editInputs2 = (msg) => {
     window._client.echelonAIM.echelonShot(msg);
     window._client.clone.updateKeysOnClone(msg);
     window._client.chat.chatCommands(msg);
+    if (msg.message.match(/^\/reset\b/g)) window._client.counters.deaths = 0;
     try {
         if (window._client.user.heroInfoCard.heroType == 12) {
             window._client.user.self.entity.effects.effects[`${window._client.user.self.id}-JA`] = {
@@ -453,6 +567,7 @@ const getLabelFollow = (_this) => { try { if (window._client.user.name === _this
 // ------
 // Nexys Sheild if u go With ignis !!!DELETED
 const onClickSetIgnis = () => {
+    this.props.hide();
     const player = window._client.plDataCM();
 
     if (window._client.setIgnis.player == player.id) { window._client.setIgnis.player = null; window._client.setIgnis.playerName = null; window._client.chat.addMessage(`You unset Ignis`); }
@@ -472,6 +587,7 @@ const getLabelSetIgnis = (_this) => {
 // Nexus stack
 const timeToUse = 0.5;
 const onClickSetNexus = () => {
+    this.props.hide();
     const player = window._client.plDataCM();
 
     if (window._client.setNexus.player == player.id) { window._client.setNexus.player = null; window._client.setNexus.playerName = null; window._client.chat.addMessage(`You unset Nexus`); }
@@ -498,7 +614,7 @@ const getUsersOnArea = () => {
     return Object.values(window._client.user.globalEntities).filter(v => {
         return  v.regionName == window._client.user.self.entity.regionName &&
                 v.areaNumber == window._client.user.self.entity.areaNumber;
-    }).sort((a, b) => { return a.id - b.id })
+    }).sort((a, b) => { return a.id - b.id });
 }
 const getSpect = () => {
     try { window._client.id = window._client.user.self.id; } catch {}
@@ -628,6 +744,7 @@ const keysSets = {
 }
 let lastPress = [];
 const updateKeysOnClone = (msg) => {
+    return; // If u need - remove this
     const md = msg.mouseDown;
 
     if (!md) {
@@ -740,6 +857,7 @@ const AIM = (diedPlayers=true, maxDist=1309, ignoreDist=false) => {
     if (Math.floor(d) > maxDist && !ignoreDist) return;
     return v;
 }
+
 const necroShot = (msg) => {
     try {
         if (!window._client.necroAIM.on || window._client.user.self.entity.heroType !== 4 || !chekCanUse(window._client.user.heroInfoCard.abilityTwo, true) || !msg.keys.filter(i => { return i.keyEvent == 1 && i.keyType == 11})[0]) return;
@@ -814,8 +932,10 @@ const onNewDataFromServer = (e) => {
             else window._client.setNexus.nexusKD = false;
         }
     });
+
 };
 const greenBalls = (msg) => {
+    return; // Not usable
     window._client.greenBalls._greenBallsTOC = window._client.greenBalls.greenBallsTO;
     const greenBalls = Object.entries(window._client.user.entities).filter(e => (e[1].entityType == 10) && e[0] >= 0);
     greenBalls.forEach(ballD => {
@@ -843,25 +963,25 @@ const greenBalls = (msg) => {
     });
 }
 const yellowBalls = (msg) => {
-    if (msg.area) window._client.yellowBalls.yellowBallsIDS = msg.entities.filter(e => [60, 61, 62].includes(e.entityType) && !e.isDestroyed).map(e => [e.id, e.radius || window._client.bd.defaults.glowy_enemy.radius, e.entityType]);
-    window._client.yellowBalls.yellowBallsIDS.forEach(ballD => {
-        const ball = msg.entities.filter(e => e.id == ballD[0])[0];
-        window._client.user.entities[ball.id] && (ballD[1] = window._client.user.entities[ball.id].radius);
-        if (!ball) { console.log('ERR'); return; }
-        ball.removed = false;
+    if (msg.area) window._client.yellowBalls.yellowBallsIDS = msg.entities.filter(e => [60, 61, 62].includes(e.entityType)).map(e => e.id);
+    const yB = msg.entities.filter(e => window._client.yellowBalls.yellowBallsIDS.includes(e.id));
+    yB.forEach(ballD => {
+        const entity = window._client.user.entities[ballD.id];
+        if (!entity) return;
+        ballD.removed = false;
         msg.entities.push({
-            x: ball.x,
-            y: ball.y,
-            id: -ball.id,
+            x: ballD.x,
+            y: ballD.y,
+            id: -ballD.id,
             brightness: 1,
-            radius: ballD[1],
-            entityType: ballD[2],
+            radius: entity.radius,
+            entityType: entity.entityType,
             removed: false
         });
     });
-    msg.entities = msg.entities.filter(e => !window._client.yellowBalls.yellowBallsIDS.includes(e.id));
 }
 const yellowBallsEEH = (msg) => {
+    if (msg.area) return;
     const yellowBalls = Object.entries(window._client.user.entities).filter(e => e[1].entityType == 55 && e[0] >= 0);
     yellowBalls.forEach(ballD => {
         if (window._client.yellowBallsEEH.yellowBallsCords[ballD[0]] == undefined) window._client.yellowBallsEEH.yellowBallsCords[ballD[0]] = [{}, 0];
@@ -874,6 +994,7 @@ const yellowBallsEEH = (msg) => {
                 brightness: 0.4,
                 radius: ballD[1].radius,
                 entityType: 55,
+                removed: ballD[1].isDestroyed
             });
             window._client.yellowBallsEEH.yellowBallsCords[ballD[0]][1] = window._client.yellowBallsEEH.yellowBallsCords[ballD[0]][1] == 1 ? 0 : 1;
         } else if (window._client.yellowBallsEEH.yellowBallsCords[ballD[0]][0].x !== ballD[1].x || window._client.yellowBallsEEH.yellowBallsCords[ballD[0]][0].y !== ballD[1].y) {
@@ -885,6 +1006,7 @@ const yellowBallsEEH = (msg) => {
                 brightness: 0.4,
                 radius: ballD[1].radius,
                 entityType: 55,
+                removed: ballD[1].isDestroyed
             });
             window._client.yellowBallsEEH.yellowBallsCords[ballD[0]][1] = window._client.yellowBallsEEH.yellowBallsCords[ballD[0]][1] == 1 ? 0 : 1;
         }
@@ -893,13 +1015,17 @@ const yellowBallsEEH = (msg) => {
 const phantomBalls = (msg) => {
 
 }
+let lst;
 window.tU = 29;
+window.lastSend = 0;
 let tUC = window.tU;
 const onMess = (msg) => {
+    window._client.friends.hide();
     if (window._client.tU.on && !tUC--) window._client.__editInputs.pressKeys.push(11), tUC = window.tU;
     if (!window._client.zoom.u) window._client.zoom.reZoom();
     if (msg.chat) for (const chatMess of msg.chat.messages) chatMess.sender == '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩' && chatMess.style.push(-1);
     if (msg.area) {
+        console.log(lst, msg);
         window._client.followPellet.on = false;
         window._client.greenBalls.ballsFrames = {};
         window._client.yellowBalls.yellowBallsIDS = [];
@@ -908,12 +1034,23 @@ const onMess = (msg) => {
         window._client.clone.spect = false;
         window._client.chrono.aur.useOn = null;
 
+        /*Object.keys(window._client.yellowBallsEEH.yellowBallsCords).map(parseInt).forEach(id => {
+            msg.entities.push({
+                id: `${-id}-0`,
+                removed: true
+            });
+            msg.entities.push({
+                id: `${-id}-1`,
+                removed: true
+            });
+        });*/
         if (window._client.id !== window._client.spect) window._client.chat.addMessage(`Watching stopped`);
         if (window._client.oldCanvasSet) swapCameraToCenter();
         if (!window._client.shadow.showAreaShadow) msg.area.lighting = Math.max(msg.area.lighting, 1 - window._client.shadow.minShadow);
         if (window._client.autoUse.oneOnNA) window._client.__editInputs.pressKeys.push(10);
         if (window._client.autoUse.twoOnNA) window._client.__editInputs.pressKeys.push(11);
     }
+    lst = msg;
     try { if (!window._client._) { window._client.chat.addMessage('Write "=help" or "=help ru" for open help-menu'); window._client._ = true; }} catch {}
 
     const me = msg.globalEntities.find(e => e.id == window._client.user.self.id);
@@ -922,13 +1059,11 @@ const onMess = (msg) => {
     chronoShadow(msg);
 
     if (window._client.ballsVisibleHuck && !window._client.greenBalls._greenBallsTOC--) greenBalls(msg);
-    if (window._client.ballsVisibleHuck) yellowBalls(msg);
-    if (window._client.ballsVisibleHuck) yellowBallsEEH(msg);
-    if (window._client.ballsVisibleHuck) phantomBalls(msg);
+    if (window._client.ballsVisibleHuck) yellowBallsEEH(msg), yellowBalls(msg);//  , , phantomBalls(msg);
 };
 // ------------------------
 const __editBaseData = (bd) => {
-    console.log(bd)
+    console.log(bd);
     bd.defaults.normal_enemy.color = '#6B6B6B';
     bd.defaults.wall_enemy.color = '#444444';
     bd.defaults.glowy_enemy.color = window._client.ballsVisibleHuck_DEFYC[0];
@@ -954,6 +1089,10 @@ const chatCommands = (msg) => {
     if (!msg.message || !msg.message.startsWith('=')) return;
     const commandData = msg.message.slice(1).split(' ');
     if (commandData[0] == 'help') window._client.settings.show$hideHelp(commandData[1]);
+    else if (commandData[0] == 'addFr') window._client.friends.add(commandData.slice(1).join(' '));
+    else if (commandData[0] == 'removeFr') window._client.friends.rm(commandData.slice(1).join(' '));
+    else if (commandData[0] == 'clear') document.getElementById('chat-window').innerHTML = '';
+
     msg.message = '';
 }
 // ----
@@ -975,9 +1114,12 @@ const drawDopElements = () => {
     }
 }
 // ------
+const hatsCode = (code) => {
+    return '' //code.match(/new URL\(parcelRequire\(.*?\);/g)[70].replace(/resolve\(.*?\)/g, 'reslove("costum1")');
+}
 // Client :)
 const client = {
-    lastCMMess: null,
+    playProcessFn: null,
     user: null,
     mouse: { x: null, y: null },
     canvas: null,
@@ -1117,6 +1259,7 @@ const client = {
         size: 24
     },
     blockMM: true,
+    ballsStroke: 'rgb(0, 0, 0)',
     ballsOpacity: 0.85,
     flashinBalls: false,
     ballsOnMap: true,
@@ -1129,6 +1272,7 @@ const client = {
         unpressKeys: new KeysArr(),
         delAfter: [] // {k: n, t: n, n: bool }
     },
+    hatsCode,
     editInputData,
     __editInputs2,
     onNewDataFromServer,
@@ -1162,8 +1306,45 @@ const client = {
             if (param == 'chatMessages') window._client.chat.chatMessages = e.checked;
         }
     },
+    defaultStorage: () => {
+        window.storage = {
+            get: (key, t='bool') => {
+                let res = localStorage.getItem(key);
+                if (t === 'bool') return res === "true" ? true : false;
+                if (t === 'num') return Number(res);
+                if (t === 'JSON') return JSON.parse(res);
+                return res;
+            },
+            set: (key, value) => {
+                localStorage.setItem(key, String(value));
+                return value;
+            },
+            default: () => {
+                if (localStorage.getItem('friends') === null) window.storage.set('friends', JSON.stringify([]));
+                if (localStorage.getItem('ballsOpacity') === null) window.storage.set('ballsOpacity', 1);
+                if (localStorage.getItem('minShadow') === null) window.storage.set('minShadow', 0);
+                if (localStorage.getItem('Zoom') === null) window.storage.set('Zoom', 1);
+                if (localStorage.getItem('aur') === null) window.storage.set('aur', false);
+                if (localStorage.getItem('showReaperShadow') === null) window.storage.set('showReaperShadow', false);
+                if (localStorage.getItem('crossCursor') === null) window.storage.set('crossCursor', false);
+                if (localStorage.getItem('ballsVisibleHuck') === null) window.storage.set('ballsVisibleHuck', false);
+                if (localStorage.getItem('chatMessages') === null) window.storage.set('chatMessages', true);
+                if (localStorage.getItem('deathsC') === null) window.storage.set('deathsC', false);
+                if (localStorage.getItem('antiAFK') === null) window.storage.set('antiAFK', false);
+                if (localStorage.getItem('ChronoShadow') === null) window.storage.set('ChronoShadow', false);
+                if (localStorage.getItem('AreaShadow') === null) window.storage.set('AreaShadow', true);
+                if (localStorage.getItem('ballsOnMap') === null) window.storage.set('ballsOnMap', false);
+                if (localStorage.getItem('snowballAIM') === null) window.storage.set('snowballAIM', false);
+                if (localStorage.getItem('echelonAIM') === null) window.storage.set('echelonAIM', false);
+                if (localStorage.getItem('necroAIM') === null) window.storage.set('necroAIM', false);
+                if (localStorage.getItem('ramesesAIM') === null) window.storage.set('ramesesAIM', false);
+            }
+        }
+        window.storage.default();
+    },
     settings: null,
     counters: null,
+    friends: null,
 
     goCirkle: {
         on: false,
@@ -1178,10 +1359,23 @@ window._client = client;
 // ---------
 const imgW = 32;
 
-// Edit Js
-// const ___id = (Math.random() * Math.random() * 123).toString();
+// Off Js
+/*document.addEventListener('beforescriptexecute', (e) => {
 
-const _obs = new MutationObserver((ev) => {
+console.log('Offed')
+    if (e.target.type === 'module' && e.target.src.match(/\/index\.[0-9a-f]{8}\.js/)) console.log('Offed'), e.preventDefault();
+});*/
+// window.addEventListener('beforescriptexecute', e => console.log(e));
+// Friends list
+const _obsFr = new MutationObserver((ev) => {
+    if (document.getElementsByClassName('hall-of-fame')[0]) {
+        new Friends();
+        _obsFr.disconnect();
+    }
+});
+_obsFr.observe(document, {childList: true, subtree: true});
+// Edit Js
+const _obsJs = new MutationObserver((ev) => {
     const elem = Array.from(document.querySelectorAll('script')).filter(teg => teg.type === 'module' && teg.src.match(/\/index\.[0-9a-f]{8}\.js/))[0];
     if (!elem) return;
     // elem.onload = e => e.preventDefault();
@@ -1191,16 +1385,34 @@ const _obs = new MutationObserver((ev) => {
     req.open("GET", elem.src, false);
     req.onload = () => {
         let code = req.response;
-        code = code
+        window.ccc = code;
+        /*title: this.props.player.name + " [" + this.props.area + "]",*/
+        code = code // 3sstr
+            // .replace(/("cosmetics\/"\s*\+\s*)(this\.hatName)/g, (_, a, b) => a + `'' || ${b}`)
+            // .replace(/"angel-wings":\s*[\$a-zA-Z0-9]*?,/g, _ => _ + 'costum1: new URL("https://raw.githubusercontent.com/Zirolio/E-Zond/main/hat4.png", import.meta.url).toString(),')
+            // .replace(/register\((JSON\.parse\(.*?\))\);/g, (_, a) => { return `register(window._client.__editBaseData2(${a}));` })
+
+            //.replace(/className:\s*.\.className,/g, _ => _ + )
+        // TM
+            .replace(/[a-zA-Z0-9\$]+\.get\(\)\.tileMode/g, _ => `(tm => { window._client.ballsStroke = [2, 3].includes(tm) ? "rgb(225, 225, 225)" : "black"; return tm; })(${_})`)
+            .replace(/this\.gameState\.settingsInput/g, (_, a, b) => 'window._client.ballsStroke = [2, 3].includes(this.state.newSettings.tileMode) ? "rgb(225, 225, 225)" : "black";' + _)
+            .replace(/(\.get\(\)\.enemyOutlines.*?.\.strokeStyle\s*=\s*)"black"/g, (_, a) => a + 'window._client.ballsStroke')
+            .replace(/\btilesDark:/g, (_) => { compleeted++; return _ + '"https://github.com/Zirolio/EvadesRes/blob/main/tilesE2.png?raw=true" || '})
+        // FR
+            .replace(/this\.play\.bind\(this\)/g, (_) => `(play => { window._client.playProcessFn = play; return play; })(${_})`)
+            .replace(/(`url\(\$\{)(.\.src)(\}\)`)/g, (_, a, b, c) => a + `${b}.replace('profile/', '')` + c)
+            .replace(/const\s*(.)\s*=\s*await\s*this\.props\.checkLogin\(\);/g, (_, a) => _ + `${a} && window._client.friends.hide();`)
+
             .replace(/(captchaToken:\s*)(.)/g, (_, a, b) => { return a + `(() => { console.log("-> ", ${b}); return ${b} })()` })
-            .replace(/"\[SERVER\]"\s*!==\s*.\.sender.*?(.)\.preventDefault/g, (_, a) => { return `window._client.lastCMMess = ${a};` + _ })
-            .replace(/(.\s*&&\s*\(!this.props.blocklist.has\(this.props.message.sender\))(.*?\}\))/g, (_, a, b) => { return a + b.replace('"Block"', '"Delete"').replace(/onClick.*?,/g, 'onClick: (e) => { window._client.lastCMMess.target[Object.keys(window._client.lastCMMess.target).filter(k => k.includes("__reactFiber"))[0]].return.return.stateNode.remove(); e.target[Object.keys(window._client.lastCMMess.target).filter(k => k.includes("__reactFiber"))[0]].return.return.stateNode.hidden = true; },') + '),' + _ })
+
+            .replace(/"chat-message",/g, _ => { return _ + "id: this.props.message.id, title: new Date().toLocaleString('ru-Ru', { hour: '2-digit', minute: '2-digit' }) + \` (\${new Date().toLocaleString('en-En', { hour: '2-digit', minute: '2-digit' })})\`," })
+            .replace(/.&&\(!this\.props\.blocklist.*?&&(.*?\}\))/g, (_, a) => { return a.replace('"Block"', '"Delete"').replace(/(onClick:).*?(,children)/g, (_, a, b) => a + '() => { document.getElementById(this.props.message.id).remove(); this.props.hide(); }' + b) + ',' + _ })
             .replace(/(.)\.includes\([\$a-zA-Z0-9]+\.MESSAGE_STYLE_DEV\)\s*&&\s*(.)\.push\(\["\[Dev\]",\s*"dev"\]\),/g, (_, a, b, c) => { return `${a}.includes(-1) && ${b}.push(["[Zond]", "ezond-dev"]),` + _ })
             .replace(/"pointer"\s*:\s*"default"/g, () => { return '"pointer" : window._client.crossCursor.on ? `url(\'https://github.com/Zirolio/E-Zond/blob/main/cursor_x${window._client.crossCursor.size}.png?raw=true\') ${window._client.crossCursor.size / 2} ${window._client.crossCursor.size / 2}, crosshair` : "default"' })
+
             .replace(/this.renderHUD\(.\)/g, (_, a) => { return _ + ', window._client.drawDopElements()' })
             .replace(/else\s*if\s*\(this\.isDeparted\)\s*\{\s*const\s*(.)\s*=\s*this\.hexToRgb\(.\);/g, (_, a) => { return _ + `if (window._client.reaper.showReaperShadow) return \`rgba($\{${a}.r}, $\{${a}.g}, $\{${a}.b}, 0.6)\`;`})
-            .replace(/\btilesDark:/g, (_) => { compleeted++; return _ + '"https://github.com/Zirolio/EvadesRes/blob/main/tilesE2.png?raw=true" || '})
-            .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(.\))/g, (_, a, b) => { window._client.socketPerName = a; compleeted++; return `${a} = (() => { window._client.ws = ${b}; window._client.socketNow = window._client.ws; return window._client.ws; })()` })
+            .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(.\))/g, (_, a, b) => { window._client.socketPerName = a; compleeted++; return `${a} = (() => { window._client.ws = ${b}; window._client.ws.addEventListener('message', () => { if (!window._client.counters.fpsUpdateF--) { window._client.counters.fpsUpdateF = 10; window._client.counters.fps = Math.min(Math.floor(1000 / (Date.now() - window._client.counters.lastSend)), 30); } window._client.counters.lastSend = Date.now(); }); window._client.socketNow = window._client.ws; return window._client.ws; })()` })
             .replace(`${window._client.socketPerName}.send(`, () => { compleeted++; return `window._client.socketNow.send(`; })
             .replaceAll(/\.render\(this\.context\s*,\s*this\.camera\)/g, (_) => { compleeted += 0.5; return _ + ', window._client.counters.draw(this)' })
             .replace(/(ClientPayload\.encode\()([a-zA-Z0-9$]+)\)/g, (_, a, b) => { compleeted += 1; return a + `window._client.__editInputs2(${b}))` })
@@ -1219,7 +1431,7 @@ const _obs = new MutationObserver((ev) => {
             .replace(/(processServerMessage\(e\)\s*\{)/g, a => { compleeted++; return a + 'window._client.onNewDataFromServer(e);'})
             .replace(/(e\.area\.render)/g, a => { compleeted++; return 'window._client.camera = this.camera;' + a })
             .replace(/([a-zA-Z0-9\$]+)\=[a-zA-Z0-9\$]+\.FramePayload.decode\([a-zA-Z0-9]+\)/g, (a, b) => { compleeted++; return a + ", _ = window._client.onMess("+ b +")"; })
-            .replaceAll(/(.)(\.showOnMap)&&/g, (_, a, b) => { compleeted += 0.5; return `(${a}${b} || (${a}.entityType !== 1 && ${a}.brightness !== 0.281 && window._client.ballsOnMap))&&` })
+            .replaceAll(/(.)(\.showOnMap)&&/g, (_, a, b) => { compleeted += 0.5; return `(${a}${b} || (${a}.entityType !== 1 && ${a}.brightness !== 0.281 && !${a}.isDestroyed && window._client.ballsOnMap)) &&` })
             .replaceAll(/\(0,.*?\}\)/g, (g) => {
                 if (!g.includes('Copy Name')) return g;
                 // Follow
@@ -1240,8 +1452,14 @@ const _obs = new MutationObserver((ev) => {
                 data.onClick = '+|+';
                 let setNexus = g.slice(0, g.indexOf("{")) + JSON.stringify(data, null, 4).replace('"+|+"', onClickSetNexus.toString()).replace('"-|-"', "window._client.setNexus.getLabelSetNexus(this)") + g.slice(g.lastIndexOf("}") + 1, -1);
 
+                // Add friend
+                data = eval(`(${g.slice(g.indexOf("{"), g.lastIndexOf("}") + 1)})`);
+                data.children = '-|-';
+                data.onClick = '+|+';
+                let addFriend = g.slice(0, g.indexOf("{")) + JSON.stringify(data, null, 4).replace('"+|+"', onClickAddFriends.toString()).replace('"-|-"', "window._client.friends.getLabelAddFriends(this)") + g.slice(g.lastIndexOf("}") + 1, -1);
+
                 compleeted += 0.5;
-                return g + ',' + follow + '),' + setNexus + '),' + setIgnis + '),' // DELETED!!!
+                return g + ',' + follow + '),' + setNexus + '),' + setIgnis + '),' + addFriend + '),'; // DELETED!!!
             });
 
         const xhr = new XMLHttpRequest();
@@ -1254,19 +1472,21 @@ const _obs = new MutationObserver((ev) => {
 
             const nScr = document.createElement("script"); nScr.id = 'cde';
             nScr.setAttribute("type", "module");
-            nScr.innerHTML = code;
+            nScr.innerHTML = code + window._client.hatsCode(code);
             document.head.appendChild(nScr);
 
-            setInterval(() => { if (window._client.antiAFK && window._client.ws && window._client.encode) window._client.ws.send(window._client.encode({ sequence: window._client.user.sequence++ }).finish()); }, 2 * 60 * 1000);
+            window._client.defaultStorage();
+            let c = 1;
+            setInterval(() => { if (window._client.antiAFK && window._client.ws && window._client.encode) { window._client.ws.send(window._client.encode({ sequence: window._client.user.sequence++ }).finish()); console.log(c++); } }, 60 * 1000);
             new Counters();
             new Settings();
+            document.head.appendChild(document.createElement('style')).innerHTML = '.ezond-dev { color: #31ffa8 }';
         }
         xhr.send();
-        // console.log(`Replaced ${compleeted}/17`);
     }
 
     req.send();
-    _obs.disconnect();
+    _obsJs.disconnect();
 });
-_obs.observe(document, {childList: true, subtree: true});
+_obsJs.observe(document, {childList: true, subtree: true});
 // -------
