@@ -241,7 +241,7 @@ class Settings {
 class Counters {
     constructor() {
         window._client.counters = this;
-        this.deathsC = true;
+        this.deathsC = false;
         this.fpsC = true;
         this.deaths = 0;
         this.fps = 30;
