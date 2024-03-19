@@ -2,7 +2,7 @@
 // @name           E-Zond-Beta
 // @name:ru        E-Zond-Beta
 // @namespace      http://tampermonkey.net/
-// @version        8
+// @version        9
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
@@ -21,9 +21,8 @@
 //                                                             | And also, I say hello to all Evades developers, and just developers :)                                             |
 //                                                             | And just reading - I want a good game!!!                                                                           |
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
-
 'use strict';
-const VERSION = '8-Beta';
+const VERSION = '9-Beta';
 const HTML_CSS_VERSION = '';
 const PARAMSPLETTER = '!!';
 const KEYS = {
@@ -744,7 +743,7 @@ const keysSets = {
 }
 let lastPress = [];
 const updateKeysOnClone = (msg) => {
-    return; // If u need - remove this
+    return;
     const md = msg.mouseDown;
 
     if (!md) {
@@ -857,7 +856,6 @@ const AIM = (diedPlayers=true, maxDist=1309, ignoreDist=false) => {
     if (Math.floor(d) > maxDist && !ignoreDist) return;
     return v;
 }
-
 const necroShot = (msg) => {
     try {
         if (!window._client.necroAIM.on || window._client.user.self.entity.heroType !== 4 || !chekCanUse(window._client.user.heroInfoCard.abilityTwo, true) || !msg.keys.filter(i => { return i.keyEvent == 1 && i.keyType == 11})[0]) return;
@@ -1074,6 +1072,17 @@ const __editBaseData = (bd) => {
 }
 // Chat
 let lastMessageID = 0;
+const initChatScale = () => {
+    const chatWindow = document.getElementById('chat-window'), chatScale = 3; chatWindow.style.position = 'relative'; chatWindow.style.padding = '0px 0px 8px 0px'; chatWindow.style.height = 'calc(100% - 33px)';
+    const btn = chatWindow.appendChild(document.createElement('div')), chatCostumStyles = document.head.appendChild(document.createElement('style'));
+    btn.style = `position: fixed; right: 4px; bottom: 0px; color: black; width: 20px; cursor: pointer; width: 20px; height: 20px;`;
+    btn.style.backgroundImage = 'url(https://github.com/Zirolio/EvadesRes/blob/main/arrow.png?raw=true)';
+    btn.style.transform = 'scale(0.7) translate(0px, -170%)';
+    btn.onclick = () => {
+        chatCostumStyles.innerHTML = chatCostumStyles.innerHTML ? '' : `#chat-window { width: ${300 * chatScale}px; height: ${165 * chatScale}px; } #chat { width: ${300 * chatScale}px; height: ${200 * chatScale}px; }`
+        btn.style.transform = chatCostumStyles.innerHTML ? 'scale(0.7) translate(0px, -170%) rotate(180deg)' : 'scale(0.7) translate(0px, -170%)';
+    }
+}
 const addMessage = (text, style=[9]) => {
     if (!window._client.chat.chatMessages) return;
     window._client.chat.add(window._client.user.globalEntities, {
@@ -1342,6 +1351,7 @@ const client = {
         }
         window.storage.default();
     },
+    initChatScale,
     settings: null,
     counters: null,
     friends: null,
@@ -1359,13 +1369,6 @@ window._client = client;
 // ---------
 const imgW = 32;
 
-// Off Js
-/*document.addEventListener('beforescriptexecute', (e) => {
-
-console.log('Offed')
-    if (e.target.type === 'module' && e.target.src.match(/\/index\.[0-9a-f]{8}\.js/)) console.log('Offed'), e.preventDefault();
-});*/
-// window.addEventListener('beforescriptexecute', e => console.log(e));
 // Friends list
 const _obsFr = new MutationObserver((ev) => {
     if (document.getElementsByClassName('hall-of-fame')[0]) {
@@ -1374,6 +1377,13 @@ const _obsFr = new MutationObserver((ev) => {
     }
 });
 _obsFr.observe(document, {childList: true, subtree: true});
+const _obsChat = new MutationObserver((ev) => {
+    if (document.getElementById('chat')) {
+        window._client.initChatScale();
+        _obsChat.disconnect();
+    }
+});
+_obsChat.observe(document, {childList: true, subtree: true});
 // Edit Js
 const _obsJs = new MutationObserver((ev) => {
     const elem = Array.from(document.querySelectorAll('script')).filter(teg => teg.type === 'module' && teg.src.match(/\/index\.[0-9a-f]{8}\.js/))[0];
@@ -1386,13 +1396,7 @@ const _obsJs = new MutationObserver((ev) => {
     req.onload = () => {
         let code = req.response;
         window.ccc = code;
-        /*title: this.props.player.name + " [" + this.props.area + "]",*/
         code = code // 3sstr
-            // .replace(/("cosmetics\/"\s*\+\s*)(this\.hatName)/g, (_, a, b) => a + `'' || ${b}`)
-            // .replace(/"angel-wings":\s*[\$a-zA-Z0-9]*?,/g, _ => _ + 'costum1: new URL("https://raw.githubusercontent.com/Zirolio/E-Zond/main/hat4.png", import.meta.url).toString(),')
-            // .replace(/register\((JSON\.parse\(.*?\))\);/g, (_, a) => { return `register(window._client.__editBaseData2(${a}));` })
-
-            //.replace(/className:\s*.\.className,/g, _ => _ + )
         // TM
             .replace(/[a-zA-Z0-9\$]+\.get\(\)\.tileMode/g, _ => `(tm => { window._client.ballsStroke = [2, 3].includes(tm) ? "rgb(225, 225, 225)" : "black"; return tm; })(${_})`)
             .replace(/this\.gameState\.settingsInput/g, (_, a, b) => 'window._client.ballsStroke = [2, 3].includes(this.state.newSettings.tileMode) ? "rgb(225, 225, 225)" : "black";' + _)
@@ -1404,7 +1408,6 @@ const _obsJs = new MutationObserver((ev) => {
             .replace(/const\s*(.)\s*=\s*await\s*this\.props\.checkLogin\(\);/g, (_, a) => _ + `${a} && window._client.friends.hide();`)
 
             .replace(/(captchaToken:\s*)(.)/g, (_, a, b) => { return a + `(() => { console.log("-> ", ${b}); return ${b} })()` })
-
             .replace(/"chat-message",/g, _ => { return _ + "id: this.props.message.id, title: new Date().toLocaleString('ru-Ru', { hour: '2-digit', minute: '2-digit' }) + \` (\${new Date().toLocaleString('en-En', { hour: '2-digit', minute: '2-digit' })})\`," })
             .replace(/.&&\(!this\.props\.blocklist.*?&&(.*?\}\))/g, (_, a) => { return a.replace('"Block"', '"Delete"').replace(/(onClick:).*?(,children)/g, (_, a, b) => a + '() => { document.getElementById(this.props.message.id).remove(); this.props.hide(); }' + b) + ',' + _ })
             .replace(/(.)\.includes\([\$a-zA-Z0-9]+\.MESSAGE_STYLE_DEV\)\s*&&\s*(.)\.push\(\["\[Dev\]",\s*"dev"\]\),/g, (_, a, b, c) => { return `${a}.includes(-1) && ${b}.push(["[Zond]", "ezond-dev"]),` + _ })
@@ -1412,7 +1415,7 @@ const _obsJs = new MutationObserver((ev) => {
 
             .replace(/this.renderHUD\(.\)/g, (_, a) => { return _ + ', window._client.drawDopElements()' })
             .replace(/else\s*if\s*\(this\.isDeparted\)\s*\{\s*const\s*(.)\s*=\s*this\.hexToRgb\(.\);/g, (_, a) => { return _ + `if (window._client.reaper.showReaperShadow) return \`rgba($\{${a}.r}, $\{${a}.g}, $\{${a}.b}, 0.6)\`;`})
-            .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(.\))/g, (_, a, b) => { window._client.socketPerName = a; compleeted++; return `${a} = (() => { window._client.ws = ${b}; window._client.ws.addEventListener('message', () => { if (!window._client.counters.fpsUpdateF--) { window._client.counters.fpsUpdateF = 10; window._client.counters.fps = Math.min(Math.floor(1000 / (Date.now() - window._client.counters.lastSend)), 30); } window._client.counters.lastSend = Date.now(); }); window._client.socketNow = window._client.ws; return window._client.ws; })()` })
+            .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(.\))/g, (_, a, b) => { window._client.socketPerName = a; compleeted++; return `${a} = (() => { window._client.ws = ${b}; window._client.ws.addEventListener('messageфф', () => { if (!window._client.counters.fpsUpdateF--) { window._client.counters.fpsUpdateF = 10; window._client.counters.fps = Math.min(Math.floor(1000 / (Date.now() - window._client.counters.lastSend)), 30); } window._client.counters.lastSend = Date.now(); }); window._client.socketNow = window._client.ws; return window._client.ws; })()` })
             .replace(`${window._client.socketPerName}.send(`, () => { compleeted++; return `window._client.socketNow.send(`; })
             .replaceAll(/\.render\(this\.context\s*,\s*this\.camera\)/g, (_) => { compleeted += 0.5; return _ + ', window._client.counters.draw(this)' })
             .replace(/(ClientPayload\.encode\()([a-zA-Z0-9$]+)\)/g, (_, a, b) => { compleeted += 1; return a + `window._client.__editInputs2(${b}))` })
@@ -1480,7 +1483,9 @@ const _obsJs = new MutationObserver((ev) => {
             setInterval(() => { if (window._client.antiAFK && window._client.ws && window._client.encode) { window._client.ws.send(window._client.encode({ sequence: window._client.user.sequence++ }).finish()); console.log(c++); } }, 60 * 1000);
             new Counters();
             new Settings();
-            document.head.appendChild(document.createElement('style')).innerHTML = '.ezond-dev { color: #31ffa8 }';
+
+            let scale = 3;
+            document.head.appendChild(document.createElement('style')).innerHTML = `.ezond-dev { color: #31ffa8 } ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background-color: #6d6d6d; border-radius: 2px; } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } * { scrollbar-width: thin; } *::-webkit-scrollbar { width: 6px; } *::-webkit-scrollbar-thumb { background-color: #6d6d6d; border-radius: 2px; } *::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); }`;
         }
         xhr.send();
     }
