@@ -580,16 +580,12 @@ video {
   left: 50%;
 }
 
-.right-1\/2 {
-  right: 50%;
-}
-
 .top-1\/2 {
   top: 50%;
 }
 
-.float-right {
-  float: right;
+.float-left {
+  float: left;
 }
 
 .my-3 {
@@ -688,8 +684,13 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.translate-x-\[500px\] {
-  --tw-translate-x: 500px;
+.translate-x-\[-500px\] {
+  --tw-translate-x: -500px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-\[25px\] {
+  --tw-translate-y: 25px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -762,6 +763,19 @@ video {
 .rounded-b-md {
   border-bottom-right-radius: 0.375rem;
   border-bottom-left-radius: 0.375rem;
+}
+
+.rounded-t-\[20px\] {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.rounded-tl-none {
+  border-top-left-radius: 0px;
+}
+
+.border {
+  border-width: 1px;
 }
 
 .border-2 {
@@ -1013,6 +1027,10 @@ video {
 
 .last\:border-none:last-child {
   border-style: none;
+}
+
+.hover\:bg-\[rgba\(255\2c 255\2c 255\2c 0\.15\)\]:hover {
+  background-color: rgba(255,255,255,0.15);
 }
 
 .hover\:text-\[hsl\(172\2c 69\%\2c 36\%\)\]:hover {
