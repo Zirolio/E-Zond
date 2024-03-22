@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name           E-Zond-Beta
-// @name:ru        E-Zond-Beta
+// @name           E-Zond-Beta-d
+// @name:ru        E-Zond-Beta-d
 // @namespace      http://tampermonkey.net/
-// @version        9
+// @version        9.1
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
@@ -21,8 +21,9 @@
 //                                                             | And also, I say hello to all Evades developers, and just developers :)                                             |
 //                                                             | And just reading - I want a good game!!!                                                                           |
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
+
 'use strict';
-const VERSION = '9-Beta';
+const VERSION = '9.1-Beta';
 const HTML_CSS_VERSION = '';
 const PARAMSPLETTER = '!!';
 const KEYS = {
@@ -241,7 +242,7 @@ class Settings {
 class Counters {
     constructor() {
         window._client.counters = this;
-        this.deathsC = false;
+        this.deathsC = true;
         this.fpsC = true;
         this.deaths = 0;
         this.fps = 30;
@@ -250,6 +251,7 @@ class Counters {
     }
 
     draw(render) {
+        if (document.getElementById('chatCostumStyles').innerHTML) return;
         const   text = [],
                 x = 20,
                 y = 240,
@@ -336,14 +338,26 @@ class Friends {
     }
 
     async createFriendsList() {
-        const frList = document.createElement('div'), div = document.createElement('div'); this.frListE = frList;
+        const frList = document.createElement('div'); this.frListE = frList;
+        // const changeBtnCtn = document.createElement('div');
+        // this.btnShadow = changeBtnCtn.attachShadow({ mode: 'open' });
         this.shadow = frList.attachShadow({ mode: 'open' });
         await this.createStyles();
 
         const xhr = new XMLHttpRequest();
         const onload = () => {
-            div.innerHTML = xhr.responseText;
-            this.shadow.appendChild(div);
+            const changelog = document.getElementsByClassName('changelog')[0], parent = changelog.parentNode;
+            const changeBtn = new DOMParser().parseFromString(xhr.responseText, 'text/html').getElementById('ChangeChlFr'), frl = new DOMParser().parseFromString(xhr.responseText, 'text/html').getElementById('friendsList'); frl.style.display = 'none';
+            changeBtn.onclick = () => {
+                changeBtn.innerText = 'Friends' == changeBtn.innerText ? 'Changelog' : 'Friends';
+                changelog.style.display = changelog.style.display ? '' : 'none';
+                this.shadow.getElementById('friendsList').style.display = this.shadow.getElementById('friendsList').style.display ? '' : 'none';
+            }
+
+            this.shadow.appendChild(changeBtn);
+            this.shadow.appendChild(frl);
+            parent.insertBefore(frList, changelog);
+
             for (const friend of window.storage.get('friends', 'JSON')) this.offlineController(friend);
             this.update();
         };
@@ -374,14 +388,11 @@ class Friends {
     }
 
     hide() {
-        const friendsCt = this.shadow.getElementById('friendsList');
-        friendsCt.style.display = 'none';
+        this.frListE.style.display = 'none';
     }
 
     hide$showFriends() {
-        const friendsCt = this.shadow.getElementById('friendsList');
-        friendsCt.style.display = !friendsCt.style.display ? 'none' : '';
-        // /\(0,.+?\}\)/g
+        this.frListE.style.display = !this.frListE.style.display ? 'none' : '';
     }
 
     getLabelAddFriends(_this) {
@@ -427,18 +438,19 @@ const plDataCM = (name) => {
 // ------------------------------------
 // Edit inputs
 const cirkle = (md) => { // Beta
-    if (window._client.goCirkle.angle >= 360) window._client.goCirkle.angle = 0;
-    if (md) return md;
+    if (md) { window._client.goCirkle.point = null; return md; }
+    if (!window._client.goCirkle.point) window._client.goCirkle.point = { x: window._client.user.self.entity.x, y: window._client.user.self.entity.y }
 
     const radians = (window._client.goCirkle.angle * Math.PI) / 180;
+    const vec = { x: window._client.goCirkle.point.x + window._client.goCirkle.R * Math.cos(radians), y: window._client.goCirkle.point.y + window._client.goCirkle.R * Math.sin(radians) }
+    if ((vec.x - window._client.user.self.entity.x)**2 - (vec.y - window._client.user.self.entity.y)**2 < 1) window._client.goCirkle.angle += window._client.goCirkle.steS;
 
     const newMD = {
-        x: Math.round(Math.cos(radians) * window._client.goCirkle.R),
-        y: Math.round(Math.sin(radians) * window._client.goCirkle.R),
+        x: Math.floor((vec.x - window._client.user.self.entity.x) * 10),
+        y: Math.floor((vec.y - window._client.user.self.entity.y) * 10),
         updated: true
     };
 
-    window._client.goCirkle.angle += window._client.goCirkle.steS;
     return newMD;
 
 }
@@ -474,11 +486,14 @@ const editInputData = (md) => {
     if (window._client.flood) window._client.user.chatMessages.push('/reset');
     if (window._client.chrono.aur.on) window._client.chrono.aur.AuRes();
 
-    if (md) return md;
+    // if (md) return md;
     if (window._client.follow.player !== null) return window._client.follow.editPositionOnFollow(md);
     else if (window._client.followPellet.on) return window._client.followPellet.editPositionOnFollowPellet(md);
     else if (window._client.setNexus.nexusRun) return window._client.setNexus.editPositionOnNexusRun(md);
     else if (window._client.goCirkle.on) return window._client.goCirkle.cirkle(md);
+    else {
+        window._client.goCirkle.point = null;
+    }
 
     return md;
 }
@@ -1067,6 +1082,12 @@ const __editBaseData = (bd) => {
     bd.defaults.glowy_enemy.color = window._client.ballsVisibleHuck_DEFYC[0];
     bd.defaults.firefly_enemy.color = window._client.ballsVisibleHuck_DEFYC[1];
 
+    /*for (const eff of bd.effects) {
+        if (!eff.fillColor) continue;
+        const rgba = eff.fillColor.match(/[\d\.]+/g);
+        if (rgba.length !== 4) continue;
+        else eff.fillColor = `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, 0.1)`;
+    }*/
     window._client.bd = bd;
     return bd;
 }
@@ -1074,13 +1095,16 @@ const __editBaseData = (bd) => {
 let lastMessageID = 0;
 const initChatScale = () => {
     const chatWindow = document.getElementById('chat-window'), chatScale = 3; chatWindow.style.position = 'relative'; chatWindow.style.padding = '0px 0px 8px 0px'; chatWindow.style.height = 'calc(100% - 33px)';
-    const btn = chatWindow.appendChild(document.createElement('div')), chatCostumStyles = document.head.appendChild(document.createElement('style'));
-    btn.style = `position: fixed; right: 4px; bottom: 0px; color: black; width: 20px; cursor: pointer; width: 20px; height: 20px;`;
+    const btn = chatWindow.appendChild(document.createElement('div')), chatCostumStyles = document.head.appendChild(document.createElement('style')); chatCostumStyles.setAttribute('id', 'chatCostumStyles');
+    console.log('Init chat');
+    btn.style = `position: fixed; right: 4px; bottom: 4px; color: black; width: 20px; cursor: pointer; width: 20px; height: 20px;`;
     btn.style.backgroundImage = 'url(https://github.com/Zirolio/EvadesRes/blob/main/arrow.png?raw=true)';
     btn.style.transform = 'scale(0.7) translate(0px, -170%)';
+    btn.id = 'chatScaleBtn';
     btn.onclick = () => {
         chatCostumStyles.innerHTML = chatCostumStyles.innerHTML ? '' : `#chat-window { width: ${300 * chatScale}px; height: ${165 * chatScale}px; } #chat { width: ${300 * chatScale}px; height: ${200 * chatScale}px; }`
         btn.style.transform = chatCostumStyles.innerHTML ? 'scale(0.7) translate(0px, -170%) rotate(180deg)' : 'scale(0.7) translate(0px, -170%)';
+        chatWindow.scroll(0, chatWindow.scrollHeight);
     }
 }
 const addMessage = (text, style=[9]) => {
@@ -1095,6 +1119,7 @@ const addMessage = (text, style=[9]) => {
     });
 }
 const chatCommands = (msg) => {
+    msg.message && document.getElementById('chat-window').scroll(0, document.getElementById('chat-window').scrollHeight);
     if (!msg.message || !msg.message.startsWith('=')) return;
     const commandData = msg.message.slice(1).split(' ');
     if (commandData[0] == 'help') window._client.settings.show$hideHelp(commandData[1]);
@@ -1270,6 +1295,7 @@ const client = {
     blockMM: true,
     ballsStroke: 'rgb(0, 0, 0)',
     ballsOpacity: 0.85,
+    aurasOpacity: 0.1,
     flashinBalls: false,
     ballsOnMap: true,
     drawDopElements,
@@ -1371,24 +1397,22 @@ const imgW = 32;
 
 // Friends list
 const _obsFr = new MutationObserver((ev) => {
-    if (document.getElementsByClassName('hall-of-fame')[0]) {
+    if (document.getElementsByClassName('changelog')[0]) {
         new Friends();
         _obsFr.disconnect();
     }
 });
 _obsFr.observe(document, {childList: true, subtree: true});
+
 const _obsChat = new MutationObserver((ev) => {
-    if (document.getElementById('chat')) {
-        window._client.initChatScale();
-        _obsChat.disconnect();
-    }
+    if (document.getElementById('chat') && !document.getElementById('chatScaleBtn')) window._client.initChatScale();
 });
 _obsChat.observe(document, {childList: true, subtree: true});
+
 // Edit Js
 const _obsJs = new MutationObserver((ev) => {
     const elem = Array.from(document.querySelectorAll('script')).filter(teg => teg.type === 'module' && teg.src.match(/\/index\.[0-9a-f]{8}\.js/))[0];
     if (!elem) return;
-    // elem.onload = e => e.preventDefault();
 
     let compleeted = 0;
     let req = new XMLHttpRequest();
@@ -1397,6 +1421,7 @@ const _obsJs = new MutationObserver((ev) => {
         let code = req.response;
         window.ccc = code;
         code = code // 3sstr
+            .replace(/(this\.context\.fillStyle\s*=\s*)(.\.fillColor)/g, (_, a, b) => a + `(color => { const rgba = color.match(/[\\d\\.]+/g); return rgba.length !== 4 ? color : \`rgba(\${rgba[0]}, \${rgba[1]}, \${rgba[2]}, \${window._client.aurasOpacity})\`; })(${b})`)
         // TM
             .replace(/[a-zA-Z0-9\$]+\.get\(\)\.tileMode/g, _ => `(tm => { window._client.ballsStroke = [2, 3].includes(tm) ? "rgb(225, 225, 225)" : "black"; return tm; })(${_})`)
             .replace(/this\.gameState\.settingsInput/g, (_, a, b) => 'window._client.ballsStroke = [2, 3].includes(this.state.newSettings.tileMode) ? "rgb(225, 225, 225)" : "black";' + _)
@@ -1485,7 +1510,7 @@ const _obsJs = new MutationObserver((ev) => {
             new Settings();
 
             let scale = 3;
-            document.head.appendChild(document.createElement('style')).innerHTML = `.ezond-dev { color: #31ffa8 } ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background-color: #6d6d6d; border-radius: 2px; } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } * { scrollbar-width: thin; } *::-webkit-scrollbar { width: 6px; } *::-webkit-scrollbar-thumb { background-color: #6d6d6d; border-radius: 2px; } *::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); }`;
+            document.head.appendChild(document.createElement('style')).innerHTML = `.changelog { border-top-left-radius: 0px; } .box-ad { display: none } .ezond-dev { color: #31ffa8 } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-thumb { background-color: #6d6d6d; border-radius: 2px; } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } * { scrollbar-width: thin; } *::-webkit-scrollbar { width: 6px; height: 6px; } *::-webkit-scrollbar-thumb { background-color: #6d6d6d; border-radius: 2px; } *::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); }`;
         }
         xhr.send();
     }
