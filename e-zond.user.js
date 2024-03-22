@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name           E-Zond-Beta-d
-// @name:ru        E-Zond-Beta-d
+// @name           E-Zond-Beta
+// @name:ru        E-Zond-Beta
 // @namespace      http://tampermonkey.net/
 // @version        9.1
 // @description    Script for evades.io
