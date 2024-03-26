@@ -11,7 +11,7 @@
     <div class="flex flex-col w-full">
         <div class="flex justify-between items-center w-full px-1 my-3">
             <label class="text-xl text-orange-400 select-none" for="hatEditorScale">Scale:</label>
-            <input class="text-orange-400 w-[210px] focus:orangeShadow hover:orangeShadow bg-inherit border-2 border-t-0 rounded-b-md border-orange-400 px-2 py-1" id='hatEditorScale' type="number" step="0.01" min="0.01" value="0.01" onchange="window._client.hat.onchange()">
+            <input class="text-orange-400 w-[210px] focus:orangeShadow hover:orangeShadow bg-inherit border-2 border-t-0 rounded-b-md border-orange-400 px-2 py-1" id='hatEditorScale' type="number" step="0.1" min="0.1" value="1" onchange="window._client.hat.onchange()">
         </div>
         <div class="flex justify-between items-center w-full px-1 my-3">
             <label class="text-xl text-orange-400 select-none" for="hatEditorFilter">Filter:</label>
