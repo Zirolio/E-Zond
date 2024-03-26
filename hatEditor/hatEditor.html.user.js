@@ -6,7 +6,7 @@
     <img id='hatEditorImg' class="w-[250px] h-[250px] rounded-sm">
     
     <input class="hidden" id='hatEditorFile' accept="image/*" type="file" onchange="window._client.hat.onchange()">
-    <button class="hover:redTextShadow-1 hover:redShadow w-[250px] my-2 px-4 py-1 text-lg text-red-400 border-2 border-red-400 rounded-md" onclick="document.getElementById('hatEditorFile').click()">Choice hat</button>
+    <button class="hover:redTextShadow-1 hover:redShadow w-[250px] my-2 px-4 py-1 text-lg text-red-400 border-2 border-red-400 rounded-md" onclick="window._client.settings.shadow.getElementById('hatEditorFile').click()">Choice hat</button>
     
     <div class="flex flex-col w-full">
         <div class="flex justify-between items-center w-full px-1 my-3">
@@ -21,5 +21,5 @@
     <button class="hover:yellowTextShadow-1 hover:yellowShadow w-[250px] my-2 px-4 py-1 text-lg text-yellow-400 border-2 border-yellow-400 rounded-md" onclick="window._client.editor.update()">Update</button>
 
     <!-- Exit -->
-    <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="">Exit</button>
+    <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hideSettings();">Exit</button>
 </div>
