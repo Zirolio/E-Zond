@@ -15,7 +15,7 @@
         </div>
         <div class="flex justify-between items-center w-full px-1 my-3">
             <label class="text-xl text-orange-400 select-none" for="hatEditorFilter">Filter:</label>
-            <input class="text-orange-400 w-[210px] focus:orangeShadow hover:orangeShadow bg-inherit border-2 border-t-0 rounded-b-md border-orange-400 px-2 py-1" id='hatEditorFilter' type="color" step="0.01" min="0.01" value="0.01" onchange="window._client.hat.onchange()">
+            <input class="text-orange-400 w-[210px] focus:orangeShadow hover:orangeShadow bg-inherit border-2 border-t-0 rounded-b-md border-orange-400 px-2 py-1" id='hatEditorFilter' type="color" value="rgba(0, 0, 0, 0)" onchange="window._client.hat.onchange()">
         </div>
     </div>
     <button class="hover:yellowTextShadow-1 hover:yellowShadow w-[250px] my-2 px-4 py-1 text-lg text-yellow-400 border-2 border-yellow-400 rounded-md" onclick="window._client.editor.update()">Update</button>
