@@ -1,6 +1,6 @@
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zirolio/E-Zond/settingsV3.1/main.css"> -->
-<link rel="stylesheet" href="./main.css">
-<div class="min-w-[490px] py-12 pt-8 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="zond-sett">
+<!-- <link rel="stylesheet" href="./main.css"> -->
+<div class="min-w-[490px] py-12 pt-8 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="editor-sett">
     <p class="text-4xl mb-8 text-green-500 select-none">Editor Settings</p>
 
     <img id='hatEditorImg' class="w-[250px] h-[250px] rounded-sm">
