@@ -2,7 +2,7 @@
 // @name           E-Zond-Beta
 // @name:ru        E-Zond-Beta
 // @namespace      http://tampermonkey.net/
-// @version        9.1
+// @version        10
 // @description    Script for evades.io
 // @description:ru Скрипт для evades.io
 // @author         .zirolio.
@@ -21,9 +21,8 @@
 //                                                             | And also, I say hello to all Evades developers, and just developers :)                                             |
 //                                                             | And just reading - I want a good game!!!                                                                           |
 //                                                             ^--------------------------------------------------------------------------------------------------------------------^
-
 'use strict';
-const VERSION = '9.1-Beta';
+const VERSION = '10-Beta';
 const HTML_CSS_VERSION = '';
 const PARAMSPLETTER = '!!';
 const KEYS = {
@@ -140,6 +139,7 @@ class Settings {
         window._client.echelonAIM.on = window.storage.get('echelonAIM');
         window._client.necroAIM.on = window.storage.get('necroAIM');
         window._client.ramesesAIM.on = window.storage.get('ramesesAIM');
+        window._client.reaper.showReaperShadow = window.storage.get('showReaperShadow');
         window._client.chrono.showChronoShadow = window.storage.get('ChronoShadow');
         window._client.shadow.showAreaShadow = window.storage.get('AreaShadow');
         window._client.ballsOnMap = window.storage.get('ballsOnMap');
@@ -277,11 +277,13 @@ class Counters {
 }
 class Friends {
     constructor() {
+        if (window._client.friends) window._client.friends.stop = true;
         window._client.friends = this;
         this.createFriendsList();
     }
 
     onlineController(name, server, add=true) {
+        if (this.stop) return;
         const plb = this.shadow.getElementById(`${name}-online`);
 
         if (!add) plb && plb.remove();
@@ -295,6 +297,7 @@ class Friends {
     }
 
     offlineController(name, add=true) {
+        if (this.stop) return;
         const plb = this.shadow.getElementById(`${name}-offline`);
 
         if (!add) plb && plb.remove();
@@ -308,6 +311,7 @@ class Friends {
     }
 
     async update() {
+        if (this.stop) return;
         if (!window._client.user) {
             const onlinePl = await this.getConnectedPlayers(), friends = window.storage.get('friends', 'JSON');
             for (const friend of friends) {
@@ -339,6 +343,7 @@ class Friends {
 
     async createFriendsList() {
         const frList = document.createElement('div'); this.frListE = frList;
+        frList.id = 'frList__';
         // const changeBtnCtn = document.createElement('div');
         // this.btnShadow = changeBtnCtn.attachShadow({ mode: 'open' });
         this.shadow = frList.attachShadow({ mode: 'open' });
@@ -360,6 +365,7 @@ class Friends {
 
             for (const friend of window.storage.get('friends', 'JSON')) this.offlineController(friend);
             this.update();
+            changeBtn.onclick();
         };
         xhr.onload = onload;
         xhr.open('GET', `https://raw.githubusercontent.com/Zirolio/E-Zond/main/distHtml${HTML_CSS_VERSION}/friends.html.user.js`, true);
@@ -1091,6 +1097,20 @@ const __editBaseData = (bd) => {
     window._client.bd = bd;
     return bd;
 }
+const onEndDraw = () => {
+    const center = { x: window._client.canvas.width / 2, y: window._client.canvas.height / 2 }, c = window._client.c;
+    if (window._client.reaper.showReaperShadow && window._client.user.heroInfoCard.heroType == 10 && window._client.user.self.entity.isDeparted && window._client.user.heroInfoCard.abilityTwo.level && window._client.user.heroInfoCard.abilityTwo.cooldown) { // ???
+        const cd = window._client.user.heroInfoCard.abilityTwo.totalCooldown * 1000, cdC = window._client.user.heroInfoCard.abilityTwo.cooldown * 1000, lvl = window._client.user.heroInfoCard.abilityTwo.level, abilityTime = [2700, 2900, 3100, 3300, 3500][lvl - 1];
+        if (cd - abilityTime <= cdC) {
+            c.beginPath();
+            c.fillStyle = 'rgb(253, 240, 193, 0.55)';
+            c.arc(center.x, center.y, window._client.user.self.entity.radius, -Math.PI / 2, -2 * Math.PI * (cdC - (cd - abilityTime)) / abilityTime - Math.PI / 2, true);
+            c.lineTo(center.x, center.y);
+            c.closePath();
+            c.fill();
+        }
+    }
+}
 // Chat
 let lastMessageID = 0;
 const initChatScale = () => {
@@ -1307,6 +1327,7 @@ const client = {
         unpressKeys: new KeysArr(),
         delAfter: [] // {k: n, t: n, n: bool }
     },
+    onEndDraw,
     hatsCode,
     editInputData,
     __editInputs2,
@@ -1396,23 +1417,16 @@ window._client = client;
 const imgW = 32;
 
 // Friends list
-const _obsFr = new MutationObserver((ev) => {
-    if (document.getElementsByClassName('changelog')[0]) {
-        new Friends();
-        _obsFr.disconnect();
-    }
+const _obsUi = new MutationObserver((ev) => {
+    if (document.getElementsByClassName('changelog')[0] && !document.getElementById('frList__')) new Friends();
+    if (document.getElementById('chat') && !document.getElementById('chat').hidden && !document.getElementById('chatScaleBtn')) window._client.initChatScale();
 });
-_obsFr.observe(document, {childList: true, subtree: true});
-
-const _obsChat = new MutationObserver((ev) => {
-    if (document.getElementById('chat') && !document.getElementById('chatScaleBtn')) window._client.initChatScale();
-});
-_obsChat.observe(document, {childList: true, subtree: true});
-
+_obsUi.observe(document, {childList: true, subtree: true});
 // Edit Js
 const _obsJs = new MutationObserver((ev) => {
     const elem = Array.from(document.querySelectorAll('script')).filter(teg => teg.type === 'module' && teg.src.match(/\/index\.[0-9a-f]{8}\.js/))[0];
     if (!elem) return;
+    // elem.onload = e => e.preventDefault();
 
     let compleeted = 0;
     let req = new XMLHttpRequest();
@@ -1421,6 +1435,7 @@ const _obsJs = new MutationObserver((ev) => {
         let code = req.response;
         window.ccc = code;
         code = code // 3sstr
+            .replace(/this\.renderEntities\(.\)/g, _ => _ + '; window._client.onEndDraw(this);')
             .replace(/(this\.context\.fillStyle\s*=\s*)(.\.fillColor)/g, (_, a, b) => a + `(color => { const rgba = color.match(/[\\d\\.]+/g); return rgba.length !== 4 ? color : \`rgba(\${rgba[0]}, \${rgba[1]}, \${rgba[2]}, \${window._client.aurasOpacity})\`; })(${b})`)
         // TM
             .replace(/[a-zA-Z0-9\$]+\.get\(\)\.tileMode/g, _ => `(tm => { window._client.ballsStroke = [2, 3].includes(tm) ? "rgb(225, 225, 225)" : "black"; return tm; })(${_})`)
@@ -1440,7 +1455,7 @@ const _obsJs = new MutationObserver((ev) => {
 
             .replace(/this.renderHUD\(.\)/g, (_, a) => { return _ + ', window._client.drawDopElements()' })
             .replace(/else\s*if\s*\(this\.isDeparted\)\s*\{\s*const\s*(.)\s*=\s*this\.hexToRgb\(.\);/g, (_, a) => { return _ + `if (window._client.reaper.showReaperShadow) return \`rgba($\{${a}.r}, $\{${a}.g}, $\{${a}.b}, 0.6)\`;`})
-            .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(.\))/g, (_, a, b) => { window._client.socketPerName = a; compleeted++; return `${a} = (() => { window._client.ws = ${b}; window._client.ws.addEventListener('messageфф', () => { if (!window._client.counters.fpsUpdateF--) { window._client.counters.fpsUpdateF = 10; window._client.counters.fps = Math.min(Math.floor(1000 / (Date.now() - window._client.counters.lastSend)), 30); } window._client.counters.lastSend = Date.now(); }); window._client.socketNow = window._client.ws; return window._client.ws; })()` })
+            .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(.\))/g, (_, a, b) => { window._client.socketPerName = a; compleeted++; return `${a} = (() => { window._client.ws = ${b}; window._client.ws.addEventListener('message', () => { if (!window._client.counters.fpsUpdateF--) { window._client.counters.fpsUpdateF = 10; window._client.counters.fps = Math.min(Math.floor(1000 / (Date.now() - window._client.counters.lastSend)), 30); } window._client.counters.lastSend = Date.now(); }); window._client.socketNow = window._client.ws; return window._client.ws; })()` })
             .replace(`${window._client.socketPerName}.send(`, () => { compleeted++; return `window._client.socketNow.send(`; })
             .replaceAll(/\.render\(this\.context\s*,\s*this\.camera\)/g, (_) => { compleeted += 0.5; return _ + ', window._client.counters.draw(this)' })
             .replace(/(ClientPayload\.encode\()([a-zA-Z0-9$]+)\)/g, (_, a, b) => { compleeted += 1; return a + `window._client.__editInputs2(${b}))` })
@@ -1520,3 +1535,8 @@ const _obsJs = new MutationObserver((ev) => {
 });
 _obsJs.observe(document, {childList: true, subtree: true});
 // -------
+window.startBomb = (timerV) => {
+    window.i !== undefined && clearInterval(window.i);
+    const bomb = new (function(timerV) { this.timer = timerV; this.onCall = () => window._client.user.chatMessages.push((this.timer-- || clearInterval(window.i) || (window.i = undefined) || '/ff').toString()) })(timerV);
+    window.i = setInterval(bomb.onCall, 5000);
+}
