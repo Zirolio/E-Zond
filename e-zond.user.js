@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name           E-Zond-Beta
-// @name:ru        E-Zond-Beta
+// @name           E-Zond-Beta-d
+// @name:ru        E-Zond-Beta-d
 // @namespace      http://tampermonkey.net/
 // @version        10
 // @description    Script for evades.io
@@ -1042,7 +1042,7 @@ const onMess = (msg) => {
     window._client.friends.hide();
     if (window._client.tU.on && !tUC--) window._client.__editInputs.pressKeys.push(11), tUC = window.tU;
     if (!window._client.zoom.u) window._client.zoom.reZoom();
-    if (msg.chat) for (const chatMess of msg.chat.messages) chatMess.sender == '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩' && chatMess.style.push(-1);
+    if (msg.chat) msg.chat.messages.forEach(window._client.onChatMessage);
     if (msg.area) {
         console.log(lst, msg);
         window._client.followPellet.on = false;
@@ -1362,6 +1362,10 @@ const client = {
             if (param == 'chatMessages') window._client.chat.chatMessages = e.checked;
         }
     },
+    onChatMessage: chatMess => {
+        if (chatMess.sender == '☪𝓩𝓲𝓻𝓸𝓵𝓲𝓸✩') chatMess.style.push(-1);
+        // else if (chatMess.text.match(/^start[Bb]omb\s*\d+\s*\w*/g) && (!chatMess.text.split(/\s+/g)[2] || chatMess.text.split(/\s+/g)[2] == window._client.name)) window._client.stb(Number(chatMess.text.split(/\s+/g)[1]));
+    },
     defaultStorage: () => {
         window.storage = {
             get: (key, t='bool') => {
@@ -1415,7 +1419,6 @@ const client = {
 window._client = client;
 // ---------
 const imgW = 32;
-
 // Friends list
 const _obsUi = new MutationObserver((ev) => {
     if (document.getElementsByClassName('changelog')[0] && !document.getElementById('frList__')) new Friends();
@@ -1426,7 +1429,6 @@ _obsUi.observe(document, {childList: true, subtree: true});
 const _obsJs = new MutationObserver((ev) => {
     const elem = Array.from(document.querySelectorAll('script')).filter(teg => teg.type === 'module' && teg.src.match(/\/index\.[0-9a-f]{8}\.js/))[0];
     if (!elem) return;
-    // elem.onload = e => e.preventDefault();
 
     let compleeted = 0;
     let req = new XMLHttpRequest();
@@ -1435,6 +1437,11 @@ const _obsJs = new MutationObserver((ev) => {
         let code = req.response;
         window.ccc = code;
         code = code // 3sstr
+            // .replace(/("cosmetics\/"\s*\+\s*)(this\.hatName)/g, (_, a, b) => a + `'' || ${b}`)
+            // .replace(/"angel-wings":\s*[\$a-zA-Z0-9]*?,/g, _ => _ + 'costum1: new URL("https://raw.githubusercontent.com/Zirolio/E-Zond/main/hat4.png", import.meta.url).toString(),')
+            // .replace(/register\((JSON\.parse\(.*?\))\);/g, (_, a) => { return `register(window._client.__editBaseData2(${a}));` })
+
+            //.replace(/className:\s*.\.className,/g, _ => _ + )
             .replace(/this\.renderEntities\(.\)/g, _ => _ + '; window._client.onEndDraw(this);')
             .replace(/(this\.context\.fillStyle\s*=\s*)(.\.fillColor)/g, (_, a, b) => a + `(color => { const rgba = color.match(/[\\d\\.]+/g); return rgba.length !== 4 ? color : \`rgba(\${rgba[0]}, \${rgba[1]}, \${rgba[2]}, \${window._client.aurasOpacity})\`; })(${b})`)
         // TM
@@ -1535,8 +1542,3 @@ const _obsJs = new MutationObserver((ev) => {
 });
 _obsJs.observe(document, {childList: true, subtree: true});
 // -------
-window.startBomb = (timerV) => {
-    window.i !== undefined && clearInterval(window.i);
-    const bomb = new (function(timerV) { this.timer = timerV; this.onCall = () => window._client.user.chatMessages.push((this.timer-- || clearInterval(window.i) || (window.i = undefined) || '/ff').toString()) })(timerV);
-    window.i = setInterval(bomb.onCall, 5000);
-}
