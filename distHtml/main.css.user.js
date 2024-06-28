@@ -588,6 +588,11 @@ video {
   float: left;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -637,6 +642,10 @@ video {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-\[15px\] {
   height: 15px;
 }
@@ -651,6 +660,14 @@ video {
 
 .w-\[15px\] {
   width: 15px;
+}
+
+.w-\[210px\] {
+  width: 210px;
+}
+
+.w-\[250px\] {
+  width: 250px;
 }
 
 .w-\[300px\] {
@@ -761,6 +778,10 @@ video {
   border-radius: 0.375rem;
 }
 
+.rounded-sm {
+  border-radius: 0.125rem;
+}
+
 .rounded-xl {
   border-radius: 0.75rem;
 }
@@ -848,6 +869,10 @@ video {
   background-color: rgb(34 34 34 / var(--tw-bg-opacity));
 }
 
+.bg-inherit {
+  background-color: inherit;
+}
+
 .bg-main1 {
   background-color: rgba(65, 70, 82, 0.75);
 }
@@ -870,6 +895,11 @@ video {
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .px-8 {
@@ -929,6 +959,11 @@ video {
 
 .text-\[20px\] {
   font-size: 20px;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-xl {
@@ -1028,6 +1063,10 @@ video {
 
 .hover\:redShadow:hover {
   box-shadow: 0px 0px 12px 2.5px rgb(248, 113, 113);
+}
+
+.focus\:orangeShadow:focus {
+  box-shadow: 0px 0px 12px 2.5px rgb(251, 146, 60);
 }
 
 .last\:border-none:last-child {

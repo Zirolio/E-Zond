@@ -66,6 +66,10 @@
             <input id="aur" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('aur', this)">
         </div>
         <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
+            <label for="necroCooldowns" class="text-xl mr-3 select-none">Necro Res cooldowns:</label>
+            <input id="necroCooldowns" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('necroCooldowns', this)">
+        </div>
+        <div class="flex items-center justify-between text-red-400 w-full px-1 mb-2">
             <label for="necroAIM" class="text-xl mr-3 select-none">Necro AIM:</label>
             <input id="necroAIM" class="mr-[66.5px] cursor-pointer hover:redShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-red-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('necroAIM', this)">
         </div>
