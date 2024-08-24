@@ -91,9 +91,9 @@
         </div>
         <!-- Other -->
         <p class="my-3 text-4xl text-yellow-400 select-none">Other</p>
-        <div id="c_crossCursor" class="flex items-center justify-between px-1 w-full mb-2" style="display: none;">
-            <label for="crossCursor" class="text-xl text-yellow-400 select-none mr-4">Cross cursor:</label>
-            <input id="crossCursor" class="mr-[66.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('crossCursor', this)">
+        <div id="c_crossianCursor" class="flex items-center justify-between px-1 w-full mb-2" style="display: none;">
+            <label for="crossianCursor" class="text-xl text-yellow-400 select-none mr-4">Cross cursor:</label>
+            <input id="crossianCursor" class="mr-[66.5px] cursor-pointer hover:yellowShadow w-[15px] h-[15px] translate-x-1/2 border-2 border-t-0 rounded-b-md border-yellow-400 px-2 py-1" type="checkbox" onclick="window._client.updateParam('crossianCursor', this)">
         </div>
         <div id="c_deathsC" class="flex items-center justify-between px-1 w-full mb-2" style="display: none;">
             <label for="deathsC" class="text-xl text-yellow-400 select-none mr-4">Death counter:</label>
