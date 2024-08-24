@@ -7,8 +7,11 @@ node_modules
 src
 
 /package-lock.json
-
 /package.json
 
+# For moment
+/e-zond.js
+
+/vite.config.mts
 /tailwind.config.js
 /tailwind.hatEditor.config.js
