@@ -132,10 +132,10 @@
         <p class="mb-1"><b>"Tab"</b> — Переключить камеру на другого игрока</p>
         <p class="mb-1"><b>"`" или "ё"</b> — Переключить камеру на центр карты</p>
         <p class="mb-1"><b>"T"</b> — Переключить камеру на клона виолы (Работает только на виоле)</p>
-        <p class="mb-1"><b>"Area shadow"</b> — Эта от этой опции будет зависить, будет ли темно на аренах (к примеру ВВ), если она включена, то скрипт ничего не будет делать с темнотой, если же она выключена - то на сколько будет темно на арене будет зависить от "Min area shadow"</p>
+        <!-- <p class="mb-1"><b>"Area shadow"</b> — Эта от этой опции будет зависить, будет ли темно на аренах (к примеру ВВ), если она включена, то скрипт ничего не будет делать с темнотой, если же она выключена - то на сколько будет темно на арене будет зависить от "Min area shadow"</p> -->
         <p class="mb-1"><b>"Колёсико мыши"</b> — Отдалить/приблизить камеру</p>
         <p class="mb-1"><b>"ПКМ по имени пользователя в лидерборде"</b> — Follow(Следовать за игроком) и SetIgnis(Работает тольоко на нексусе, автоматичиское использование щита при смерти игниса)/SetNexus(Работает тольоко на нексусе, автоматичиское использование щита, когда щит другого кончаеться)</p>
-        <p class="mb-1"><b>"Комманды чата"</b> — =clear; =addFr [name]; =removeFr [name]; </p>
+        <p class="mb-1"><b>"Комманды чата"</b> — =reset; =clear; =addFr [name]; =removeFr [name]; </p>
         <i class="text-yellow-300 mt-1">Все остальное есть в меню и оно должно быть понятно интуитивно</i>
         <!-- <p class="text-yellow-400 self-center text-[18px] my-3">Сочитания клавиш ("Сочитание клавиш" - действие):</p> -->
         <!-- <p class="text-yellow-400 self-center text-[18px] my-3">Само меню настроек (Вещи, которые могут быть интуитивно не понятны):</p> -->
@@ -152,10 +152,10 @@
         <p class="mb-1"><b>"Tab"</b> — Switch camera to another player</p>
         <p class="mb-1"><b>"`"</b> — Switch the camera to the center of the map</p>
         <p class="mb-1"><b>"T"</b> — Switch camera to Viola clone (Only works on Viola)</p>
-        <p class="mb-1"><b>"Area shadow"</b> — This option will depend on whether it will be dark in the arenas (for example BB), if it is turned on, then the script will not do anything with the darkness, but if it is turned off, then how dark it will be in the arena will depend on "Min area shadow "</p>
+        <!-- <p class="mb-1"><b>"Area shadow"</b> — This option will depend on whether it will be dark in the arenas (for example BB), if it is turned on, then the script will not do anything with the darkness, but if it is turned off, then how dark it will be in the arena will depend on "Min area shadow "</p> -->
         <p class="mb-1"><b>"Mouse wheel"</b> — Zoom camera out/zoom in</p>
         <p class="mb-1"><b>"RMB by username in the leaderboard"</b> - Follow(Follow the player) and SetIgnis(Works only on the nexus, automatic use of the shield when Ignis dies)/SetNexus( Works only on the nexus, automatic use of the shield when the shield of another ends)</p>
-        <p class="mb-1"><b>"Chat commands"</b> — =clear; =addFr [name]; =removeFr [name]; </p>
+        <p class="mb-1"><b>"Chat commands"</b> — =reset; =clear; =addFr [name]; =removeFr [name]; </p>
         <i class="text-yellow-300 mt-1">Everything else is on the menu and should be intuitive</i>
     </div>
     <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hideHelp('en')">Close</button>
