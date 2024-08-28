@@ -21,9 +21,14 @@
             <label for="-ballsOpacity" class="text-nowrap text-xl select-none mr-4">Balls opacity:</label>
             <input id="ballsOpacity" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400" type="range" oninput="window._client.updateParam('ballsOpacity', this)" min=0 max=100>
         </div>
+        800
         <div id="c_minAreaShadow" class="flex justify-between items-center text-purple-400 px-1 w-full" style="display: none;">
             <label for="-minAreaShadow" class="text-nowrap text-xl select-none mr-4">Min area shadow:</label>
             <input id="minAreaShadow" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400" type="range" oninput="window._client.updateParam('minAreaShadow', this)" min=0 max=100>
+        </div>
+        <div id="c_playerLighting" class="flex justify-between items-center text-purple-400 px-1 w-full" style="display: none;">
+            <label for="-playerLighting" class="text-nowrap text-xl select-none mr-4">Player lighting:</label>
+            <input id="playerLighting" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400" type="range" oninput="window._client.updateParam('playerLighting', this)" min=0 max=100>
         </div>
         <!-- Abilitys -->
         <p class="my-3 text-4xl text-orange-400 select-none">Abilitys</p>
