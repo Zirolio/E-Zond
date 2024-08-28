@@ -28,7 +28,7 @@
         </div>
         <div id="c_playerLighting" class="flex justify-between items-center text-purple-400 px-1 w-full" style="display: none;">
             <label for="-playerLighting" class="text-nowrap text-xl select-none mr-4">Player lighting:</label>
-            <input id="playerLighting" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400" type="range" oninput="window._client.updateParam('playerLighting', this)" min=0 max=100>
+            <input id="playerLighting" class="cursor-pointer hover:purpleShadow border-2 border-t-0 rounded-b-md border-purple-400" type="range" oninput="window._client.updateParam('playerLighting', this)" min=0 max=800>
         </div>
         <!-- Abilitys -->
         <p class="my-3 text-4xl text-orange-400 select-none">Abilitys</p>
