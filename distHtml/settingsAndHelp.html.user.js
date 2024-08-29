@@ -159,7 +159,7 @@
         <!-- <p class="mb-1"><b>"Area shadow"</b> — This option will depend on whether it will be dark in the arenas (for example BB), if it is turned on, then the script will not do anything with the darkness, but if it is turned off, then how dark it will be in the arena will depend on "Min area shadow "</p> -->
         <p class="mb-1"><b>"Mouse wheel"</b> — Zoom camera out/zoom in</p>
         <p class="mb-1"><b>"RMB by username in the leaderboard"</b> - Follow(Follow the player) and SetIgnis(Works only on the nexus, automatic use of the shield when Ignis dies)/SetNexus( Works only on the nexus, automatic use of the shield when the shield of another ends)</p>
-        <p class="mb-1"><b>"Chat commands"</b> — =reset; =clear; =addFr [name]; =removeFr [name]; </p>
+        <p class="mb-1"><b>"Chat commands"</b> — =reset; =clear; =setPlLight [name] [value]; =addFr [name]; =removeFr [name]; </p>
         <i class="text-yellow-300 mt-1">Everything else is on the menu and should be intuitive</i>
     </div>
     <button class="hover:greenTextShadow-1 hover:greenShadow mt-6 px-10 py-1 text-2xl text-green-500 border-2 border-green-500 rounded-md" onclick="window._client.settings.show$hideHelp('en')">Close</button>
