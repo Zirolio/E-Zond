@@ -1,4 +1,4 @@
-.gitignore
+/.gitignore
 
 dist
 
@@ -15,4 +15,5 @@ src
 
 /vite.config.mts
 /tailwind.config.js
+/obfuscator.config.json
 /tailwind.hatEditor.config.js
