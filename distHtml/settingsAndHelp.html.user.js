@@ -129,7 +129,7 @@
 <!-- Zond help -->
 <div class="max-w-[635px] py-8 pb-12 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="zond-help-ru">
     <p class="text-4xl text-blue-400 select-none">Zond Help</p>
-    <p class="text-red-400 self-center">!!! Внимание здесь будет рассматриваться скрипт по <a class="text-blue-400 hover:text-blue-500 hover:underline" href="https://github.com/Zirolio/E-Zond/blob/main/e-zond.user.js?raw=true!!!" target="_blank">этой ссылке</a> !!!</p>
+    <p class="text-red-400 self-center">!!! Внимание здесь будет рассматриваться скрипт по <a class="text-blue-400 hover:text-blue-500 hover:underline" href="https://raw.githubusercontent.com/Zirolio/E-Zond/main/e-zond/e-zond.loader.user.js" target="_blank">этой ссылке</a> !!!</p>
     <div class="flex flex-col items-start justify-start w-full max-h-[400px] overflow-y-scroll pathTrans mt-3 py-3 text-gray-200">
         <p class="mb-1"><b>"Alt + Z"</b> — Открыть меню настроек</p>
         <p class="mb-1"><b>"P"</b> — Авто собирание пелетов</p>
@@ -149,7 +149,7 @@
 </div>
 <div class="max-w-[635px] py-8 pb-12 px-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center flex flex-col bg-main1 rounded-xl font-bitter" id="zond-help-en">
     <p class="text-4xl text-blue-400 select-none">Zond Help</p>
-    <p class="text-red-400 self-center">!!! Attention, the script at <a class="text-blue-400 hover:text-blue-500 hover:underline" href="https://github.com/Zirolio/E-Zond/blob/main/e-zond.user.js?raw=true!!!" target="_blank">this link</a> will be considered here !!!</p>
+    <p class="text-red-400 self-center">!!! Attention, the script at <a class="text-blue-400 hover:text-blue-500 hover:underline" href="https://raw.githubusercontent.com/Zirolio/E-Zond/main/e-zond/e-zond.loader.user.js" target="_blank">this link</a> will be considered here !!!</p>
     <div class="flex flex-col items-start justify-start w-full max-h-[400px] overflow-y-scroll pathTrans mt-3 py-3 text-gray-200">
         <p class="mb-1"><b>"Alt + Z"</b> — Open settings menu</p>
         <p class="mb-1"><b>"P"</b> — Automatic collection of pellets</p>
