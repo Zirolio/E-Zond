@@ -2,7 +2,7 @@
 // @name              E-Zond-Beta
 // @name:ru           E-Zond-Beta
 // @namespace         http://tampermonkey.net/
-// @version           11.2-beta
+// @version           11.3-beta
 // @description       Well, this is the simplest script for Evades.io, in which there is nothing special, but there is a lot of interesting and useful things
 // @description:ru    Ну, это самый простой скрипт для Evades.io, в котором нету ничего особенного, но есть много чего интересного и полезного
 // @author            .zirolio.
