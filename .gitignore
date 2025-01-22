@@ -4,7 +4,9 @@ dist
 
 node_modules
 
-src
+/src
+/logger
+/simulation
 
 /package-lock.json
 /tsconfig.json

@@ -507,6 +507,14 @@ video {
 .pathTrans::-webkit-scrollbar-track {
         background-color: rgba(0, 0, 0, 0);
     }
+.green {
+        color: rgb(34, 141, 73);
+        text-shadow: 0px 0px 10px rgb(34, 141, 73), 0px 0px 12px rgb(34, 141, 73);
+    }
+.red {
+        color: rgb(189, 37, 37);
+        text-shadow: 0px 0px 10px rgb(189, 37, 37), 0px 0px 12px rgb(189, 37, 37);
+    }
 .visible {
   visibility: visible;
 }
@@ -568,6 +576,9 @@ video {
 }
 .mt-6 {
   margin-top: 1.5rem;
+}
+.block {
+  display: block;
 }
 .flex {
   display: flex;
@@ -886,9 +897,6 @@ video {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .hover\:yellowShadow:hover {
         box-shadow: 0px 0px 12px 2.5px rgb(250, 204, 21);
