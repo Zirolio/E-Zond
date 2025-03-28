@@ -1,23 +1,10 @@
 /.gitignore
 
-dist
-
+/dev/build
 node_modules
 
-/src
 /logger
 /simulation
 
-/package-lock.json
-/tsconfig.json
-/package.json
-
-# For moment
-/e-zond.js
-
-/vite.config.mts
-/tailwind.config.ts
 /obfuscator.config.json
-/tailwind.hatEditor.config.js
-/E-Ui-Zond.user.js
-/postcss.config.ts
+/macro.md

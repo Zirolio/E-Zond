@@ -1,0 +1,62 @@
+.changelog {
+    border-top-left-radius: 0px;
+}
+.box-ad {
+    display: none;
+}
+.ezond-poo {
+    color: #472408;
+}
+.ezond-dev {
+    color: #31ffa8;
+}
+.ezond-script {
+    color: #0f79fa;
+}
+.ezond-nice-girl {
+    color: #ed4792;
+}
+.ezond-idiot {
+    color: #c25a00;
+}
+.ezond-nice-boy {
+    color: #fc0362;
+}
+.ezond-warn {
+    color: #f26f6f !important;
+}
+.ezond-message {
+    background-color: #4d4d4dbd;
+    color: #aaa9a9;
+    border-radius: 4px;
+    padding: 2px;
+    display: inline-block;
+}
+.ezond-nullptr {
+    color: rgb(0, 89, 141);
+}
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #6d6d6d;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+}
+* {
+    scrollbar-width: thin;
+}
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #6d6d6d;
+    border-radius: 2px;
+}
+*::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+}

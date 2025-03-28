@@ -1,0 +1,27 @@
+// ==UserScript==
+// @name              %name$en%
+// @name:ru           %name$ru%
+// @namespace         http://tampermonkey.net/
+// @version           %version%
+// @description       %description$en%
+// @description:ru    %description$ru%
+// @author            %author%
+// @license           %license%
+// @icon              %icon%
+// @match             https://evades.io
+// @match             https://evades.io/profile/*
+// @run-at            document-start
+// @grant             none
+// @updateURL         %updateURL%
+// @downloadURL       %downloadURL%
+// ==/UserScript==
+
+//                                                             .--------------------------------------------------------------------------------------------------------------------.
+//                                                             | Так-же хотелось бы поблагодорить розработчиков за отличную игру/проект, надеюсь, скоро будет много новых персов :) |
+//                                                             | И ещё, я передаю привет всем разработчикам Evades, ну и просто разработчикам :)                                    |
+//                                                             | А просто читающим - жешаю хорошей игры!!!                                                                          |
+//                                                             |--------------------------------------------------------------------------------------------------------------------|
+//                                                             | I would also like to thank the developers for a great game/project, I hope there will be many new Persians soon :) |
+//                                                             | And also, I say hello to all Evades developers, and just developers :)                                             |
+//                                                             | And just reading - I want a good game!!!                                                                           |
+//                                                             ^--------------------------------------------------------------------------------------------------------------------^

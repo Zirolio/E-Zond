@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    @import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
+    * {
+        outline: none;
+    }
+
+    .changeChlFr {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        transform: translateY(-100%);
+        border: 1px solid #585858;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background-color: transparent;
+        color: #ffebc0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        user-select: none;
+    }
+    .changeChlFr:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .friendsList {
+        width: 300px;
+        height: 254px;
+        color: #fff;
+        border: 1px solid #585858;
+        border-radius: 5px;
+        margin-top: 20px;
+        position: absolute;
+        left: 50%;
+        overflow: auto;
+        transform: translate(-500px, -20px);
+    }
+
+    @media (max-width: 1000px) {
+        .friendsList {
+            transform: unset;
+            position: relative;
+            left: 0;
+        }
+    }
+
+    .yellowShadow {
+        box-shadow: 0px 0px 12px 2.5px rgb(250, 204, 21);
+    }
+    
+    .yellowTextShadow {
+        text-shadow: 0px 0px 8px rgb(250, 204, 21), 0px 0px 12px rgb(250, 204, 21);
+    }
+    
+    .greenTextShadow {
+        text-shadow: 0px 0px 10px rgb(74, 222, 128), 0px 0px 15px rgb(74, 222, 128);
+    }
+    
+    .greenTextShadow-1 {
+        text-shadow: 0px 0px 10px rgb(49, 217, 111);
+    }
+    
+    .greenTextShadow-2 {
+        text-shadow: 0px 0px 20px rgb(49, 217, 111), 0px 0px 15px rgb(49, 217, 111);
+    }
+    
+    
+    .greenShadow {
+        box-shadow: 0px 0px 20px 2px rgb(74, 222, 128);
+    }
+    
+    .blueShadow {
+        box-shadow: 0px 0px 15px 4px rgb(96, 165, 250);
+    }
+    
+    .orangeShadow {
+        box-shadow: 0px 0px 12px 2.5px rgb(251, 146, 60);
+    }
+    
+    .orangeTextShadow {
+        text-shadow: 0px 0px 8px rgb(251, 146, 60), 0px 0px 12px rgb(255, 141, 48), 0px 0px 14px rgb(246, 152, 75);
+    }
+    
+    .orangeTextShadow-1 {
+        text-shadow: 0px 0px 8px rgb(251, 146, 60), 0px 0px 12px rgb(255, 141, 48);
+    }
+    
+    .purpleShadow {
+        box-shadow: 0px 0px 12px 2.5px rgb(192, 132, 252);
+    }
+    
+    .purpleTextShadow {
+        text-shadow: 0px 0px 10px rgb(192, 132, 252), 0px 0px 12px rgb(192, 132, 252);
+    }
+
+    .pinkShadow {
+        box-shadow: 0px 0px 12px 2.5px rgb(244, 114, 182);
+    }
+    
+    .pinkTextShadow {
+        text-shadow: 0px 0px 10px rgb(244, 114, 182), 0px 0px 12px rgb(244, 114, 182);
+    }
+    
+    .redShadow {
+        box-shadow: 0px 0px 12px 2.5px rgb(248, 113, 113);
+    }
+    
+    .redTextShadow {
+        text-shadow: 0px 0px 10px rgb(248, 113, 113), 0px 0px 12px rgb(248, 113, 113);
+    }
+    
+    .redTextShadow-err {
+        text-shadow: 0px 0px 10px rgb(220, 38, 38), 0px 0px 12px rgb(220, 38, 38);
+    }
+    
+    .whiteShadow {
+        box-shadow: 0px 0px 12px 2.5px rgb(229, 231, 235);
+    }
+    
+    .whiteTextShadow {
+        text-shadow: 0px 0px 10px rgb(229, 231, 235), 0px 0px 12px rgb(229, 231, 235);
+    }
+    
+    .pathTrans::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .pathTrans::-webkit-scrollbar-thumb {
+        background-color: #6d6d6d;
+        height: 4x;
+        border-radius: 2px;
+    }
+    
+    .pathTrans::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    
+    .green {
+        color: rgb(34, 141, 73);
+        text-shadow: 0px 0px 10px rgb(34, 141, 73), 0px 0px 12px rgb(34, 141, 73);
+    }
+    
+    .red {
+        color: rgb(189, 37, 37);
+        text-shadow: 0px 0px 10px rgb(189, 37, 37), 0px 0px 12px rgb(189, 37, 37);
+    }
+    
+    .parsProgress {
+        height: 8px; /* Высота элемента */
+        border-radius: 4px;
+    }
+    
+    .parsProgress::-webkit-progress-bar {
+        background-color: #5e5e5e; /* Цвет фона */
+    }
+
+    .malinShadow {
+        box-shadow: 0px 0px 12px 2.5px rgb(226, 0, 124);
+    }
+
+    .textParsProgress {
+        color: rgb(226, 0, 124); /* Цвет заполненной части */
+
+    }
+    .parsProgress::-webkit-progress-value {
+        background-color: rgb(226, 0, 124); /* Цвет заполненной части */
+    }
+
+    .cb {
+        width: 15px; /* Устанавливаем ширину чекбокса */
+        height: 15px; /* Устанавливаем высоту чекбокса */
+    }
+}
