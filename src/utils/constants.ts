@@ -115,6 +115,6 @@ export const SETTINGS_INFO = {
 }
 export const REPO = `https://raw.githubusercontent.com/Zirolio/E-Zond/main`;
 
-export const FIRST_LOAD_MESSAGE = "\"Fixed\" chrono shadow.";
+export const FIRST_LOAD_MESSAGE = "";
 
 export const CHRONO_BACKTRACK_COOLDOWN = 2.24;

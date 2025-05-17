@@ -2,10 +2,11 @@
   "name": "e-zond",
   "version": "1.0.0",
   "main": "e-zond-beta.js",
+  "type": "module",
   "scripts": {
-    "dev": "npm run buildE-Zond && cd dev && npm run start",
-    "buildE-Zond:css": "tailwindcss src/main.css -o dist/main.css",
-    "buildE-Zond": "npm run buildE-Zond:css && vite build"
+    "dev": "npm run build && cd dev && npm run start",
+    "build:css": "tailwindcss src/main.css -o dist/main.css",
+    "build": "npm run build:css && vite build"
   },
   "author": "",
   "license": "ISC",

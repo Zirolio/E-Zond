@@ -64,11 +64,14 @@ export class InputsEditor {
     }
 
     editInputs2(msg: any) {
-        /* onInputsEdit */ client.items.forEach(item => item.onInputsEdit(msg)); // onInputsEdit
+        if (msg.message.startsWith("/reset")) client.counters.deaths = 0; // msg.message.match(/^\/reset\b/g)
+        // /* onInputsEdit */ for (const item of client.items) item.onInputsEdit(msg); // onInputsEdit
+        client.aim.onInputsEdit(msg);
+        client.chat.onInputsEdit(msg);
+        return msg;
         
         // client.clone.updateKeysOnClone(msg); ????
-        if (msg.message.startsWith("/reset")) client.counters.deaths = 0; // msg.message.match(/^\/reset\b/g)
-        try {
+        // try {
             /* if (client.user.heroInfoCard.heroType == 12) {
                 client.user.self.entity.effects.effects[`${client.user.self.id}-JA`] = {
                     effectType: 18,
@@ -85,8 +88,8 @@ export class InputsEditor {
                 client.chat.addMessages([new ChatMessage('Write "=help" or "=help ru" for open help-menu');
                 client._ = true;
             }*/
-        } catch {}
-        return msg;
+        // } catch {}
+
     }
 
     editInputData(md: { x: number, y: number }) {

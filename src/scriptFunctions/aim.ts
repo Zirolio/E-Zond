@@ -54,65 +54,71 @@ export class AIM extends ScriptItem {
             return e.areaName == client.user.self.entity.areaName &&
                 e.regionName == client.user.self.entity.regionName &&
                 e.id !== client.user.self.id &&
-                (typeof diedPlayers !== 'boolean' || (diedPlayers ? e.deathTimer !== -1 : e.deathTimer == -1));
+                // (typeof maxDist === 'number' ? Vec2.distance(e, me) <= maxDist : true) &&
+                (typeof diedPlayers !== 'boolean' ? true : (diedPlayers ? e.deathTimer !== -1 : e.deathTimer === -1));
         }).sort((e1: { x: number, y: number }, e2: { x: number, y: number }) => {
-            return Math.sqrt((e1.x - me.x)**2 + (e1.y - me.y)**2) - Math.sqrt((e2.x - me.x)**2 + (e2.y - me.y)**2);
+            return Vec2.distance(e1, me) - Vec2.distance(e2, me); // Math.sqrt((e1.x - me.x)**2 + (e1.y - me.y)**2) - Math.sqrt((e2.x - me.x)**2 + (e2.y - me.y)**2);
         })[0];
 
-        if (!obj) return;
-        const   vec = [Math.floor(obj.x - me.x), Math.floor(obj.y - me.y)],
-                vecGcd = this.gcd(Math.abs(vec[0]), Math.abs(vec[1])),
-                dist = Math.sqrt(vec[0]**2 + vec[1]**2);
+        if (!obj || (typeof maxDist === 'number' ? Vec2.distance(obj, me) > maxDist : false)) return;
         
-        const v = { x: Math.floor(vec[0] / vecGcd), y: Math.floor(vec[1] / vecGcd), updated: true };
+        const   vec = new Vec2(Math.round(obj.x - me.x), Math.round(obj.y - me.y));
+        // vecGcd = this.gcd(Math.abs(vec.x), Math.abs(vec.y));
+        
+        const v = vec/* .mulLocal(1 / vecGcd) */.floorLocal().toObject({ updated: true }); // { x: Math.floor(vec[0] / vecGcd), y: Math.floor(vec.y / vecGcd), updated: true };
+        console.log(obj, Vec2.distance(obj, me), v);
 
-        if (typeof maxDist == 'number' && Math.floor(dist) > maxDist) return;
+        // if (typeof maxDist == 'number' && dist > maxDist) return;
         return v;
     }
 
     necroShot(msg: any) {
         try {
-            if (!this.necroAIM.on || client.user.self.entity.heroType !== 4 || !client.autoUse.chekCanUse(client.user.heroInfoCard.abilityTwo, true) || !msg.keys.filter((i: any) => { return i.keyEvent == 1 && i.keyType == 11})[0]) return;
-            const md = this.aim({ diedPlayers: true, maxDist: 1309 });
+            if (!this.necroAIM.on || client.user.self.entity.heroType !== 4 || !client.autoUse.chekCanUse(client.user.heroInfoCard.abilityTwo, true) || !msg.keys.find((i: any) => { return i.keyEvent == 1 && i.keyType == 11})) return false;
+            const md = this.aim({ diedPlayers: true, maxDist: 1280 });
 
-            if (!md) return;
+            if (!md) return false;
             msg.mouseDown = md;
-        } catch {}
+        } catch { return false; }
+        return true;
     }
 
     echelonShot(msg: any) {
         try {
-            if (!this.echelonAIM.on || client.user.self.entity.heroType !== 26 || !client.autoUse.chekCanUse(client.user.heroInfoCard.abilityOne, true) || !msg.keys.filter((i: any) => { return i.keyEvent == 1 && i.keyType == 10})[0]) return;
+            if (!this.echelonAIM.on || client.user.self.entity.heroType !== 26 || !client.autoUse.chekCanUse(client.user.heroInfoCard.abilityOne, true) || !msg.keys.filter((i: any) => { return i.keyEvent == 1 && i.keyType == 10})[0]) return false;
             const md = this.aim({ diedPlayers: true, maxDist: 1296 });
 
-            if (!md) return;
+            if (!md) return false;
             msg.mouseDown = md;
-        } catch {}
+        } catch { return false; }
+        return true;
     }
 
     snowballShot(msg: any) {
         try {
-            if (!this.snowballAIM.on || client.user.heroInfoCard.abilityThree.abilityType !== 31 || !client.autoUse.chekCanUse(client.user.heroInfoCard.abilityThree, true) || !msg.keys.filter((i: any) => { return i.keyEvent == 1 && i.keyType == 12})[0]) return;
+            if (!this.snowballAIM.on || client.user.heroInfoCard.abilityThree.abilityType !== 31 || !client.autoUse.chekCanUse(client.user.heroInfoCard.abilityThree, true) || !msg.keys.filter((i: any) => { return i.keyEvent == 1 && i.keyType == 12})[0]) return false;
             const md = this.aim({ diedPlayers: false });
 
-            if (!md) return;
+            if (!md) return false;
             msg.mouseDown = md;
-        } catch {}
+        } catch { return false; }
+        return true;
     }
 
     ramesesShot(msg: any) {
         try {
-            if (!this.ramesesAIM.on || !client.user.self.entity.isBandaged || client.user.self.entity.heroType !== 11 || !client.autoUse.chekCanUse(client.user.heroInfoCard.abilityTwo, true) || !msg.keys.filter((i: any) => { return i.keyEvent == 1 && i.keyType == 11})[0]) return;
+            if (!this.ramesesAIM.on || !client.user.self.entity.isBandaged || client.user.self.entity.heroType !== 11 || !client.autoUse.chekCanUse(client.user.heroInfoCard.abilityTwo, true) || !msg.keys.filter((i: any) => { return i.keyEvent == 1 && i.keyType == 11})[0]) return false;
             const md = this.aim({ diedPlayers: true, maxDist: 1155 });
 
-            if (!md) return;
+            if (!md) return false;
             msg.mouseDown = md;
-        } catch {}
+        } catch { return false; }
+        return true;
     }
 
     dodge(msg: any) {
         try {
-            if (!this.dodgeBot.on || typeof client.user.self.entity === 'undefined' || msg.mouseDown === null) return;
+            if (!this.dodgeBot.on || typeof client.user.self.entity === 'undefined' || msg.mouseDown === null) return false;
             const playerRadius = client.user.self.entity.radius;
             const playerPosition = new Vec2(client.user.self.entity);
             const mousePosition = new Vec2(msg.mouseDown);
@@ -171,14 +177,15 @@ export class AIM extends ScriptItem {
                 
                 msg.mouseDown = mousePosition.toObject({ updated: true });
             }*/
-        } catch (e) { console.log(e); }
+        } catch (e) { console.log(e); return false; }
+        return true;
     }
 
     onInputsEdit(msg: any): void {
-        this.necroShot(msg);
-        this.snowballShot(msg);
-        this.ramesesShot(msg);
-        this.echelonShot(msg);
-        this.dodge(msg);
+        if (this.necroShot(msg)) return;
+        else if (this.snowballShot(msg)) return;
+        else if (this.ramesesShot(msg)) return;
+        else if (this.echelonShot(msg)) return;
+        else if (this.dodge(msg)) return;
     }
 }

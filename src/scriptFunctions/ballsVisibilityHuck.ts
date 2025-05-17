@@ -1,5 +1,6 @@
 import { client } from "../main";
 import ScriptItem from "../scriptItem";
+import Vec2 from "../utils/vec2";
 
 interface GreenBalls {
     greenBallsTO: 20;
@@ -71,6 +72,21 @@ export class BallsVisibilityHuck extends ScriptItem {
         const delta = Date.now() - this.greenBalls.lastRender;
         this.greenBalls.lastRender = Date.now(); // New date
         const center = { x: client.canvas.width / 2, y: client.canvas.height / 2 }, ctx = client.c;
+
+        Object.values(client.user.entities).filter((e: any) => e.entityType == 220).forEach((entity: any) => {
+            if (entity.__lp) {
+                const move = new Vec2(entity).subLocal(entity.__lp).normalized().mulLocal(3000);
+                ctx.save();
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = "yellow";
+                ctx.beginPath();
+                ctx.moveTo(entity.x - spect.x + center.x, entity.y - spect.y + center.y);
+                ctx.lineTo(entity.x + move.x - spect.x + center.x, entity.y + move.y - spect.y + center.y);
+                ctx.stroke();
+                ctx.restore();
+            }
+            entity.__lp = new Vec2(entity);
+        });
 
         if (this.on) {
             // It's bad already

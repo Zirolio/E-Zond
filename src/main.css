@@ -10,8 +10,6 @@
 
     .changeChlFr {
         position: absolute;
-        left: 0px;
-        top: 0px;
         transform: translateY(-100%);
         border: 1px solid #585858;
         border-top-left-radius: 20px;
@@ -27,25 +25,24 @@
     }
 
     .friendsList {
+        position: relative;
         width: 300px;
         height: 254px;
         color: #fff;
         border: 1px solid #585858;
         border-radius: 5px;
+        border-top-left-radius: 0px;
         margin-top: 20px;
-        position: absolute;
-        left: 50%;
         overflow: auto;
-        transform: translate(-500px, -20px);
     }
 
-    @media (max-width: 1000px) {
+    /* @media (max-width: 1000px) {
         .friendsList {
             transform: unset;
             position: relative;
             left: 0;
         }
-    }
+    } */
 
     .yellowShadow {
         box-shadow: 0px 0px 12px 2.5px rgb(250, 204, 21);
@@ -172,5 +169,32 @@
     .cb {
         width: 15px; /* Устанавливаем ширину чекбокса */
         height: 15px; /* Устанавливаем высоту чекбокса */
+    }
+    
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #6d6d6d;
+        border-radius: 2px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    * {
+        scrollbar-width: thin;
+    }
+    *::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    *::-webkit-scrollbar-thumb {
+        background-color: #6d6d6d;
+        border-radius: 2px;
+    }
+    *::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0);
     }
 }

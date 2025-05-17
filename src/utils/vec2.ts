@@ -110,4 +110,7 @@ export default class Vec2 {
     static fromAngle(angle: number) {
         return new Vec2(Math.cos(angle), Math.sin(angle));
     }
+    static distance(p1: Vec2Like, p2: Vec2Like) {
+        return Math.sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2);
+    }
 }

@@ -98,7 +98,7 @@ export class Listeners {
             } else this._newAreaTimer--;
         }
         if (msg.area) {
-            /* onNewArea */ client.items.forEach(item => item.onNewArea(msg)); // onNewArea
+            /* onNewArea */ for (const item of client.items) item.onNewArea(msg); // onNewArea
             client.evadesObjects.lastAreaMessage = msg;
             this._newAreaTimer = 6;
     
@@ -128,14 +128,14 @@ export class Listeners {
         // if (client.user.self.entity.lightRadius)
         // if (client.ballsVisibilityHuck && !client.ballsVisibilityHuck.greenBalls._greenBallsTOC--) client.ballsVisibilityHuck.greenBallsEditor(msg);
 
-        /* onPreMessageProcess */ client.items.forEach(item => item.onPreMessageProcess(msg));
+        /* onPreMessageProcess */ for (const item of client.items) item.onPreMessageProcess(msg);
         
         return msg;
     }
 
     onPostMessageProcess() {
         client.user.self.entity.lightRadius = client.areaShadow.playerLighting;
-        /* onPostMessageProcess */ client.items.forEach(item => item.onPostMessageProcess());
+        /* onPostMessageProcess */ for (const item of client.items) item.onPostMessageProcess();
     }
 
     initDocumentListeners() {

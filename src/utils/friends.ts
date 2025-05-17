@@ -82,11 +82,19 @@ export class Friends {
 
         // const changeBtn = document.createElement("button"); changeBtn.id = "changeChlFr";
         this.changeBtn = new DOMParser().parseFromString(FRIENDS_HTML, 'text/html').getElementById('changeChlFr') as HTMLButtonElement;
-        this.changeBtn.style = "position: absolute; transform: translateY(-100%); border: 1px solid #585858; border-top-left-radius: 20px; border-top-right-radius: 20px; color: #ffebc0; padding-left: 0.5rem; padding-right: 0.5rem; user-select: none; background-color: transparent;";
+        // this.changeBtn.style = "position: absolute; transform: translateY(-100%); border: 1px solid #585858; border-top-left-radius: 20px; border-top-right-radius: 20px; color: #ffebc0; padding-left: 0.5rem; padding-right: 0.5rem; user-select: none; background-color: transparent;";
         // changeBtn.style = "position: absolute; border-top-left-radius: 20px; border: 1px solid #585858; border-top-right-radius: 20px; color: #ffebc0; padding-left: 0.5rem; padding-right: 0.5rem; user-select: none;";
         
         this.frList = new DOMParser().parseFromString(FRIENDS_HTML, 'text/html').getElementById('friendsList')! as HTMLDivElement; this.frList.style.display = 'none';
         this.changeBtn.onclick = () => {
+            /* if (this.changeBtn.innerText === 'Friends') {
+                this.changelog.removeChild(this.changeBtn);
+                this.frList.appendChild(this.changeBtn);
+            } else {
+                this.frList.removeChild(this.changeBtn);
+                this.changelog.appendChild(this.changeBtn);
+            } */
+
             this.changeBtn.innerText = 'Friends' == this.changeBtn.innerText ? 'Changelog' : 'Friends';
             this.changelog.style.display = this.changelog.style.display == "none" ? '' : 'none';
             this.frList.style.display = this.changelog.style.display == "none" ? '' : 'none';
@@ -102,7 +110,9 @@ export class Friends {
         }
 
         this.shadow.appendChild(this.frList);
+        // this.changelog.appendChild(this.changeBtn);
         this.shadow.appendChild(this.changeBtn);
+        // document.getElementsByClassName('information-container')[0]
         parent.insertBefore(frListContainer, this.changelog);
         // parent.insertBefore(this.changeBtn, frListContainer);
 
@@ -111,7 +121,9 @@ export class Friends {
         
         // this.changelog.parentElement!.insertBefore(frListContainer, this.changelog);
         this.changeBtn.onclick(new MouseEvent('click'));
-        window.addEventListener("resize", this.onResize.bind(this)); this.onResize();
+        
+        window.addEventListener("resize", this.onResize.bind(this));
+        this.onResize();
     }
 
     onResize() {

@@ -73,7 +73,7 @@ export default class EZondInit {
                 .replace(/([0-9a-zA-Z\$]+)\s*=\s*(new WebSocket\(\w+\))/g, (_, a, b) => { compleeted++; return `${a} = (() => { window._client.socketNow = window._client.ws = ${b}; window._client.ws.addEventListener('message', window._client.listeners.onWebSocketMess); return window._client.ws; })()` })
                 .replace(`${client.evadesVarNames.socket}.send(`, () => { compleeted++; return `window._client.socketNow.send(`; })
                 // .replace(/\.render\(this\.context\s*,\s*this\.camera\)/g, (_) => { compleeted++; return _ + ', window._client.counters.draw(this)' })
-                .replace(/(ClientPayload\.encode\()([a-zA-Z0-9$]+)\)/g, (_, a, b) => { compleeted++; return a + `window._client.inputsEditor.editInputs2(${b}))` })
+                .replace(/(ClientPayload\.encode\()(.)\)/g, (_, a, b) => { compleeted++; return `${a}window._client.inputsEditor.editInputs2(${b}))` }) // [a-zA-Z0-9$]+
                 
                 // .replace(/window\.tsmod\s*&&\s*\((window\.protobuf\s*=\s*[a-zA-Z]+?\.Payloads)\);/g, (_, a) => `${a}; window._client.decode = window.protobuf.FramePayload.decode; window._client.encode = window.protobuf.ClientPayload.encode;`)
                 // .replace(/(\w+?\.Payloads)\.FramePayload\.toObject\(\w+?\.Payloads\.FramePayload\.decode\(n\)\)/g, (_, a) => { compleeted++; return `(window._client.protobuf = ${a}) && window._client.onMess(${_})`; })
@@ -130,6 +130,7 @@ export default class EZondInit {
                     compleeted += 0.5;
                     return g + ',' + follow + '),' + setNexus + '),' + setIgnis + '),' + addFriend + '),'; // DELETED!!!
                 });
+            console.log("OK")
             return code + `; window._client.evadesObjects.react = ${client.evadesVarNames.jsx};`;
         }, editorsController, 'body'));
     }
