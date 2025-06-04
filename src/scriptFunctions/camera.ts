@@ -64,6 +64,8 @@ export class Camera extends ScriptItem {
     }
 
     swapCameraToCenter() {
+        if (!client.evadesObjects.resizeCanvas) return;
+        
         if (!this.oldCanvasSet) {
             const coef = Math.max(client.user.area.width / client.workWGE.camera.viewportSize.width, client.user.area.height / client.workWGE.camera.viewportSize.height, 1);
             const oldW = client.workWGE.canvas.width;
@@ -90,7 +92,8 @@ export class Camera extends ScriptItem {
             client.evadesObjects.camera.viewportSize = this.oldCanvasSet.vs;
             this.oldCanvasSet = undefined;
         }
-        this.zoom.resizeEnd();
+        client.evadesObjects.resizeCanvas();
+        // this.zoom.resizeEnd();
     }
 
     swapCameraToClone() {

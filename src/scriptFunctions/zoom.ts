@@ -2,14 +2,27 @@ import { client } from "../main";
 
 export class Zoom {
     readonly zoomStep: number = 0.02;
-    public moment: number = 0;
-    private _new: number = 0;
-    set new(value) { this._new = value; this.reZoom(); };
-    get new() { return this._new; };
-    public original: any;
+    // public updated: boolean = true;
+
+    private _moment: number = 1;
+    get moment() { return this._moment; }
+
+    set new(value: number) { console.log("ZOOM UPDATED:", value); this.updateZoom(value); this.reZoom(); }
+    get new() { return this._moment; }
+
+    updateZoom(newValue: number) {
+        if (newValue > 1) { this._moment = 1; }
+        else if (newValue < 0.35) { this._moment = 0.35; }
+        else this._moment = newValue;
+
+        client.storage.set('zoom', this._moment);
+    }
 
     reZoom() {
-        const workWGE = client.workWGE;
+        if (!client.evadesObjects.resizeCanvas) return;
+        client.evadesObjects.resizeCanvas();
+
+        /*const workWGE = client.workWGE;
         if (!client.evadesObjects.camera || !client.lastAreaMessage) return;
         if (!this.original) this.original = Object.assign({}, client.evadesObjects.camera.viewportSize);
 
@@ -23,20 +36,28 @@ export class Zoom {
         const newW = this.original.width / this._new, newH = this.original.height / this._new;
     
         client.evadesObjects.camera.viewportSize.width = workWGE.canvas.width = workWGE.canvasLighting.width = newW;
-        client.evadesObjects.camera.viewportSize.height = workWGE.canvas.height = workWGE.canvasLighting.height = newH;
+        client.evadesObjects.camera.viewportSize.height = workWGE.canvas.height = workWGE.canvasLighting.height = newH;*/
         // client.evadesObjects.camera.viewportSize = workWGE.canvas;
     
-        this.moment = this._new;
-        this.resizeEnd();
+        // this._new
+        // client.evadesObjects.viewport.originalGameScale = this._new;
     }
     
-    resizeEnd() {
-        if (!client.workWGE) return;
-        client.user.area = new client.user.area.constructor();
-        client.user.area.unionState(client.lastAreaMessage.area);
-        client.workWGE.initResizeCanvas();
+    getZoom() {
+        if (client.camera.oldCanvasSet) return Math.min(window.innerWidth / client.user.area.width, window.innerHeight / client.user.area.height);
+        return Math.min(window.innerWidth / 1280, window.innerHeight / 720) * this.moment;
     }
-}// $0728a58da77f2384$export$2e2bcd8739ae039
+}
+/* Math.max(
+            Math.min(window.innerWidth / 1280, window.innerHeight / 720),
+            this.moment
+        ); */
+/* resizeEnd() {
+    if (!client.workWGE) return;
+    client.user.area = new client.user.area.constructor();
+    client.user.area.unionState(client.lastAreaMessage.area);
+    client.workWGE.initResizeCanvas();
+} */
 // $a9c1803c87ddfbef$export$2e2bcd8739ae039
 /* 
 if (!client.originalViewportSize) client.originalViewportSize = Object.assign({}, client.state.camera.viewportSize)

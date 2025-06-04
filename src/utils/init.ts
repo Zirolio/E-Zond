@@ -11,7 +11,15 @@ export default class EZondInit {
             client.evadesVarNames.jsx = code.match(/([0-9a-zA-Z\$]+)\.jsx\b/s)![1];
             client.parcelRequireProp = (code.match(/parcelRequire\w+/g) || ["N_O_N_E"])[0];
         
+            client.evadesObjects
+            // window._client.evadesObjects.viewport.originalGameScale = 0.5
             code = "console.log(`E-Zond inited!!!`); window._client.listeners.onInit();" + code
+                // Viewport
+                .replace(/this\.originalGameScale\s*=/, (_) => { compleeted++; return `window._client.evadesObjects.viewport = this, ${_}` })
+                .replace(/this\.initResizeCanvas\(\),/, (_) => { compleeted++; return `window._client.evadesObjects.workWGE = this, ${_}` })
+                .replace(/x:\s*window.innerWidth\s*\/\s*\d+/, (_) => `x: window._client.camera.zoom.getZoom()`)
+                .replace(/y:\s*window.innerHeight\s*\/\s*\d+/, (_) => `y: window._client.camera.zoom.getZoom()`)
+                .replace(/(window\.addEventListener\("resize",\s*)(\w+)/, (_, a, b) => `${a} window._client.evadesObjects.resizeCanvas = ${b}`)
                 // .replace(/("cosmetics\/"\s*\+\s*)(this\.hatName)/g, (_, a, b) => a + `'' || ${b}`)
                 // .replace(/"angel-wings":\s*[\$a-zA-Z0-9]*?,/g, _ => _ + 'costum1: new URL("https://raw.githubusercontent.com/Zirolio/E-Zond/main/hat4.png", import.meta.url).toString(),')
                 // .replace(/register\((JSON\.parse\(.*?\))\);/g, (_, a) => { return `register(window._client.__editBaseData2(${a}));` })
@@ -90,7 +98,6 @@ export default class EZondInit {
                 .replace(/settings:\s*\{\},/g, (_) => { compleeted++; return _ + `_: (window._client.chat.add = this.updateChat.bind(this)) && null,`; })
                 
                 .replace(/(this\.keys\.difference\(this\.previousKeys\));/g, (_, a) => { compleeted++; return `window._client.inputsEditor.editKeys(${a});`; })
-                .replace(/(this\.initResizeCanvas\(\),)/g, a => { compleeted++; return a + `window._client.evadesObjects.workWGE = this,` })
                 .replace(/((.)\.globalAlpha\)\),)(\s*this\.maxHealth\s*>\s*0\))/g, (_, a, b, c) => { compleeted++; return `${a}(${b}.globalAlpha = Math.min(window._client.ballsVisibilityHuck.ballsOpacity, ${b}.globalAlpha)), ${c}` }) // console.log(123); e.globalAlpha = Math.min(e.globalAlpha, window._client.ballsVisibilityHuck.ballsOpacity),
                 .replace(/(this\.camera\.centerOn\(e\.self\.entity\))/g, a => { compleeted++; return `this.camera.centerOn(window._client.camera.getSpect()); window._client.evadesObjects.camera = this.camera;` })
                 .replace(/(processServerMessage\(e\)\s*\{)/g, a => { compleeted++; return a + `window._client.listeners.onNewDataFromServer(e);` })

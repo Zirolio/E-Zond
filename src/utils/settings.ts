@@ -105,10 +105,18 @@ export class Settings {
         // client.settings = this;
     }
 
+    readValue(id: string, type: "num" | "bool" = "bool", defaultV: boolean | number = false) {
+        const value = client.storage.get(id, type);
+        if (type === "num" && Number.isNaN(value)) return defaultV;
+        return value;
+    }
+
     registrOption(target: any, optionKey: string, id: string, defaultV: boolean | number = false, type: "num" | "bool" = "bool", isStorageProperty: boolean = true) {
         if (isStorageProperty) {
             if (!client.storage.has(id)) client.storage.set(id, defaultV);
-            target[optionKey] = (type == "bool" ? client.storage.get(id, type) : type == "num" ? client.storage.get(id, type)/*  * 100 */ : null);
+            /* if (id == "zoom") client.camera.zoom.updateZoom();
+            else */
+            target[optionKey] = this.readValue(id, type, defaultV);
         }
 
         Object.defineProperty(this.options, id, {

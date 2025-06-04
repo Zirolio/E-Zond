@@ -79,7 +79,7 @@ export class Listeners {
         
         // console.log(msg);
         client.friends.hide();
-        // if (!client.camera.zoom.u) client.zoom.reZoom();
+        // if (!client.camera.zoom.updated) client.camera.zoom.reZoom();
 
         // Messages process
         if (msg.chat) for (const chatMess of msg.chat.messages) {
@@ -139,7 +139,7 @@ export class Listeners {
     }
 
     initDocumentListeners() {
-        document.onkeydown = (k) => {
+        document.addEventListener("keydown", (k) => {
             const chat = document.getElementById("chat-input");
             if (document.activeElement == chat) return;
             if (client.user) {
@@ -153,14 +153,13 @@ export class Listeners {
                 else if (k.code == "KeyZ" && k.altKey) client.settings.show$hideSettings();
                 else if (k.code == "KeyP") client.follow.followPellet.on = !client.follow.followPellet.on;
             }
-        }
-        window.onwheel = (e) => {
+        });
+        window.addEventListener("wheel", (e) => {
             if ((e as any).toElement == document.getElementById('canvas')) {
                 if (e.deltaY < 0) client.camera.zoom.new += client.camera.zoom.zoomStep;
                 else client.camera.zoom.new -= client.camera.zoom.zoomStep;
-                (client.settings.shadow?.getElementById("zoom") as HTMLInputElement).value = (client.camera.zoom.new * 100 as any);
-                // client.camera.zoom.reZoom();
+                (client.settings.shadow?.getElementById("zoom") as HTMLInputElement).value = (client.camera.zoom.moment * 100 as any);
             }
-        }
+        });
     }
 }

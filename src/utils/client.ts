@@ -45,9 +45,11 @@ interface EvadesObjects {
     camera?: any;
     workWGE?: any;
     baseData?: any;
+    viewport?: any;
     protobuf?: any;
     react?: any;
     lastAreaMessage?: any;
+    resizeCanvas?: Function;
 }
 
 interface EvadesVarNames {

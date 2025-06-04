@@ -122,11 +122,12 @@ export class Friends {
         // this.changelog.parentElement!.insertBefore(frListContainer, this.changelog);
         this.changeBtn.onclick(new MouseEvent('click'));
         
-        window.addEventListener("resize", this.onResize.bind(this));
-        this.onResize();
+        window.addEventListener("resize", this.updateChangeBtnPosition.bind(this));
+        window.addEventListener("click", this.updateChangeBtnPosition.bind(this));
+        this.updateChangeBtnPosition();
     }
 
-    onResize() {
+    updateChangeBtnPosition() {
         const container = (this.changelog.style.display !== "none" ? this.changelog : this.frList);
         const containerRect = container.getBoundingClientRect();
         this.changeBtn.style.left = `${containerRect.left}px`;
