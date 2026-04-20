@@ -1,1 +1,2 @@
-console.log("INITIAL");
+console.log(123);
+window.stop();

@@ -4,12 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently -k -n BUILDER,DEV_WINDOW -c blue,green npm:build:watch npm:start:devwindow",
+    "start:devwindow": "cd dev && cross-env FILE_PATH=../e-zond/e-zond.user.js npm run start",
+    "build:watch": "vite build --watch",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
     "sass": "^1.99.0",
     "typescript": "~6.0.2",
     "vite": "^8.0.9"
