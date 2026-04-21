@@ -15,8 +15,8 @@ export default class MainWindow extends BrowserWindow {
         super({
             title: "E-Zond dev window",
             webPreferences: {
-                preload: path.join(__dirname, "./preload.js"),
-                contextIsolation: true
+                // preload: path.join(__dirname, "./preload.js"),
+                //contextIsolation: true
             }
         });
         this.watchFilepath = watchFilepath;
@@ -26,23 +26,46 @@ export default class MainWindow extends BrowserWindow {
     }
 
     private async init() {
+        this.webContents.on("before-input-event", (event, input) => {
+            if (
+                input.control &&
+                input.shift &&
+                input.key.toLowerCase() === "i"
+            ) {
+                this.webContents.toggleDevTools();
+                event.preventDefault();
+            }
+        });
+
         this.script = fs.readFileSync(this.watchFilepath, "utf-8");
 
-        ipcMain.removeAllListeners("get-script-sync");
-        ipcMain.on("get-script-sync", (event) => (event.returnValue = this.script));
+        /* ipcMain.on("aaa", (event, ...args) => {
+            console.log(args);
+            event.returnValue = "OK";
+        }); */
+        this.webContents.on("did-finish-load", async () => {
+            try {
+                await this.webContents.executeJavaScript(this.script);
+            } catch (e) {
+                console.error(e);
+            }
+        });
 
         this.watcher = chokidar.watch(path.dirname(this.watchFilepath));
         this.watcher.on("all", async (event, filePath) => {
             // console.log("Changed:", event, "filePath:", filePath, filePath.endsWith(this.watchFileName));
             if (!filePath.endsWith(this.watchFileName)) return;
 
-            this.script = await readFile(this.watchFilepath, "utf-8");
-            console.log("\nScript changed!");
-            this.loadURL("about:blank");
+            this.script = fs.readFileSync(this.watchFilepath, "utf-8");
             this.loadURL("https://evades.io");
+            // await this.webContents.executeJavaScript(this.script);
+            /* console.log("\nScript changed!");
+            this.loadURL("https://evades.io"); */
         });
 
         this.on("closed", () => this.watcher.close());
+
         this.loadURL("https://evades.io");
+        // await this.webContents.executeJavaScript(this.script);
     }
 }

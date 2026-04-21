@@ -8,14 +8,8 @@
     "skipLibCheck": true,
 
     "paths": {
-      "@app/*": ["./src/app/*"],
-      "@widgets/*": ["./src/widgets/*"],
-      "@entities/*": ["./src/entities/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@game/*": ["./src/game/*"],
-      "@editor/*": ["./src/editor/*"],
-      "@store/*": ["./src/store/*"],
-      "@engine/*": ["./src/engine/*"],
+      "@client/*": ["./src/client/*"],
+      "@injector/*": ["./src/injector/*"],
       "@shared/*": ["./src/shared/*"],
       "@/*": ["./src/*"]
     },

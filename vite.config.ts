@@ -26,8 +26,7 @@ export default defineConfig(({ mode }) => {
             rollupOptions: {
                 input: input,
                 output: {
-                    entryFileNames: (chunk) => {
-                        console.log(chunk);
+                    entryFileNames: () => {
                         return "[name].js";
                     },
                 }

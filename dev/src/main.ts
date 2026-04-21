@@ -6,10 +6,6 @@ const filePath = path.resolve(process.cwd(), process.env.FILE_PATH);
 
 function createWindow() {
     const window = new MainWindow(filePath);
-
-    globalShortcut.register("Control+Shift+I", () => {
-        window.webContents.toggleDevTools();
-    });
 }
 
 app.whenReady().then(() => {
