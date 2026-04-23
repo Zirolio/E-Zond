@@ -8,6 +8,7 @@ const Meta = readFileSync(path.join(__dirname, "./e-zond.meta.txt")).toString();
 const SCRIPT_FILE_NAME = path.parse(Manifest.downloadURL).name;
 const LOADER_FILE_NAME = path.parse(Manifest.loaderURL).name;
 
+
 export default defineConfig(({ mode }) => {
     const isWatch = mode === "development";
 
@@ -15,7 +16,9 @@ export default defineConfig(({ mode }) => {
         [SCRIPT_FILE_NAME]: 'src/main.ts'
     };
     
-    if (!isWatch) input[LOADER_FILE_NAME] = 'src/loader.ts';
+    if (!isWatch) {
+        input[LOADER_FILE_NAME] = 'src/loader.ts';
+    }
 
     return {
         plugins: [

@@ -1,9 +1,11 @@
 import Replacer from "@injector/Replacer";
-import type { GameObjects, User } from "@shared/types/GameObjects.type";
 
-export default class GameObjectsReplacer extends Replacer implements GameObjects {
-    user?: User | undefined;
-
+export default class GameObjectsReplacer extends Replacer {
+    /* eslint-disable */
+    user?: any;
+    engine?: any;
+    /* eslint-enable */
+    
     constructor() {
         super();
 

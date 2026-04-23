@@ -1,3 +1,5 @@
+import { SCRIPT_NAME } from "@/constants";
+import { client } from "@/main";
 import type { BuildState, SchemaItem, SettingConfig, SettingsSchema } from "@shared/types/Settings.type";
 import { Pane, type BindingParams } from "tweakpane";
 
@@ -42,9 +44,13 @@ export default class Settings<S extends SettingsSchema> {
     }
     
     private buildPane() {
-        this.pane = new Pane();
+        this.pane = new Pane({ title: `${SCRIPT_NAME} Settings` });
+        this.pane.hidden = true;
+        
+        const settingsPage = this.pane; // this.pane.addTab({ pages: [{ title: `${SCRIPT_NAME} Settings` }] }).pages[0];
+        // this.makeDraggable(settingsPage.element, this.pane.element);
 
-        const tabApi = this.pane.addTab({ pages: this.settingsSchema.map(page => ({ title: page.name })) });
+        const tabApi = settingsPage.addTab({ pages: this.settingsSchema.map(page => ({ title: page.name })) });
         for (let i = 0; i < this.settingsSchema.length; i++) {
             const pageApi = tabApi.pages[i];
             const folders = this.settingsSchema[i].folders;
@@ -53,7 +59,7 @@ export default class Settings<S extends SettingsSchema> {
                 const folderApi = pageApi.addFolder({ title: folderName });
 
                 for (const [optionName, option] of Object.entries<SettingConfig>(folder)) {
-                    folderApi.addBinding(
+                    const input = folderApi.addBinding(
                         ((this.state as AnyObjectMap)[this.settingsSchema[i].name] as SettingsGroup)[folderName],
                         optionName,
                         {
@@ -61,6 +67,12 @@ export default class Settings<S extends SettingsSchema> {
                             ...this.getBindingParams(option)
                         }
                     );
+
+                    if (optionName === "zoom") {
+                        input.on("change", () => {
+                            client.camera.rezoom();
+                        });
+                    }
                     
                     /* this.state.value = 1;
                     folderApi.addBinding(this.state, "value", {
@@ -73,14 +85,50 @@ export default class Settings<S extends SettingsSchema> {
                 }
             }
 
-            pageApi.addButton({
-                title: "Reset"
-            }).on("click", () => {
+            pageApi.addButton({ title: "Reset" }).on("click", () => {
                 this.reset(this.settingsSchema[i].name);
             });
         }
 
+        this.pane.addButton({ title: "Hide" }).on("click", () => this.hide());
     }
+
+    /* private makeDraggable(header: HTMLElement, settingsElement: HTMLElement) {
+        settingsElement.style.position = "fixed";
+        settingsElement.style.top = "20px";
+        settingsElement.style.left = "20px";
+        settingsElement.style.zIndex = "9999";
+
+        let offsetX = 0;
+        let offsetY = 0;
+        let dragging = false;
+
+        const onMouseMove = (e: MouseEvent) => {
+            if (!dragging) return;
+
+            settingsElement.style.left = `${e.clientX - offsetX}px`;
+            settingsElement.style.top = `${e.clientY - offsetY}px`;
+        };
+
+        const onMouseUp = () => {
+            dragging = false;
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseup", onMouseUp);
+        };
+
+        header.addEventListener("mousedown", (e) => {
+            if (e instanceof MouseEvent) {
+                dragging = true;
+    
+                const rect = settingsElement.getBoundingClientRect();
+                offsetX = e.clientX - rect.left;
+                offsetY = e.clientY - rect.top;
+    
+                document.addEventListener("mousemove", onMouseMove);
+                document.addEventListener("mouseup", onMouseUp);
+            }
+        });
+    } */
 
     private buildState<S extends readonly SchemaItem[]>(schema: S): BuildState<S> {
         const state = {} as BuildState<S>;
@@ -101,7 +149,14 @@ export default class Settings<S extends SettingsSchema> {
         return state;
     }
 
-    init() { if (!this.pane) this.buildPane(); }
+    init() {
+        if (!this.pane) {
+            this.buildPane();
+            window.addEventListener("keydown", e => {
+                if (e.altKey && e.code === "KeyZ") this.toggle();
+            });
+        }
+    }
     reset(tab: string) {
         const defaultState = this.buildState(this.settingsSchema);
         const defaultTabStae = this.settingsSchema.find(t => t.name === tab);

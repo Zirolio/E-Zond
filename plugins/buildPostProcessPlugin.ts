@@ -6,33 +6,44 @@ interface Manifest {
     updateURL: string;
     downloadURL: string;
     loaderURL: string;
+    embdedURL: string;
 }
 
 export default function buildPostProcessPlugin(meta: string, manifest: Manifest): Plugin {
+    const scriptBase = path.parse(manifest.downloadURL).base;
+    const updateBase = path.parse(manifest.updateURL).base;
+    const embdedBase = path.parse(manifest.embdedURL).base;
+
+    let scriptMeta = meta + '\n';
+    meta.match(/%[\w$]+%/g)?.forEach(a => scriptMeta = scriptMeta.replace(a, v => {
+        // eslint-disable-next-line
+        let res: any = manifest;
+        const path = v.slice(1, -1).split("$");
+        path.forEach(e => res = res[e]);
+        return res;
+    }));
+    
     return {
         name: "build-post-process-plugin",
         generateBundle(_, bundle) {
             for (const file of Object.values(bundle)) {
                 if (file.type === "chunk") {
                     if (file.fileName.includes(path.parse(manifest.loaderURL).name)) {
-                        file.code = meta + "\n" + file.code;
+                        file.code = scriptMeta + file.code;
                     }
                 }
             }
         },
-        writeBundle(config: any, _bundle: any) {
-            let scriptMeta = meta + '\n';
+        writeBundle(config, bundle) {
+            if (config.dir) {
+                writeFileSync(path.join(config.dir, `./${updateBase}`), scriptMeta);
+                if (bundle[scriptBase].type === "chunk") {
+                    writeFileSync(path.join(config.dir, `./${embdedBase}`), scriptMeta + bundle[scriptBase].code);
+                }
 
-            meta.match(/\%[\w$]+\%/g)?.forEach(a => scriptMeta = scriptMeta.replace(a, v => {
-                let res: any = manifest;
-                const path = v.slice(1, -1).split("$");
-                path.forEach(e => res = res[e]);
-                return res;
-            }));
-
-            writeFileSync(path.join(config.dir, `./${path.parse(manifest.updateURL).base}`), scriptMeta);
-            copyFileSync(path.join(process.cwd(), './configs/manifest.json'), path.join(config.dir, `./manifest.json`));
-            copyFileSync(path.join(process.cwd(), './configs/config.json'), path.join(config.dir, `./config.json`));
+                copyFileSync(path.join(process.cwd(), './configs/manifest.json'), path.join(config.dir, `./manifest.json`));
+                copyFileSync(path.join(process.cwd(), './configs/config.json'), path.join(config.dir, `./config.json`));
+            }
         }
     }
 }

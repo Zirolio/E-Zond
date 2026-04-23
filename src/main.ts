@@ -7,6 +7,7 @@ import Logger from "@shared/util/logger/Logger";
 
 export const client = new Client(SETTINGS_SCHEMA)
     .add("camera", new CameraReplacer())
+    // .add("")
     .add("gameObjects", new GameObjectsReplacer())
 
 function main() {
@@ -20,7 +21,7 @@ function main() {
         }));
         
         client.initInjector(injector);
-        
+
         Logger.logo();
         injector.init((html, scripts) => {
             for (const script of scripts) {

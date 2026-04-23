@@ -6,4 +6,5 @@ export interface User {
 
 export interface GameObjects {
     user?: User;
+    engine?: object;
 }

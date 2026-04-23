@@ -25,6 +25,7 @@
     "vite": "^8.0.9"
   },
   "dependencies": {
+    "quicktype-core": "^23.2.6",
     "tweakpane": "^4.0.5"
   }
 }

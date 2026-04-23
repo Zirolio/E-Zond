@@ -19,30 +19,14 @@ export const SETTINGS_SCHEMA = [
                     defaultValue: 0.5,
                     description: "Zoom scale"
                 },
-                fov: {
-                    type: "range",
-                    min: 30,
-                    max: 120,
-                    step: 1,
-                    defaultValue: 75,
-                },
                 fullArea: {
                     type: "checkbox",
                     defaultValue: false,
                 },
             },
-            Movement: {
-                sensitivity: {
-                    type: "range",
-                    min: 0.1,
-                    max: 10,
-                    step: 0.1,
-                    defaultValue: 1,
-                },
-            },
         },
     },
-    {
+    /* {
         name: "Characters",
         folders: {
             Visual: {
@@ -55,5 +39,5 @@ export const SETTINGS_SCHEMA = [
                 },
             },
         },
-    }
+    } */
 ] as const satisfies SettingsSchema;
