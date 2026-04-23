@@ -50,7 +50,7 @@ export default class Injector {
         postEditProcess: ((html: string, scripts: ScriptConf[]) => CreatorConf) = (html, scripts) => ({ html, scripts })
     ) {
         if (!this.replacers.size) Logger.warn("Count of replacers === 0");
-        let html = await fetch(location.href, { credentials: "include" }).then(r => r.text());
+        let html = await fetch(location.origin + location.pathname, { credentials: "include" }).then(r => r.text());
 
         const scriptConfigs: ScriptConf[] = [];
         const scripts = html.matchAll(/<script[^>]+?src="(.*?)"[^>]*?><\/script>/g);

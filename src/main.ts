@@ -11,10 +11,11 @@ export const client = new Client(SETTINGS_SCHEMA)
     .add("gameObjects", new GameObjectsReplacer())
 
 function main() {
+    window.stop();
     document.documentElement.innerHTML = "";
     document.head.appendChild(document.createElement('style')).innerHTML = "body { background: #222 }";
     
-    if (location.href === "https://evades.io/") {
+    if (location.origin + location.pathname === "https://evades.io/") {
         const injector = client.initInjector(new Injector((script) => {
             return !!script.match(/type="module".*?src="(\/index\.[a-zA-Z0-9]+?\.js)"/g)
         }));
