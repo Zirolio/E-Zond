@@ -1,42 +1,99 @@
-import { SETTINGS_SCHEMA } from "@/constants";
-import type { BuildState, SchemaItem } from "@shared/types/Settings.type";
-import { Pane } from "tweakpane";
+import type { BuildState, SchemaItem, SettingConfig, SettingsSchema } from "@shared/types/Settings.type";
+import { Pane, type BindingParams } from "tweakpane";
 
-export default class Settings {
-    public state = this.buildState(SETTINGS_SCHEMA);
+type AnyObjectMap = Record<string, object>;
+type SettingsValues = Record<string, number | boolean>;
+type SettingsGroup = Record<string, SettingsValues>;
+
+export default class Settings<S extends SettingsSchema> {
+    private readonly localStorageKey: string;
+    private readonly settingsSchema: S;
+    public state: BuildState<S>;
     private pane!: Pane;
 
-    init() {
-        // this.buildPane();
+    constructor(settingsSchema: S, localStorageKey: string) {
+        this.localStorageKey = localStorageKey;
+        this.settingsSchema = settingsSchema;
+        this.state = this.buildState(settingsSchema);
+    }
+
+    private getBindingParams(option: SettingConfig): BindingParams {
+        switch (option.type) {
+            case "range":
+                return {
+                    min: option.min,
+                    max: option.max,
+                    step: option.step,
+                };
+
+            case "checkbox":
+                return {};
+
+            /* case "select":
+                return {
+                    options: option.options
+                };
+
+            case "color":
+                return {
+                    view: "color"
+                }; */
+        }
     }
     
-    /* private buildPane() {
+    private buildPane() {
         this.pane = new Pane();
 
-        const tabApi = this.pane.addTab({ pages: SETTINGS_SCHEMA.map(page => ({ title: page.name })) });
-        for (let i = 0; i < SETTINGS_SCHEMA.length; i++) {
+        const tabApi = this.pane.addTab({ pages: this.settingsSchema.map(page => ({ title: page.name })) });
+        for (let i = 0; i < this.settingsSchema.length; i++) {
             const pageApi = tabApi.pages[i];
-            const folders = SETTINGS_SCHEMA[i].folders;
+            const folders = this.settingsSchema[i].folders;
 
             for (const [folderName, folder] of Object.entries(folders)) {
-                pageApi.addFolder({ title: folderName });
+                const folderApi = pageApi.addFolder({ title: folderName });
+
+                for (const [optionName, option] of Object.entries<SettingConfig>(folder)) {
+                    folderApi.addBinding(
+                        ((this.state as AnyObjectMap)[this.settingsSchema[i].name] as SettingsGroup)[folderName],
+                        optionName,
+                        {
+                            label: option.label ?? optionName,
+                            ...this.getBindingParams(option)
+                        }
+                    );
+                    
+                    /* this.state.value = 1;
+                    folderApi.addBinding(this.state, "value", {
+                        view: "monitor",
+                        readonly: true
+                    }); */
+                    /* folderApi.addBlade({
+                        view: "separator"
+                    }); */
+                }
             }
+
+            pageApi.addButton({
+                title: "Reset"
+            }).on("click", () => {
+                this.reset(this.settingsSchema[i].name);
+            });
         }
-    } */
-    
+
+    }
 
     private buildState<S extends readonly SchemaItem[]>(schema: S): BuildState<S> {
         const state = {} as BuildState<S>;
 
         for (const page of schema) {
-            const folderState = (state as Record<string, object>)[page.name] = {};
+            const folderState = (state as AnyObjectMap)[page.name] = {};
 
             for (const [folderName, folder] of Object.entries(page.folders)) {
-                const optionsState = (folderState as Record<string, object>)[folderName] = {};
+                const optionsState = (folderState as AnyObjectMap)[folderName] = {};
                 
                 for (const [optionName, { type, defaultValue }] of Object.entries(folder)) {
-                    const optionValue = defaultValue ?? type === "checkbox" ? false : 0;
-                    (optionsState as Record<string, number | boolean>)[optionName] = optionValue;
+                    const optionValue = defaultValue ?? (type === "checkbox" ? false : 0);
+                    (optionsState as SettingsValues)[optionName] = optionValue;
                 }
             }
         }
@@ -44,35 +101,26 @@ export default class Settings {
         return state;
     }
 
-    /* private buildState<S extends SettingsSchema>(
-        schema: S
-    ): BuildStateFromSchema<S> {
-        const state = {} as BuildStateFromSchema<S>;
-        const tabs = Object.keys(schema) as (keyof S)[];
-
-        for (const tab of tabs) {
-            const folders = Object.keys(schema[tab]) as (keyof S[typeof tab])[];
-            state[tab] = {} as BuildStateFromSchema<S>[typeof tab];
-
-            for (const folder of folders) {
-                const options = Object.keys(schema[tab][folder]) as (keyof S[typeof tab][typeof folder])[];
-                state[tab][folder] = {} as BuildStateFromSchema<S>[typeof tab][typeof folder];
-
-                for (const option of options) {
-                    const cfg = schema[tab][folder][option];
-                    if (cfg.type === "range") {
-                        state[tab][folder][option] = cfg.default as InferValue<typeof cfg>;
-                    } else if (cfg.type === "checkbox") {
-                        state[tab][folder][option] = cfg.default as InferValue<typeof cfg>;
-                    }
-                }
-            }
+    init() { if (!this.pane) this.buildPane(); }
+    reset(tab: string) {
+        const defaultState = this.buildState(this.settingsSchema);
+        const defaultTabStae = this.settingsSchema.find(t => t.name === tab);
+        if (defaultTabStae) {
+            (this.state as AnyObjectMap)[tab] = (defaultState as AnyObjectMap)[defaultTabStae.name];
+            this.pane.dispose();
+            this.buildPane();
         }
-
-        return state;
-    } */
+    }
+    
+    save() {
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.state));
+    }
+    load() {
+        const data = localStorage.getItem(this.localStorageKey);
+        if (data) this.state = JSON.parse(data);
+    }
 
     show() { this.pane.hidden = false; }
     hide() { this.pane.hidden = true; }
-    totage() { this.pane.hidden = !this.pane.hidden; }
+    toggle() { this.pane.hidden = !this.pane.hidden; }
 }

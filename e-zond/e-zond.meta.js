@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name              E-Zond V2
-// @name:ru           E-Zond V2
+// @name              E-Zond
+// @name:ru           E-Zond
 // @namespace         http://tampermonkey.net/
-// @version           0.0.1
+// @version           2.0
 // @description       E-Zond V2
 // @description:ru    E-Zond V2
 // @author            dc: .zirolio. | tg: @Zirolio

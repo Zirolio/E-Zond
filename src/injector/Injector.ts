@@ -1,4 +1,4 @@
-import Logger from "@/shared/util/Logger";
+import Logger from "@shared/util/logger/Logger";
 import Replacer from "./Replacer";
 
 interface ScriptConf {
@@ -26,8 +26,9 @@ export default class Injector {
 
     private replace(script: string) {
         for (const replacer of this.replacers) {
-            let isReplaced = false;
             for (const { searchValue, replace } of replacer.replacerItems) {
+                let isReplaced = false;
+
                 script = script.replace(searchValue, (substring: string, ...args: object[]) => {
                     isReplaced = true;
                     const replaced = replace(substring, ...args);
@@ -48,6 +49,7 @@ export default class Injector {
     async init(
         postEditProcess: ((html: string, scripts: ScriptConf[]) => CreatorConf) = (html, scripts) => ({ html, scripts })
     ) {
+        if (!this.replacers.size) Logger.warn("Count of replacers === 0");
         let html = await fetch(location.href, { credentials: "include" }).then(r => r.text());
 
         const scriptConfigs: ScriptConf[] = [];
@@ -80,7 +82,6 @@ export default class Injector {
             const scriptElement = document.createElement("script");
             if (isModule) scriptElement.type = "module";
             scriptElement.textContent = script;
-            console.log(scriptElement)
             document.body.appendChild(scriptElement);
         }
     }

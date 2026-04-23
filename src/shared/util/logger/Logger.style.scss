@@ -1,0 +1,37 @@
+$backgroundColor: #0f172a;
+$logoColor:       #38bdf8;
+$injectedColor:   #a78bfa;
+$logColor:        #94a3b8;
+$infoColor:       #22c55e;
+$warnColor:       #f59e0b;
+$errorColor:      #ef4444;
+
+.base {
+    background: $backgroundColor;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    
+    box-sizing: border-box;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@mixin colorize($color) {
+    color: $color;
+    border-left: 3px solid $color;
+}
+
+.logo {
+    @include colorize($logoColor);
+    font-size: 32px;
+}
+.injected {
+    @include colorize($injectedColor);
+    font-size: 32px;
+}
+.log { @include colorize($logColor); }
+.info { @include colorize($infoColor); }
+.warn { @include colorize($warnColor); }
+.error { @include colorize($errorColor); }

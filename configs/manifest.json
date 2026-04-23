@@ -1,9 +1,9 @@
 {
     "name": {
-        "ru": "E-Zond V2",
-        "en": "E-Zond V2"
+        "ru": "E-Zond",
+        "en": "E-Zond"
     },
-    "version": "0.0.1",
+    "version": "2.0",
     "author": "dc: .zirolio. | tg: @Zirolio",
     "license": "CC-BY-NC-ND-4.0",
     "description": {

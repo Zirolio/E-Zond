@@ -33,7 +33,8 @@ export default defineConfig(({ mode }) => {
             }
         },
         define: {
-            'import.meta.env.VERSION': JSON.stringify(Manifest.version)
+            'import.meta.env.SCRIPT_VERSION': JSON.stringify(Manifest.version),
+            'import.meta.env.SCRIPT_NAME': JSON.stringify(Manifest.name.en),
         }
     }
 });
