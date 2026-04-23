@@ -11,7 +11,6 @@ export const client = new Client(SETTINGS_SCHEMA)
     .add("gameObjects", new GameObjectsReplacer())
 
 function main() {
-    window.stop();
     document.documentElement.innerHTML = "";
     document.head.appendChild(document.createElement('style')).innerHTML = "body { background: #222 }";
     
